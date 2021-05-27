@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  gollum:
+    image: gollumorg/gollum
+    ports:
+      - "4567:4567"
+    volumes:
+      - "./:/wiki"
