@@ -1,0 +1,6 @@
+tasks:
+  default:
+    description: start the knowledgebase
+  cmds:
+    docker-compose up
+
