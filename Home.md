@@ -1,4 +1,4 @@
 # Welcome to the Cloud Intelligence Wiki!
 
-## Sitemap
-- [frontend](/frontend/)
+## [Sitemap](/gollum/overview/)
+- [frontend](/gollum/overview/frontend/)
