@@ -2,7 +2,7 @@
 
 ## Sitemap
 ### FE
-- [frontend links](/frontend/links)
+- [Frontend Links](/frontend/links)
 
 ### MISC
-- [cli tools](/CLI)
+- [CLI tools](/CLI)
