@@ -3,3 +3,4 @@
 ## Sitemap
 ### FE
 - [frontend links](/frontend/links)
+- [cli tools](/cli)
