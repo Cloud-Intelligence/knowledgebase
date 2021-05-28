@@ -9,3 +9,6 @@ You will need docker and docker-compose set up in order to run this.
 - alternativley run `docker-compose up` if you do not have taskfile installed
 - head over to localhost:5678/
 - learn
+
+# Adding content
+Content is written in [markdown](https://www.markdownguide.org/basic-syntax/) and is saved automaticcaly to git, just push when you are done.
