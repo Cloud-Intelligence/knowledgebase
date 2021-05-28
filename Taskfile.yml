@@ -1,6 +1,7 @@
+version: '2.6'                                                                                         
+ 
 tasks:
   default:
-    description: start the knowledgebase
-  cmds:
-    docker-compose up
-
+    description: run the wiki server
+    cmds:
+      - docker-compose up
