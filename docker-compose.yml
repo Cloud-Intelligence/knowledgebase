@@ -1,9 +1,16 @@
-version: '3'
+version: "2.1"
 
 services:
-  gollum:
-    image: gollumorg/gollum
-    ports:
-      - "4567:4567"
+  wikijs:
+    image: ghcr.io/linuxserver/wikijs
+    container_name: wikijs
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
     volumes:
-      - "./:/wiki"
+      - ./data/config:/config
+      - ./data/wiki:/data
+    ports:
+      - 3000:3000
+    restart: unless-stopped
