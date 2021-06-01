@@ -1,10 +1,25 @@
 import pathlib
 
-from bottle import route, run, response, static_file, HTTPError
+from bottle import route, run, response, request, HTTPError
 from ujson import dumps
 
 
+def enable_cors(fn):
+    def _enable_cors(*args, **kwargs):
+        # set CORS headers
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET'
+        response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+        if request.method != 'OPTIONS':
+            # actual request; reply with the actual response
+            return fn(*args, **kwargs)
+
+    return _enable_cors
+
+
 @route('/')
+@enable_cors
 def index():
     ret = []
     directory = pathlib.Path.cwd() / 'data'
@@ -17,6 +32,7 @@ def index():
 
 
 @route("/md/<filepath:re:.*\.md>")
+@enable_cors
 def css(filepath):
     response.content_type = 'application/text'
     try:
