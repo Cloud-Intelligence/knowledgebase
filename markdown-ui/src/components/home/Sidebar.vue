@@ -5,7 +5,7 @@
                 <h2>Documents</h2>
             </div>
             <div class="nav-body" id="nav-body">
-                {{content}}
+                <accordion v-if="map_links" :map-links="map_links" @clicked="clicked"></accordion>
             </div>
         </div>
     </div>
@@ -13,19 +13,22 @@
 
 
 <script>
+import Accordion from "./Accordion.vue"
 
 export default {
     name: 'Sidebar',
-    props: {
-        updateContent: {
-            type: Function,
-            required: true,
-        }
+    components: {
+        Accordion
     },
     data () {
         return{
-            content: null
+            map_links: null
         };
+    },
+    methods: {
+        clicked(url){
+            this.$emit('clicked', url);
+        }
     },
     created () {
         fetch("http://localhost:9001/")
@@ -35,7 +38,7 @@ export default {
                 //logic for mapping the files to a heirarchical object
                 let mapped_links = {};
                 for(let val in data){
-                    let link = data[val].substring(4).split('/');
+                    let link = data[val].split('/');
                     let mapped_links_ref_array = [mapped_links];
                     for(const index in link){
                         let dir = link[index];
@@ -57,38 +60,10 @@ export default {
                         }
                     }
                 }
-                //logic for mapping those files into html elements
-                let map_elements = (file_object_struct) => {
-                    let ret_mapped_elems = "";
-                    Object.keys(file_object_struct).forEach(key => {
-                        let key_name = key;
-                        let key_val = file_object_struct[key];
-                        if(typeof key_val == "string"){
-                            ret_mapped_elems += `<div class="link-button" @click='updateContent("${key_val}")'>
-                                                    <div class="colour-tab" style="background-color: whitesmoke; width: 2.5%; height: 100%;"></div>
-                                                    <p style="padding-left: 10px;">${key_name}</p>
-                                                </div>`;
-                        }else{
-                            ret_mapped_elems += `<div class="dropdown collapsed" id="${key_name}" @click='updateDivStyle("${key_name}")'>
-                                                    <div  class="drop-button">
-                                                        <p>${key_name}</p>
-                                                        <i class="arrow arrow-up">&#xf106;</i>
-                                                    </div>`;
-                            ret_mapped_elems += map_elements(key_val);
-                            ret_mapped_elems += `</div>`;
-                        }
-                    });
-                    return ret_mapped_elems;
-                }
-                document.getElementById("nav-body").innerHTML = map_elements(mapped_links);
+                this.map_links = mapped_links[""];
             }
         );
     },
-    methods: {
-        updateDivStyle: (id) => {
-            console.log(id);
-        }
-    }
 }
 
 </script>

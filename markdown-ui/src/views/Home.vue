@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="sidebar" id="sidebar">
-      <Sidebar :updateContent="updateContent"></Sidebar>
+      <Sidebar @clicked="showNewPage"></Sidebar>
     </div>
     <div class="content" id="content">
-      <Content></Content>
+      <Content :url="currentUrl"></Content>
     </div>
   </div>
 </template>
@@ -21,9 +21,14 @@ export default {
     Sidebar,
     Content
   },
+  data() {
+    return {
+      currentUrl: ""
+    }
+  },
   methods: {
-    updateContent(url) {
-      console.log(url);
+    showNewPage(url) {
+      this.currentUrl = url;
     }
   }
 }
