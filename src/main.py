@@ -18,16 +18,27 @@ def enable_cors(fn):
     return _enable_cors
 
 
+def _nested_set(dic, keys, value):
+    pk = ''
+    for key in keys[:-1]:
+        dic = dic.setdefault(key, dic.get(pk, {}))
+        pk = key
+
+    name = keys[-1].replace('.md', '')
+    dic[name] = value
+
+
 @route('/')
 @enable_cors
 def index():
-    ret = []
     directory = pathlib.Path.cwd() / 'data'
+    ret = {}
     for path in sorted(directory.rglob('*.md')):
-        url = '/'.join(path.relative_to(directory).parts)
-        ret.append('/md/' + url)
-    response.content_type = 'application/json'
+        path_array = list(path.relative_to(directory).parts)
+        url = '/md/' + '/'.join(path_array)
+        _nested_set(ret, path_array, url)
 
+    response.content_type = 'application/json'
     return dumps(ret)
 
 
