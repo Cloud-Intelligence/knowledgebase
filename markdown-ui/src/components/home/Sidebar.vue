@@ -30,39 +30,12 @@ export default {
             this.$emit('clicked', url);
         }
     },
-    created () {
-        fetch("http://localhost:9001/")
-        .then(response => response.json())
-        .then(data => {
-                //all the fun logic goes here because of fucking promises
-                //logic for mapping the files to a heirarchical object
-                let mapped_links = {};
-                for(let val in data){
-                    let link = data[val].split('/');
-                    let mapped_links_ref_array = [mapped_links];
-                    for(const index in link){
-                        let dir = link[index];
-                        let regex = /\.md/;
-                        let array_last_index = mapped_links_ref_array.length-1;
-                        if(regex.test(dir)){
-                            mapped_links_ref_array[array_last_index][dir];
-                            mapped_links_ref_array[array_last_index][dir] = data[val];
-                        }else{
-                            if(Object.prototype.hasOwnProperty.call(mapped_links_ref_array[array_last_index], dir)){
-                                let temp_ref_array = mapped_links_ref_array[array_last_index];
-                                mapped_links_ref_array.push(temp_ref_array[dir]);
-                            }else{
-                                let temp_ref_array = mapped_links_ref_array[array_last_index];
-                                temp_ref_array[dir];
-                                temp_ref_array[dir] = {};
-                                mapped_links_ref_array.push(temp_ref_array[dir]);
-                            }
-                        }
-                    }
-                }
-                this.map_links = mapped_links[""];
-            }
-        );
+    async mounted() {
+      // no callback hell when you use await
+      let resp = await fetch("http://localhost:9001/")
+      resp = await resp.json()
+
+      this.map_links = resp
     },
 }
 
