@@ -43,6 +43,11 @@ export default {
     height: 100vh;
     width: 100vw;
   }
+  .content {
+      background-color: #002b36;
+      width: 100%;
+      overflow-y: scroll;
+  }
 
   
 </style>

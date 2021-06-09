@@ -29,3 +29,21 @@ export default {
   }
 }
 </script>
+
+<style scoped src="@/styles/main.css"/>
+<style scoped src="@/styles/hljs.css"/>
+<style scoped src="@/styles/pilcrow.css"/>
+<style scoped>
+@import url(//fonts.googleapis.com/css?family=PT+Sans);
+@import url(//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+.content-main {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+  font-family: 'PT Sans', sans-serif;
+  color: #839496;
+  margin: 1em;
+}
+</style>
+
