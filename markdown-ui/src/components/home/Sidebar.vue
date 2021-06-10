@@ -1,9 +1,6 @@
 <template>
     <div class="sidebar-nav">
         <div class="sidebar-content">
-            <div class="nav-head">
-                <h2>Documents</h2>
-            </div>
             <div class="nav-body" id="nav-body">
                 <accordion v-if="map_links" :map-links="map_links" @clicked="clicked"></accordion>
             </div>
@@ -42,5 +39,7 @@ export default {
 </script>
 
 <style>
+
+
 
 </style>

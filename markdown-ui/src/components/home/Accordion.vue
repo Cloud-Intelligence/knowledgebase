@@ -2,7 +2,7 @@
     <div class="parent">
         <div v-for="(value,key) in mapLinks" :key="key">
             <div v-if="typeof value == 'string'">
-                <button @click="clicked(value)">{{key}}</button>
+                <button class="document-link" @click="clicked(value)">{{key}}</button>
             </div>
             <div v-else>
                 <button class="accordion" @click="activate(key)">{{key}}</button>
@@ -31,7 +31,7 @@ export default {
     methods: {
         activate(key) {
             this.$refs[key].classList.toggle("active");
-            this.$refs[key].style.display = "block";
+            // this.$refs[key].style.display = "block";
         },
         clicked(value){
             this.$emit('clicked',value);
@@ -46,15 +46,11 @@ export default {
     
 }
 
-.button {
-
-}
-
 .accordion {
   background-color: #0f4c75;
   padding: 5px 0px;
   font-size: 1.2em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: lightgray;
   cursor: pointer;
   width: 100%;
@@ -64,10 +60,24 @@ export default {
   transition: 0.4s;
 }
 
+.document-link {
+  background-color: #0f4c75;
+  color: lightgray;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  padding: 5px 0px;
+  font-size: 1em;
+}
+
 .panel {
   padding: 0 18px;
   display: none;
   overflow: hidden;
 }
 
+.active {
+  color: white;
+  display: block;
+}
 </style>
