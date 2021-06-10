@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar">
       <Sidebar @clicked="showNewPage"></Sidebar>
     </div>
-    <div class="content" id="content">
+    <div class="content">
       <Content :url="currentUrl"></Content>
     </div>
   </div>
@@ -42,6 +42,17 @@ export default {
     justify-content: flex-start;
     height: 100vh;
     width: 100vw;
+  }
+  .content {
+      background-color: #1b262c;
+      width: 100%;
+      overflow-y: scroll;
+  }
+
+  .sidebar {
+    background-color: #0f4c75;
+    width: 20vw;
+    padding: 10px;
   }
 
   

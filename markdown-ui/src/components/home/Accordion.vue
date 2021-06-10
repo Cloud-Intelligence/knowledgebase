@@ -20,7 +20,13 @@ export default {
     props: {
         mapLinks: {
             type: Object
-        }
+        },
+        // depth: {
+        //   type: int,
+        //   default: function() {
+        //     return 0
+        //   }
+        // }
     },
     methods: {
         activate(key) {
@@ -37,14 +43,20 @@ export default {
 <style scoped>
 
 .parent {
-    margin-left: 20px;
+    
+}
+
+.button {
+
 }
 
 .accordion {
-  background-color: #eee;
-  color: #444;
+  background-color: #0f4c75;
+  padding: 5px 0px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: lightgray;
   cursor: pointer;
-  padding: 18px;
   width: 100%;
   text-align: left;
   border: none;

@@ -32,3 +32,16 @@ export default {
   }
 }
 </script>
+
+<style scoped src="@/styles/main.css"/>
+<style scoped src="@/styles/hljs.css"/>
+<style scoped src="@/styles/pilcrow.css"/>
+<style scoped>
+.content-main {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  color: #839496;
+  margin: 1em;
+}
+</style>
+

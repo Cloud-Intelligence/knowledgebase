@@ -7,11 +7,21 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "lint-staged": {
+    "*.js": [ "lint" ],
+    "*.vue": [ "lint" ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn run test:unit"
+    }
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "core-js": "^3.6.5",
+    "husky": "^6.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vue-showdown": "^3.1.0"
