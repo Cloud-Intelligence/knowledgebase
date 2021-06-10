@@ -1,16 +1,20 @@
 <template>
   <div class="content-main">
-  <div v-html="ctx.html"></div>
+      <VueShowdown :markdown="ctx.text" flavor="github" :options="{ emoji: true }" />
   </div>
 </template>
 
 <script>
 import { watch, reactive } from 'vue'
+import {VueShowdown} from 'vue-showdown';
 export default {
   name: "Content",
+  components: {
+    VueShowdown,
+  },
   props: {
     url: {
-      type: String
+      type: String,
     }
   },
   setup(props) {
@@ -22,7 +26,6 @@ export default {
       ctx.url = url
       let rsp = await fetch(`http://localhost:9001${url}`)
       ctx.text = await rsp.text()
-      ctx.html = `<p>${ctx.text}</p>`// todo: parse md here
     })
 
     return { ctx }
