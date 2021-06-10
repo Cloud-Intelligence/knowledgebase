@@ -2,10 +2,10 @@
     <div class="parent">
         <div v-for="(value,key) in mapLinks" :key="key">
             <div v-if="typeof value == 'string'">
-                <button class="document-link" @click="clicked(value)">{{key}}</button>
+                <button class="document-link" @click="clicked(value)"><font-awesome-icon icon="file" /> {{key}}</button>
             </div>
             <div v-else>
-                <button class="accordion" @click="activate(key)">{{key}}</button>
+                <button class="accordion" @click="activate(key)"><font-awesome-icon icon="chevron-down" /> {{key}}</button>
                 <div class="panel" :ref="key">
                     <accordion :map-links="value" @clicked="clicked"></accordion>
                 </div>
@@ -49,6 +49,7 @@ export default {
 .accordion {
   background-color: #0f4c75;
   padding: 5px 0px;
+  font-weight: 500;
   font-size: 1.2em;
   text-transform: capitalize;
   color: lightgray;

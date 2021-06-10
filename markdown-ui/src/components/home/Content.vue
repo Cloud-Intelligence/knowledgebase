@@ -33,9 +33,8 @@ export default {
 }
 </script>
 
-<style scoped src="@/styles/main.css"/>
-<style scoped src="@/styles/hljs.css"/>
-<style scoped src="@/styles/pilcrow.css"/>
+<style src="@/styles/main.css"/>
+<style src="@/styles/hljs.css"/>
 <style scoped>
 .content-main {
   -webkit-text-size-adjust: 100%;
