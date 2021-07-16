@@ -4,8 +4,9 @@ import router from './router'
 
 import 'bulma/css/bulma.css';
 
-// Import the Auth0 configuration
-import { domain, clientId } from "../auth_config.json";
+//declare the auth0 vars
+let domain = process.env.VUE_APP_domain;
+let clientId = process.env.VUE_APP_clientID
 
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
