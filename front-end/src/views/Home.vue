@@ -8,6 +8,7 @@
       <p>Surname: {{$auth.user.family_name}}</p>
       <p>email: {{$auth.user.email}}</p>
       <p>verified: {{$auth.user.email_verified}}</p>
+      <p>{{token}}</p>
     </section>
   </div>
 </template>
@@ -19,6 +20,19 @@ export default {
   name: 'home',
   components: {
     Navbar
+  },
+  data() {
+    return {
+      token: null
+    };
+  },
+  methods: {
+    async callAPI() {
+      this.token = await this.$auth.getTokenSilently();
+    }
+  },
+  async mounted() {
+    await this.callAPI();
   }
 }
 
