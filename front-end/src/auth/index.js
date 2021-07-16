@@ -7,10 +7,8 @@ const DEFAULT_REDIRECT_CALLBACK = () =>
 
 let instance;
 
-/** Returns the current instance of the SDK */
 export const getInstance = () => instance;
 
-/** Creates an instance of the Auth0 SDK. If one has already been created, it returns that instance */
 export const useAuth0 = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   redirectUri = window.location.origin,
@@ -18,7 +16,6 @@ export const useAuth0 = ({
 }) => {
   if (instance) return instance;
 
-  // The 'instance' is simply a Vue object
   instance = new Vue({
     data() {
       return {
@@ -82,9 +79,9 @@ export const useAuth0 = ({
         return this.auth0Client.logout(o);
       }
     },
-    /** Use this lifecycle method to instantiate the SDK client */
+
     async created() {
-      // Create a new instance of the SDK client using members of the given options object
+      
       this.auth0Client = await createAuth0Client({
         domain: options.domain,
         client_id: options.clientId,
@@ -93,7 +90,6 @@ export const useAuth0 = ({
       });
 
       try {
-        // If the user is returning to the app after authentication..
         if (
           window.location.search.includes("code=") &&
           window.location.search.includes("state=")
@@ -102,7 +98,6 @@ export const useAuth0 = ({
           const { appState } = await this.auth0Client.handleRedirectCallback();
 
           // Notify subscribers that the redirect callback has happened, passing the appState
-          // (useful for retrieving any pre-authentication state)
           onRedirectCallback(appState);
         }
       } catch (e) {
@@ -119,7 +114,6 @@ export const useAuth0 = ({
   return instance;
 };
 
-// Create a simple Vue plugin to expose the wrapper object throughout the application
 export const Auth0Plugin = {
   install(Vue, options) {
     Vue.prototype.$auth = useAuth0(options);
