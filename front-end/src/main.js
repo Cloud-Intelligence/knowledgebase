@@ -7,7 +7,7 @@ import 'bulma/css/bulma.css';
 //declare the auth0 vars
 const domain = process.env.VUE_APP_domain;
 const clientId = process.env.VUE_APP_clientID
-
+const audience = process.env.VUE_APP_audience
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
 
@@ -15,6 +15,7 @@ import { Auth0Plugin } from "./auth";
 Vue.use(Auth0Plugin, {
   domain,
   clientId,
+  audience,
   onRedirectCallback: appState => {
     router.push(
       appState && appState.targetUrl
