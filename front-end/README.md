@@ -1,4 +1,4 @@
-# markdown-ui
+# markdown-viewer
 
 ## Project setup
 ```
