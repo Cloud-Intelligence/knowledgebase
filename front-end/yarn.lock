@@ -948,6 +948,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@iconscout/vue-unicons-solid@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@iconscout/vue-unicons-solid/-/vue-unicons-solid-0.0.2.tgz#a92efcf2229264f67784854761df41fc2a5ac827"
+  integrity sha512-sraNAlOt7isPs1K7CK/7TAmr2NTbJ1QQpUt2PfA7WygTCa4Ujl+PSlKg8hXZ83R+GDkrL0pXhqU64o4s8rqbzg==
+
 "@intervolga/optimize-cssnano-plugin@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@intervolga/optimize-cssnano-plugin/-/optimize-cssnano-plugin-1.0.6.tgz#be7c7846128b88f6a9b1d1261a0ad06eb5c0fdf8"

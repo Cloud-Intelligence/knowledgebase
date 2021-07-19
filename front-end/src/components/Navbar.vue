@@ -32,7 +32,7 @@ export default {
   methods: {
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$router.push('Wiki');
     },
     // Log the user out
     logout() {

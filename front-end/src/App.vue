@@ -3,3 +3,6 @@
     <router-view/>
   </div>
 </template>
+
+<style src="./assets/Styles.css">
+</style>
