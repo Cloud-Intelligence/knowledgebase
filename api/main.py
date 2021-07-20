@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
 from flask_cors import cross_origin
 
-from .authentication import AuthError, requires_auth, requires_scope
-from .utils.file_tools import file_list, load_file
+from authentication import AuthError, requires_auth, requires_scope
+from utils.file_tools import file_list, load_file
 
 APP = Flask(__name__)
 
