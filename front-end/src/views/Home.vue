@@ -9,6 +9,7 @@
       <p>email: {{$auth.user.email}}</p>
       <p>verified: {{$auth.user.email_verified}}</p>
       <p>{{token}}</p>
+      <button @click="callAPI">click</button>
     </section>
   </div>
 </template>
@@ -30,9 +31,6 @@ export default {
     async callAPI() {
       this.token = await this.$auth.getTokenSilently();
     },
-  },
-  updated() {
-    this.callAPI();
   },
 };
 

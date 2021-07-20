@@ -54,7 +54,6 @@ export const useAuth0 = ({
         try {
           await this.auth0Client.handleRedirectCallback();
           this.user = await this.auth0Client.getUser();
-          // this.token = await this.auth0Client.getTokenSilently(this.user);
           this.isAuthenticated = true;
         } catch (e) {
           this.error = e;

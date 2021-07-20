@@ -3,15 +3,12 @@ import App from './App.vue';
 import router from './router';
 
 import 'bulma/css/bulma.css';
-// Import the plugin here
 import { Auth0Plugin } from './auth';
 
-// declare the auth0 vars
 const domain = process.env.VUE_APP_domain;
 const clientId = process.env.VUE_APP_clientID;
 const audience = process.env.VUE_APP_audience;
 
-// Install the authentication plugin here
 Vue.use(Auth0Plugin, {
   domain,
   clientId,

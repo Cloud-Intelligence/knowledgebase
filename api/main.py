@@ -1,10 +1,12 @@
 from flask import Flask, jsonify
-from flask_cors import cross_origin
+from flask_cors import cross_origin, CORS
+from werkzeug.wrappers import response
 
 from authentication import AuthError, requires_auth, requires_scope
 from utils.file_tools import file_list, load_file
 
 APP = Flask(__name__)
+CORS(APP)
 
 
 @APP.errorhandler(AuthError)
@@ -46,11 +48,13 @@ def private_scoped():
 
 
 @APP.route('/')
-@cross_origin(headers=["Content-Type", "Authorization"])
+# @cross_origin(headers=["Content-Type", "Authorization", "Access-Control-Allow-Origin"])
 @requires_auth
 def index():
     files = file_list()
-    return jsonify(message=files)
+    response = jsonify(message=files)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @APP.route("/md/<string:filepath>")
@@ -66,7 +70,6 @@ def detail(filepath):
         }, 404)
 
     return jsonify(message='TDB')
-
 
 if __name__ == '__main__':
     APP.run(debug=True, host='0.0.0.0')
