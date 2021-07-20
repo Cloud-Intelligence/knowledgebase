@@ -5,8 +5,8 @@ services:
     build:
       context: .
     ports:
-      - 9001:9001
-    command: "src/main.py"
+      - 5000:5000
+    command: "api/main.py"
     volumes:
       - ./:/app
     restart: unless-stopped

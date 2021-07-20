@@ -1,3 +1,9 @@
-bottle
 pathlib
 ujson
+
+flask
+python-dotenv
+python-jose
+flask-cors
+six
+python-dotenv

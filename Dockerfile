@@ -9,4 +9,7 @@ WORKDIR /app
 
 RUN pip3 install -r requirements.txt
 
+COPY ./api /app/api
+COPY ./data /app/data
+
 ENTRYPOINT [ "python3" ]
