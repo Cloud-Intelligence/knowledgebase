@@ -31,8 +31,8 @@ export default {
       this.token = await this.$auth.getTokenSilently();
     },
   },
-  async mounted() {
-    await this.callAPI();
+  updated() {
+    this.callAPI();
   },
 };
 
