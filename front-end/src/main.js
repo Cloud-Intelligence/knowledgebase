@@ -4,6 +4,7 @@ import router from './router'
 
 import 'bulma/css/bulma.css';
 
+<<<<<<< HEAD
 //declare the auth0 vars
 const domain = process.env.VUE_APP_domain;
 const clientId = process.env.VUE_APP_clientID
@@ -25,6 +26,8 @@ Vue.use(Auth0Plugin, {
   }
 });
 
+=======
+>>>>>>> c6ad9ad (added bulma)
 Vue.config.productionTip = false
 
 new Vue({
