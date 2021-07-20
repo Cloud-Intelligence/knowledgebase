@@ -1,8 +1,4 @@
 import pathlib
-
-# from bottle import route, run, response, request, HTTPError
-# from ujson import dumps
-
 import json
 from six.moves.urllib.request import urlopen
 from functools import wraps
@@ -119,80 +115,42 @@ def requires_scope(required_scope):
                     return True
     return False
 
-# This doesn't need authentication
-@APP.route("/api/public")
-@cross_origin(headers=["Content-Type", "Authorization"])
-def public():
-    response = "Hello from a public endpoint! You don't need to be authenticated to see this."
-    return jsonify(message=response)
+def _nested_set(dic, keys, value):
+    pk = ''
+    for key in keys[:-1]:
+        dic = dic.setdefault(key, dic.get(pk, {}))
+        pk = key
 
-# This needs authentication
-@APP.route("/api/private")
-@cross_origin(headers=["Content-Type", "Authorization"])
-@requires_auth
-def private():
-    response = "Hello from a private endpoint! You need to be authenticated to see this."
-    return jsonify(message=response)
+    name = keys[-1].replace('.md', '')
+    dic[name] = value
 
-# This needs authorization
-@APP.route("/api/private-scoped")
+#requires a jwt token header for access
+@APP.route('/')
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
-def private_scoped():
-    if requires_scope("read:messages"):
-        response = "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
-        return jsonify(message=response)
-    raise AuthError({
-        "code": "Unauthorized",
-        "description": "You don't have access to this resource"
-    }, 403)
+def index():
+    directory = pathlib.Path.cwd() / 'data'
+    ret = {}
+    for path in sorted(directory.rglob('*.md')):
+        path_array = list(path.relative_to(directory).parts)
+        url = '/md/' + '/'.join(path_array)
+        _nested_set(ret, path_array, url)
 
-# def enable_cors(fn):
-#     def _enable_cors(*args, **kwargs):
-#         # set CORS headers
-#         response.headers['Access-Control-Allow-Origin'] = '*'
-#         response.headers['Access-Control-Allow-Methods'] = 'GET'
-#         response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    return jsonify(message=ret)
 
-#         if request.method != 'OPTIONS':
-#             # actual request; reply with the actual response
-#             return fn(*args, **kwargs)
+#requires a jwt header for access
+@APP.route("/md/<string:filepath>")
+@cross_origin(headers=["Content-Type", "Authorization"])
+@requires_auth
+def css(filepath):
+    try:
+        with open(f"data/{filepath}", 'r') as f:
+            return jsonify(message=f.read())
+    except FileNotFoundError:
+        raise AuthError({
+        "code": "File not found",
+        "description": "The file you have requested does not exist"
+        }, 404)
 
-#     return _enable_cors
-
-# def _nested_set(dic, keys, value):
-#     pk = ''
-#     for key in keys[:-1]:
-#         dic = dic.setdefault(key, dic.get(pk, {}))
-#         pk = key
-
-#     name = keys[-1].replace('.md', '')
-#     dic[name] = value
-
-
-# @route('/')
-# @enable_cors
-# def index():
-#     directory = pathlib.Path.cwd() / 'data'
-#     ret = {}
-#     for path in sorted(directory.rglob('*.md')):
-#         path_array = list(path.relative_to(directory).parts)
-#         url = '/md/' + '/'.join(path_array)
-#         _nested_set(ret, path_array, url)
-
-#     response.content_type = 'application/json'
-#     return dumps(ret)
-
-
-# @route("/md/<filepath:re:.*\.md>")
-# @enable_cors
-# def css(filepath):
-#     response.content_type = 'application/text'
-#     try:
-#         with open(f"data/{filepath}", 'r') as f:
-#             return f.read()
-#     except FileNotFoundError:
-#         return HTTPError(404)
-
-
-# run(host='0.0.0.0', port=9001, reloader=True)
+if __name__ == '__main__':
+    APP.run(debug=True, host='0.0.0.0')
