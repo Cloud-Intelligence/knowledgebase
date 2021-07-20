@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Navbar",
+  name: 'Navbar',
   methods: {
     // Log the user in
     login() {

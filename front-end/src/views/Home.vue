@@ -19,22 +19,22 @@ import Navbar from '../components/Navbar.vue';
 export default {
   name: 'home',
   components: {
-    Navbar
+    Navbar,
   },
   data() {
     return {
-      token: null
+      token: null,
     };
   },
   methods: {
     async callAPI() {
       this.token = await this.$auth.getTokenSilently();
-    }
+    },
   },
   async mounted() {
     await this.callAPI();
-  }
-}
+  },
+};
 
 </script>
 
