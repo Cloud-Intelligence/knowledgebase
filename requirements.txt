@@ -1,4 +1,3 @@
-bottle
 pathlib
 ujson
 
@@ -7,3 +6,4 @@ python-dotenv
 python-jose
 flask-cors
 six
+python-dotenv
