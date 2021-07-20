@@ -90,6 +90,7 @@ img{
 
 .container {
     padding: 1rem 0 1rem 1rem;
+    position: relative;
 }
 
 .container .child {
@@ -99,8 +100,10 @@ img{
 
 /* sidebar styling */
 #sidebar{
+    float: left;
     width: 25%; /* gonna need to update this for responisve layouts */
     height: 100%;
+    max-width: 300px;
     background-color: var(--side-bar-colour);
 }
 
@@ -135,14 +138,14 @@ img{
     width: 100%;
     height: 2rem;
     color: var(--font-colour);
-    font-size: var(--h4-font-size);
+    font-size: var(--smaller-font-size);
     font-weight: var(--font-semi-bold);
     cursor: pointer;
-    transition: margin-left .5s;
+    transition: margin-left .25s;
 }
 
 #sidebar .handle:hover {
-    margin-left: 10px;
+    margin-left: 2.5px;
 }
 
 #sidebar .handles .subtitle {
@@ -152,6 +155,8 @@ img{
 
 /* main body styling */
 #main{
-    /* width: 75%; */
+    float: left;
+    width: 75%;
+    flex-grow: 1;
 }
 /*=======================*/

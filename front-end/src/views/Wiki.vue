@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-      <section class="sidebar" id="sidebar">
+      <section :class="sidebar" id="sidebar">
           <div class="container">
               <div class="user child">
                 <img :src="this.userImage" alt="user_image" class="user_image">
@@ -20,6 +20,7 @@
       <section class="main" id="main">
           <div class="container">
               <p>{{$auth.user}}</p>
+              <p v-text="windowWidth"></p>
           </div>
       </section>
   </div>
@@ -32,7 +33,8 @@ export default {
     data() {
         return {
             userName: null,
-            userImage: null
+            userImage: null,
+            windowWidth: window.innerWidth
         }
     },
     created() {
