@@ -1,8 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import cross_origin, CORS
 from werkzeug.wrappers import response
+from loguru import logger
 
-from authentication import AuthError, requires_auth, requires_scope
+from authentication import AuthError, requires_auth, requires_scope, get_token_auth_header
 from utils.file_tools import file_list, load_file
 
 APP = Flask(__name__)
@@ -51,8 +52,9 @@ def private_scoped():
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
 def index():
+    logger.info(request.current_user)
     files = file_list()
-    response = jsonify(message=files)
+    response = jsonify(message=dir(request))
     return response
 
 
@@ -69,6 +71,7 @@ def detail(filepath):
         }, 404)
 
     return jsonify(message='TDB')
+
 
 if __name__ == '__main__':
     APP.run(debug=True, host='0.0.0.0')
