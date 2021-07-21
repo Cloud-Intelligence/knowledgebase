@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Wiki from '../views/Wiki.vue'
 import { authGuard } from "../auth/authGuard";
 
 Vue.use(VueRouter)
@@ -10,12 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  },
-  {
-    path: '/wiki',
-    name: 'Wiki',
-    component: Wiki,
+    component: Home,
     beforeEnter: authGuard
   }
 ]
