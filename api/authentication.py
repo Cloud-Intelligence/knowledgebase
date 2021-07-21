@@ -5,8 +5,9 @@ from functools import wraps
 
 from jose import jwt
 from flask import Flask, request, jsonify, _request_ctx_stack
+from loguru import logger
 
-
+DEVELOPMENT = os.environ.get('DEVELOPMENT', True)
 AUTH0_DOMAIN = os.environ.get('API_DOMAIN')
 API_AUDIENCE = os.environ.get('API_AUDIENCE')
 ALGORITHMS = ["RS256"]
@@ -58,73 +59,86 @@ def get_token_auth_header():
     token = parts[1]
     return token
 
-# Auth for requests
-def requires_auth(f):
-    """Determines if the Access Token is valid"""
 
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = get_token_auth_header()
-        jsonurl = urlopen("https://" + AUTH0_DOMAIN + "/.well-known/jwks.json")
-        jwks = json.loads(jsonurl.read())
-        unverified_header = jwt.get_unverified_header(token)
-        rsa_key = {}
-        for key in jwks["keys"]:
-            if key["kid"] == unverified_header["kid"]:
-                rsa_key = {
-                    "kty": key["kty"],
-                    "kid": key["kid"],
-                    "use": key["use"],
-                    "n": key["n"],
-                    "e": key["e"],
-                }
-        if rsa_key:
-            try:
-                payload = jwt.decode(
-                    token,
-                    rsa_key,
-                    algorithms=ALGORITHMS,
-                    audience=API_AUDIENCE,
-                    issuer="https://" + AUTH0_DOMAIN + "/",
-                )
-            except jwt.ExpiredSignatureError:
-                raise AuthError(
-                    {
-                        "code": "token_expired",
-                        "description": "token is expired",
-                    },
-                    401,
-                )
-            except jwt.JWTClaimsError:
-                raise AuthError(
-                    {
-                        "code": "invalid_claims",
-                        "description": "incorrect claims,"
-                        "please check the audience and issuer",
-                    },
-                    401,
-                )
-            except Exception:
-                raise AuthError(
-                    {
-                        "code": "invalid_header",
-                        "description": "Unable to parse authentication"
-                        " token.",
-                    },
-                    401,
-                )
+def get_rsa_key():
+    jsonurl = urlopen("https://" + AUTH0_DOMAIN + "/.well-known/jwks.json")
+    jwks = json.loads(jsonurl.read())
+    unverified_header = jwt.get_unverified_header(token)
+    rsa_key = {}
+    for key in jwks["keys"]:
+        if key["kid"] == unverified_header["kid"]:
+            rsa_key = {
+                "kty": key["kty"],
+                "kid": key["kid"],
+                "use": key["use"],
+                "n": key["n"],
+                "e": key["e"],
+            }
+    return rsa_key
 
-            _request_ctx_stack.top.current_user = payload
-            return f(*args, **kwargs)
+
+def decode_token():
+    if DEVELOPMENT:
+        return {"email": "dev@example.com"}
+
+    token = get_token_auth_header()
+    rsa_key = get_rsa_key()
+    if not rsa_key:
         raise AuthError(
             {
-                "code": "invalid_header",
-                "description": "Unable to find appropriate key",
+                "code": "invalid_signer",
+                "description": "Unable to load auth server keys",
             },
             401,
         )
+    try:
+        payload = jwt.decode(
+            token,
+            rsa_key,
+            algorithms=ALGORITHMS,
+            audience=API_AUDIENCE,
+            issuer="https://" + AUTH0_DOMAIN + "/",
+        )
+    except jwt.ExpiredSignatureError:
+        raise AuthError(
+            {
+                "code": "token_expired",
+                "description": "token is expired",
+            },
+            401,
+        )
+    except jwt.JWTClaimsError:
+        raise AuthError(
+            {
+                "code": "invalid_claims",
+                "description": "incorrect claims,"
+                               "please check the audience and issuer",
+            },
+            401,
+        )
+    except Exception:
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Unable to parse authentication"
+                               " token.",
+            },
+            401,
+        )
+    return payload
+
+
+# Auth for requests
+def requires_auth(f):
+    """Determines if the Access Token is valid"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        payload = decode_token()
+        request.current_user = payload
+        return f(*args, **kwargs)
 
     return decorated
+
 
 # Scope handler
 def requires_scope(required_scope):

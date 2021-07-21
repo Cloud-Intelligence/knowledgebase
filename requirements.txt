@@ -1,6 +1,6 @@
 pathlib
 ujson
-
+loguru
 flask
 python-dotenv
 python-jose
