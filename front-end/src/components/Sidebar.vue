@@ -105,3 +105,7 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+  @import '../assets/sidebar.scss'
+</style>

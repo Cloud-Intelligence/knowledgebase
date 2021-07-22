@@ -11,3 +11,7 @@ export default {
   name: 'Home',
 };
 </script>
+
+<style lang="sass">
+  @import '../assets/content-view.scss'
+</style>
