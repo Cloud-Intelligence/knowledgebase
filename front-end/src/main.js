@@ -25,6 +25,13 @@ Vue.use(Auth0Plugin, {
   }
 });
 
+import { makeServer } from "./Server.js"
+
+if (process.env.NODE_ENV === "development") {
+  makeServer()
+}
+
+
 Vue.config.productionTip = false
 
 new Vue({

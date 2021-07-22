@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.16.1",
-    "@iconscout/vue-unicons-solid": "^0.0.2",
+    "@iconscout/vue-unicons": "^0.0.3",
     "bulma": "^0.9.3",
     "core-js": "^3.6.5",
+    "miragejs": "^0.1.41",
     "sass": "^1.35.2",
     "sass-loader": "^10",
     "vue": "^2.6.11",
@@ -25,6 +26,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "mirage.js": "^1.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

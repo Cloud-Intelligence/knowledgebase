@@ -35,6 +35,13 @@
     --body-alt-colour: #6c757d;
     --side-bar-colour: #e9ecef;
     /*=======================*/
+
+    /* z indexs */
+    --level-0: 0;
+    --level-1: 100;
+    --level-2: 500;
+    --level-3: 1000;
+    /*=======================*/
 }
 
 /*font for larger screens */
@@ -82,15 +89,21 @@ img{
 /*=======================*/
 
 /* general styling  */
-.body {
+#app {
     height: 100vh;
-    display: flex;
-    flex-direction: row;
+    width: 100vw;
+}
+
+.body {
+    margin-left: 0;
+    transition: margin-left 0.5s;
 }
 
 .container {
+    width: 100%;
+    height: 100%;
     padding: 1rem 0 1rem 1rem;
-    position: relative;
+    margin: 0;
 }
 
 .container .child {
@@ -100,11 +113,73 @@ img{
 
 /* sidebar styling */
 #sidebar{
+    position: absolute;
     float: left;
-    width: 25%; /* gonna need to update this for responisve layouts */
+    width: 300px;
     height: 100%;
-    max-width: 300px;
     background-color: var(--side-bar-colour);
+    z-index: var(--level-3);
+    transition: left 0.5s, margin-right 0.5s;
+}
+
+/* for responisveness */
+@media screen and (min-width: 900px) {
+    .body.open {
+        margin-left: 300px;
+    }
+}
+
+#sidebar.open {
+    left: 0;
+}
+
+#sidebar.closed {
+    left: -300px;
+}
+
+#sidebar .collapse_toggle {
+    height: 3rem;
+    width: 1.5rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: var(--side-bar-colour);
+    cursor: pointer;
+    top: 1rem;
+    right: -1.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+#sidebar .collapse_toggle::after {
+    content: '';
+    cursor: initial;
+    position: absolute;
+    top: -1.5rem;
+    right: 0.5rem;
+    width: 1rem;
+    height: 1.5rem;
+    border-radius: 0 0 0 1rem;
+    box-shadow: -5px 0 0 5px var(--side-bar-colour);
+}
+
+#sidebar .collapse_toggle::before {
+    content: '';
+    cursor: initial;
+    position: absolute;
+    bottom: -1.5rem;
+    right: 0.5rem;
+    width: 1rem;
+    height: 1.5rem;
+    border-radius: 1rem 0 0 0;
+    box-shadow: -5px -5px 0 5px var(--side-bar-colour);
+}
+
+#sidebar .collapse_toggle .icon {
+    transition: transform 0.5s;
+}
+
+#sidebar.closed .collapse_toggle .icon {
+    transform: rotate(180deg);
 }
 
 #sidebar .user .user_image {
@@ -136,12 +211,21 @@ img{
     background-color: inherit;
     text-align: start;
     width: 100%;
-    height: 2rem;
     color: var(--font-colour);
-    font-size: var(--smaller-font-size);
+    font-size: var(--small-font-size);
     font-weight: var(--font-semi-bold);
     cursor: pointer;
     transition: margin-left .25s;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar .handle > * {
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+#sidebar .handle .icon {
+    line-height: var(--big-font-size);
 }
 
 #sidebar .handle:hover {
@@ -151,12 +235,50 @@ img{
 #sidebar .handles .subtitle {
     font-size: var(--small-font-size);
 }
+
+#sidebar .handles .topic .handle .drop_down.icon {
+    float: right;
+    margin-right: 1.5rem;
+    transition: transform 0.2s;
+}
+
+#sidebar .handles .topic .handle.active .drop_down.icon {
+    transform: rotate(180deg);
+    margin-bottom: none;
+}
+
+#sidebar .handles .topic .children{
+    max-height: 0;
+    overflow: hidden;
+    margin: 0 0 1rem 1rem;
+    transition: max-height 0.2s ease-out;
+}
+
+#sidebar .add_record {
+    position: absolute;
+    z-index: var(--level-1);
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1rem;
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-semi-bold);
+    transition: background-color 0.5s, border 0.5s, transform 0.5s;
+}
+
+#sidebar .add_record:hover {
+    background-color: var(--body-colour);
+    transform: scale(1.1);
+}
 /*=======================*/
 
 /* main body styling */
 #main{
-    float: left;
-    width: 75%;
-    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: center;
 }
 /*=======================*/
