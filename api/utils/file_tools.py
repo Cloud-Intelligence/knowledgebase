@@ -1,5 +1,6 @@
-import pathlib
-from ujson import dumps
+# import pathlib
+
+from db import create_connection
 
 
 def _nested_set(dic, keys, value):
@@ -12,15 +13,27 @@ def _nested_set(dic, keys, value):
     dic[name] = value
 
 
-def file_list():
-    directory = pathlib.Path.cwd() / "data"
-    ret = {}
-    for path in sorted(directory.rglob("*.md")):
-        path_array = list(path.relative_to(directory).parts)
-        url = "/md/" + "/".join(path_array)
-        _nested_set(ret, path_array, url)
+def file_list(user):
+    DB = create_connection()
+    cursor = DB.folders.find({})
+    return list(cursor)
 
-    return dumps(ret)
+
+def save_file(file, collection, user):
+    DB = create_connection()
+
+    res = DB.instert({collection: {"file": file}})
+    return res
+
+
+    # directory = pathlib.Path.cwd() / "data"
+    # ret = {}
+    # for path in sorted(directory.rglob("*.md")):
+    #     path_array = list(path.relative_to(directory).parts)
+    #     url = "/md/" + "/".join(path_array)
+    #     _nested_set(ret, path_array, url)
+    #
+    # return dumps(ret)
 
 
 def load_file(filepath):
