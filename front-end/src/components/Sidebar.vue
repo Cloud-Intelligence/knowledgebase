@@ -69,8 +69,8 @@ export default {
     };
   },
   props: {
-    userName: String,
-    userImage: String,
+    'user-name': String,
+    'user-image': String,
   },
   created() {
     // eslint-disable-next-line vue/no-mutating-props
