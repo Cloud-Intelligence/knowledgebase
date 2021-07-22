@@ -2,10 +2,8 @@ import Vue from 'vue';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
 /** Define a default action to perform after authentication */
-const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState(
-  // eslint-disable-next-line comma-dangle
-  {}, document.title, window.location.pathname
-);
+// eslint-disable-next-line max-len
+const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState({}, document.title, window.location.pathname);
 
 let instance;
 
@@ -27,8 +25,7 @@ export const useAuth0 = ({
         token: {},
         auth0Client: null,
         popupOpen: false,
-        // eslint-disable-next-line comma-dangle
-        error: null
+        error: null,
       };
     },
     methods: {
@@ -54,6 +51,7 @@ export const useAuth0 = ({
         try {
           await this.auth0Client.handleRedirectCallback();
           this.user = await this.auth0Client.getUser();
+          // this.token = await this.auth0Client.getTokenSilently(this.user);
           this.isAuthenticated = true;
         } catch (e) {
           this.error = e;
@@ -109,6 +107,7 @@ export const useAuth0 = ({
         // Initialize the internal authentication state
         this.isAuthenticated = await this.auth0Client.isAuthenticated();
         this.user = await this.auth0Client.getUser();
+        // this.token = await this.auth0Client.getTokenSilently(this.user);
         this.loading = false;
       }
     },
