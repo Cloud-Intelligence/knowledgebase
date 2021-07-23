@@ -1,6 +1,5 @@
 /* sidebar styling */
-#sidebar{
-
+#sidebar {
     position: absolute;
     float: left;
     width: 300px;
@@ -8,8 +7,8 @@
     background-color: var(--side-bar-colour);
     z-index: var(--level-3);
     transition: left 0.5s, margin-right 0.5s;
-    
-     .collapse_toggle {
+
+    .collapse_toggle {
         height: 3rem;
         width: 1.5rem;
         position: absolute;
@@ -21,9 +20,9 @@
         right: -1.5rem;
         border-radius: 0 0.5rem 0.5rem 0;
     }
-    
-     .collapse_toggle::after {
-        content: '';
+
+    .collapse_toggle::after {
+        content: "";
         cursor: initial;
         position: absolute;
         top: -1.5rem;
@@ -33,9 +32,9 @@
         border-radius: 0 0 0 1rem;
         box-shadow: -5px 0 0 5px var(--side-bar-colour);
     }
-    
-     .collapse_toggle::before {
-        content: '';
+
+    .collapse_toggle::before {
+        content: "";
         cursor: initial;
         position: absolute;
         bottom: -1.5rem;
@@ -45,35 +44,35 @@
         border-radius: 1rem 0 0 0;
         box-shadow: -5px -5px 0 5px var(--side-bar-colour);
     }
-    
-     .collapse_toggle .icon {
+
+    .collapse_toggle .icon {
         transition: transform 0.5s;
     }
-    
-     .user .user_image {
+
+    .user .user_image {
         vertical-align: middle;
         width: 2.75rem;
         border-radius: 5px;
         margin-right: 1rem;
     }
-    
-     .user .user_description {
+
+    .user .user_description {
         display: inline-block;
         vertical-align: middle;
     }
-    
-     .user .user_description .title {
+
+    .user .user_description .title {
         font-size: var(--normal-font-size);
         font-weight: var(--font-semi-bold);
     }
-    
-     .user .user_description .subtitle {
+
+    .user .user_description .subtitle {
         font-size: var(--small-font-size);
         font-weight: var(--font-medium);
         color: var(--body-alt-colour);
     }
-    
-     .handle {
+
+    .handle {
         outline: none;
         border: none;
         background-color: inherit;
@@ -83,46 +82,46 @@
         font-size: var(--small-font-size);
         font-weight: var(--font-semi-bold);
         cursor: pointer;
-        transition: margin-left .25s;
+        transition: margin-left 0.25s;
         margin-bottom: 0.5rem;
     }
-    
-     .handle > * {
+
+    .handle > * {
         vertical-align: middle;
         margin-bottom: 5px;
     }
-    
-     .handle .icon {
+
+    .handle .icon {
         line-height: var(--big-font-size);
     }
-    
-     .handle:hover {
+
+    .handle:hover {
         margin-left: 2.5px;
     }
-    
-     .handles .subtitle {
+
+    .handles .subtitle {
         font-size: var(--small-font-size);
     }
-    
-     .handles .topic .handle .drop_down.icon {
+
+    .handles .topic .handle .drop_down.icon {
         float: right;
         margin-right: 1.5rem;
         transition: transform 0.2s;
     }
-    
-     .handles .topic .handle.active .drop_down.icon {
+
+    .handles .topic .handle.active .drop_down.icon {
         transform: rotate(180deg);
         margin-bottom: none;
     }
-    
-     .handles .topic .children{
+
+    .handles .topic .children {
         max-height: 0;
         overflow: hidden;
         margin: 0 0 1rem 1rem;
         transition: max-height 0.2s ease-out;
     }
-    
-     .add_record {
+
+    .add_record {
         position: absolute;
         z-index: var(--level-1);
         bottom: 1.5rem;
@@ -134,13 +133,12 @@
         font-weight: var(--font-semi-bold);
         transition: background-color 0.5s, border 0.5s, transform 0.5s;
     }
-    
+
     .add_record:hover {
         background-color: var(--body-colour);
         transform: scale(1.1);
     }
     /*=======================*/
-
 }
 
 #sidebar.open {
