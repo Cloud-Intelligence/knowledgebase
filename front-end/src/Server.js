@@ -26,6 +26,8 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/topics', (schema) => schema.topics.all());
 
       this.get('/file/:name', (schema, request) => schema.files.findBy({ name: request.params.name }));
+
+      this.passthrough('https://dev-2li3-ipg.eu.auth0.com/oauth/token');
     },
   });
 
