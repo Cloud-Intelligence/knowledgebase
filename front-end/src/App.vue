@@ -34,3 +34,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* for responisveness */
+@media screen and (min-width: 900px) {
+    .body.open {
+        margin-left: 300px;
+    }
+}
+</style>
