@@ -1,5 +1,9 @@
 <template>
-  <section :class="collapsed ? 'sidebar closed' : 'sidebar open'" id="sidebar">
+  <section
+    v-if="$auth.isAuthenticated"
+    :class="collapsed ? 'sidebar closed' : 'sidebar open'"
+    id="sidebar"
+  >
     <div class="container">
       <div class="collapse_toggle" @click="toggleTray">
         <uil-angle-left class="icon"></uil-angle-left>
@@ -107,5 +111,5 @@ export default {
 </script>
 
 <style lang="sass">
-  @import '../assets/sidebar.scss'
+@import '../assets/sidebar.scss'
 </style>
