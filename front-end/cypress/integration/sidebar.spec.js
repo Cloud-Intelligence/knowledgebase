@@ -1,4 +1,9 @@
 describe('sidebar', () => {
+    it('matches image baseline', () => {
+        cy.visit("http://localhost:8080");
+        cy.get('.topic button').first().click();
+        cy.get('#sidebar').toMatchImageSnapshot();
+    });
     it('is toggleable', () => {
         cy.visit("http://localhost:8080");
         cy.get('.collapse_toggle').click();

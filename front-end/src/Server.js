@@ -27,7 +27,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
 
       this.get('/file/:name', (schema, request) => schema.files.findBy({ name: request.params.name }));
 
-      this.passthrough(auth0Domain.bypass);
+      this.passthrough(`https://${auth0Domain.bypass}/oauth/token`);
     },
   });
 
