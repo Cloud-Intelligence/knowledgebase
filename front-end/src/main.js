@@ -30,7 +30,7 @@ Vue.use(Auth0Plugin, {
 });
 
 if (process.env.NODE_ENV === 'development') {
-  makeServer();
+  makeServer({ bypass: domain });
 }
 
 Vue.config.productionTip = false;

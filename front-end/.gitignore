@@ -23,5 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 #cypress stuff
-./cypress/screenshots
-./cypress/videos
+cypress/screenshots/
+cypress/videos/
