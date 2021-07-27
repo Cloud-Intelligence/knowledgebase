@@ -275,6 +275,12 @@ img{
     justify-content: center;
 }
 
+#main .layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 #main .heading {
     width: 100%;
     height: 5rem;
@@ -296,9 +302,27 @@ img{
 
 #main .heading .container.icons > * {
     float: left;
-    font-size: var(--big-font-size);
+    font-size: 2rem;
     margin-left: 0.5rem;
-    
+    margin-top: 0.5rem;
+}
+
+#main .content {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+#main .content .text {
+    width: 100%;
+    height: 100%;
+    background-color: var(--content-colour);
+    border-radius: 0.5rem;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+#main .foot .container.tags {
+    float: right;
 }
 
 /*=======================*/
