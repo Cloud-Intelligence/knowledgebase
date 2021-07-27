@@ -14,7 +14,11 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    setContentView(state, title, topic, content, tags) {
+    setContentView(state, stateObj) {
+      const { title } = stateObj;
+      const { topic } = stateObj;
+      const { content } = stateObj;
+      const { tags } = stateObj;
       // eslint-disable-next-line no-param-reassign
       state.contentView = {
         title, topic, content, tags,
