@@ -113,6 +113,13 @@ export default {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
     },
+    updateState(fileName) {
+      console.log(fileName);
+      const state = {
+        title: 'favorites', topic: '#favorites', content: '## this is the favorites', tags: ['#booya', '#ya', '#test'],
+      };
+      this.$store.commit('setContentView', state);
+    },
   },
 };
 </script>
