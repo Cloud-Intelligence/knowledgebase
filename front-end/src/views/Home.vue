@@ -38,7 +38,6 @@ export default {
     UilEdit,
     UilStar,
   },
-  created() {},
   computed: {
     title() {
       return this.$store.state.contentView.title;

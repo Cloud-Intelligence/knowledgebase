@@ -22,7 +22,7 @@
         <button class="handle">
           <uil-search class="icon"></uil-search> Search
         </button>
-        <button class="handle">
+        <button class="handle" @click="updateState('blah')">
           <uil-star class="icon"></uil-star> Favorites
         </button>
       </div>
@@ -105,6 +105,13 @@ export default {
       } else {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
+    },
+    updateState(fileName) {
+      console.log(fileName);
+      const state = {
+        title: 'favorites', topic: '#favorites', content: '## this is the favorites', tags: ['#booya', '#ya', '#test'],
+      };
+      this.$store.commit('setContentView', state);
     },
   },
 };
