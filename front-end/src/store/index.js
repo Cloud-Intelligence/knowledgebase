@@ -6,7 +6,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     contentView: {
-      title: 'Home', topic: 'Home', content: '## this is home', tags: ['#cloudIntelligence', '#home', '#booyah'],
+      title: 'Home',
+      topic: 'Home',
+      content: '## this is home',
+      tags: ['#cloudIntelligence', '#home', '#booyah'],
     },
   },
   getters: {},

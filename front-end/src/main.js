@@ -1,3 +1,4 @@
+import { VueShowdown } from 'vue-showdown';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -31,10 +32,15 @@ Vue.use(Auth0Plugin, {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if (process.env.NODE_ENV === 'development') {
   makeServer({ bypass: domain });
 }
 =======
+=======
+Vue.component('VueShowdown', VueShowdown);
+
+>>>>>>> 6c02799 (finished frame for home page as a reference for other pages until backend implemented)
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
 // }
