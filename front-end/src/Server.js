@@ -1,7 +1,7 @@
 import { Server, Model } from 'miragejs';
 
 // eslint-disable-next-line import/prefer-default-export
-export function makeServer({ environment = 'development' } = {}) {
+export function makeServer(auth0Domain, { environment = 'development' } = {}) {
   const server = new Server({
     environment,
 
@@ -26,6 +26,8 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/topics', (schema) => schema.topics.all());
 
       this.get('/file/:name', (schema, request) => schema.files.findBy({ name: request.params.name }));
+
+      this.passthrough(`https://${auth0Domain.bypass}/oauth/token`);
     },
   });
 

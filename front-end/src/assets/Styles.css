@@ -110,3 +110,10 @@ img{
     width: 100%;
     margin-bottom: 2rem;
 }
+
+/* for responisveness */
+@media screen and (min-width: 900px) {
+    .body.open {
+        margin-left: 300px;
+    }
+}

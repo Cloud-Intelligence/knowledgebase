@@ -11,9 +11,9 @@ import { Auth0Plugin } from './auth';
 import { makeServer } from './Server.js';
 
 // declare the auth0 vars
-const domain = process.env.VUE_APP_domain;
-const clientId = process.env.VUE_APP_clientID;
-const audience = process.env.VUE_APP_audience;
+const domain = process.env.VUE_APP_AUTH0_DOMAIN;
+const clientId = process.env.VUE_APP_CLIENT_ID;
+const audience = process.env.VUE_APP_AUDIENCE;
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -30,7 +30,7 @@ Vue.use(Auth0Plugin, {
 });
 
 if (process.env.NODE_ENV === 'development') {
-  makeServer();
+  makeServer({ bypass: domain });
 }
 
 Vue.config.productionTip = false;
