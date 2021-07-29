@@ -1,14 +1,48 @@
 <template>
   <section class="main" id="main">
       <div class="container">
-          <p>{{$auth.user}}</p>
+          <div class="heading">
+            <div class="container head">
+              <h1 class="title">{{title}}</h1>
+              <p class="tag">#{{topic}}</p>
+            </div>
+            <div class="container icons">
+              <uil-trash-alt class="trash"></uil-trash-alt>
+              <uil-edit class="edit"></uil-edit>
+              <uil-star class="star"></uil-star>
+            </div>
+          </div>
       </div>
   </section>
 </template>
 
 <script>
+import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
+
 export default {
   name: 'Home',
+  components: {
+    UilTrashAlt,
+    UilEdit,
+    UilStar,
+  },
+  created() {
+
+  },
+  computed: {
+    title() {
+      return this.$store.state.contentView.title;
+    },
+    topic() {
+      return this.$store.state.contentView.topic;
+    },
+    content() {
+      return this.$store.state.contentView.content;
+    },
+    tags() {
+      return this.$store.state.contentView.tags;
+    },
+  },
 };
 </script>
 

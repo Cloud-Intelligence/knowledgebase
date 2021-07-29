@@ -5,11 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    home: {
-      title: 'Home', content: '## this is home', tags: ['#cloudIntelligence', '#home', '#booyah'],
+    contentView: {
+      title: 'Home', topic: 'Home', content: '## this is home', tags: ['#cloudIntelligence', '#home', '#booyah'],
     },
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    setContentView(state, title, topic, content, tags) {
+      // eslint-disable-next-line no-param-reassign
+      state.contentView = {
+        title, topic, content, tags,
+      };
+    },
+  },
   actions: {},
 });
