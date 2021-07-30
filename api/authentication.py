@@ -7,9 +7,9 @@ from jose import jwt
 from flask import Flask, request, jsonify, _request_ctx_stack
 from loguru import logger
 
-DEVELOPMENT = os.environ.get('DEVELOPMENT', True)
-AUTH0_DOMAIN = os.environ.get('API_DOMAIN')
-API_AUDIENCE = os.environ.get('API_AUDIENCE')
+DEVELOPMENT = os.environ.get("DEVELOPMENT", True)
+AUTH0_DOMAIN = os.environ.get("API_DOMAIN")
+API_AUDIENCE = os.environ.get("API_AUDIENCE")
 ALGORITHMS = ["RS256"]
 
 
@@ -112,7 +112,7 @@ def decode_token():
             {
                 "code": "invalid_claims",
                 "description": "incorrect claims,"
-                               "please check the audience and issuer",
+                "please check the audience and issuer",
             },
             401,
         )
@@ -120,8 +120,7 @@ def decode_token():
         raise AuthError(
             {
                 "code": "invalid_header",
-                "description": "Unable to parse authentication"
-                               " token.",
+                "description": "Unable to parse authentication" " token.",
             },
             401,
         )
@@ -131,6 +130,7 @@ def decode_token():
 # Auth for requests
 def requires_auth(f):
     """Determines if the Access Token is valid"""
+
     @wraps(f)
     def decorated(*args, **kwargs):
         payload = decode_token()
