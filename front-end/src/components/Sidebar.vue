@@ -75,14 +75,10 @@ export default {
     };
   },
   props: {
-    'user-name': String,
-    'user-image': String,
+    userName: String,
+    userImage: String,
   },
   created() {
-    // eslint-disable-next-line vue/no-mutating-props
-    this.userName = this.$auth.user.name;
-    // eslint-disable-next-line vue/no-mutating-props
-    this.userImage = this.$auth.user.picture;
     // fetch the topics from mirage
     fetch('/api/topics')
       .then((res) => res.json())
