@@ -19,10 +19,10 @@ def file_list(user):
     return list(cursor)
 
 
-def save_file(file, collection, user):
+def save_file(contents):
     DB = create_connection()
-
-    res = DB.instert({collection: {"file": file}})
+    print(contents)
+    res = DB.folders.insert({**contents})
     return res
 
 
@@ -35,7 +35,10 @@ def save_file(file, collection, user):
     #
     # return dumps(ret)
 
+from bson.objectid import ObjectId
 
-def load_file(filepath):
-    with open(f"data/{filepath}", "r") as f:
-        return f.read()
+def load_file(file_id):
+    DB = create_connection()
+    cursor = DB.folders.find_one({"_id": ObjectId(file_id)})
+    print(cursor)
+    return cursor

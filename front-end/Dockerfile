@@ -4,8 +4,8 @@ WORKDIR /usr/src/app/app
 COPY ./package.json ./
 COPY ./yarn.lock ./
 
-RUN yarn install
-RUN yarn global add @vue/cli
+#RUN yarn install
+#RUN yarn global add @vue/cli
 
 EXPOSE 8080
 

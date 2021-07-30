@@ -4,4 +4,4 @@ tasks:
   default:
     description: run the wiki server
     cmds:
-      - docker-compose up
+      - docker-compose up --build
