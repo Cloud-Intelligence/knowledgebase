@@ -2,7 +2,6 @@ import { VueShowdown } from 'vue-showdown';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import store from './store';
 
 import 'bulma/css/bulma.css';
 
@@ -38,7 +37,6 @@ if (process.env.NODE_ENV === 'development') {
 Vue.config.productionTip = false;
 
 new Vue({
-  store,
   router,
   render: (h) => h(App),
 }).$mount('#app');

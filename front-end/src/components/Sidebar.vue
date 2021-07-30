@@ -89,7 +89,6 @@ export default {
       .then((json) => {
         this.topics = json.topics;
       });
-    this.updateActive();
   },
   components: {
     UilEstate,
@@ -112,13 +111,6 @@ export default {
       } else {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
-    },
-    updateState(fileName) {
-      console.log(fileName);
-      const state = {
-        title: 'favorites', topic: '#favorites', content: '## this is the favorites', tags: ['#booya', '#ya', '#test'],
-      };
-      this.$store.commit('setContentView', state);
     },
   },
 };
