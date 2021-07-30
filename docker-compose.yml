@@ -9,6 +9,8 @@ services:
     command: "api/main.py"
     volumes:
       - ./:/app
+    env_file:
+      - ./api/.env
     restart: unless-stopped
   ui:
     build:

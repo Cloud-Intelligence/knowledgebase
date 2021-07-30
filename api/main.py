@@ -23,7 +23,7 @@ def public():
     return jsonify(message=response)
 
 
-@APP.route("/api/private")
+@APP.route("/api/private/")
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
 def private():
@@ -48,12 +48,11 @@ def private_scoped():
 
 
 @APP.route('/')
-# @cross_origin(headers=["Content-Type", "Authorization", "Access-Control-Allow-Origin"])
+@cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
 def index():
     files = file_list()
     response = jsonify(message=files)
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 
