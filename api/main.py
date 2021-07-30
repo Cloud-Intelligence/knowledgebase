@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import cross_origin, CORS
 from werkzeug.wrappers import response
 from loguru import logger
+import ujson as json
 
 from authentication import AuthError, requires_auth, requires_scope, get_token_auth_header
 from utils.file_tools import file_list, load_file, save_file
@@ -17,7 +18,7 @@ def handle_auth_error(ex):
     return response
 
 
-@APP.route("/api/health")
+@APP.route("/api/health/")
 @cross_origin(headers=["Content-Type", "Authorization"])
 def public():
     response = "Healthy"
@@ -29,42 +30,28 @@ def public():
 @requires_auth
 def index():
     if request.method == "POST":
-        save_file("test", "test", '')
+        save_file(json.loads(request.data))
         return jsonify(success=True)
     else:
         files = file_list(request.current_user)
+        files = [{"id": str(f.pop('_id')),  "name": f['name'], "title": f['data']['title']} for f in files]
         return jsonify(data=files)
 
 
-@APP.route("/api/documents/<uuid:id>")
+@APP.route("/api/documents/<string:file_id>/")
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
-def detail(filepath):
+def detail(file_id):
     try:
-        load_file(filepath)
+        ret = load_file(file_id)
+        del ret['_id']
+        return jsonify(data=ret['data'])
     except FileNotFoundError:
         raise AuthError({
             "code": "File not found",
             "description": "The file you have requested does not exist"
         }, 404)
 
-    return jsonify(message='TDB')
-
-
-@APP.route("/api/private-scoped")
-@cross_origin(headers=["Content-Type", "Authorization"])
-@requires_auth
-def private_scoped():
-    if requires_scope("read:messages"):
-        response = "private scoped endpoint"
-        return jsonify(message=response)
-    raise AuthError(
-        {
-            "code": "Unauthorized",
-            "description": "You don't have access to this resource",
-        },
-        403,
-    )
 
 if __name__ == '__main__':
     APP.run(debug=True, host='0.0.0.0')
