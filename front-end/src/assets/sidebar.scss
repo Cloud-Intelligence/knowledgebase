@@ -74,6 +74,7 @@
 
     .handle {
         outline: none;
+        display: block;
         border: none;
         background-color: inherit;
         text-align: start;
@@ -82,9 +83,17 @@
         font-size: var(--small-font-size);
         font-weight: var(--font-semi-bold);
         cursor: pointer;
-        transition: margin-left 0.25s;
         margin-bottom: 0.5rem;
+        padding: 0.25rem;
+        transition: background-color 0.25s, margin-left 0.25s;
+        border-radius: 0.25rem;
     }
+
+    .handle.router-link-exact-active {
+        background-color: var(--body-colour);
+        transition: background-color 0.25s;
+    }
+
 
     .handle > * {
         vertical-align: middle;

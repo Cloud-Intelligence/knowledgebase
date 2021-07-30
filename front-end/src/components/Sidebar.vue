@@ -16,15 +16,15 @@
         </div>
       </div>
       <div class="default_handles child">
-        <button class="handle">
+        <router-link to="/" class="handle" id="Home" >
           <uil-estate class="icon"></uil-estate> Home
-        </button>
-        <button class="handle">
+        </router-link>
+        <router-link to="/search" class="handle" id="Search" >
           <uil-search class="icon"></uil-search> Search
-        </button>
-        <button class="handle" @click="updateState('blah')">
+        </router-link>
+        <router-link to="/favorites" class="handle" id="Favorites" >
           <uil-star class="icon"></uil-star> Favorites
-        </button>
+        </router-link>
       </div>
       <div class="handles child">
         <p class="subtitle">collections</p>
@@ -40,9 +40,15 @@
             ></span>
           </button>
           <div class="children collapsed">
-            <button v-for="child in topic.content" class="handle" :key="child">
-              {{ child }}
-            </button>
+            <router-link
+              v-for="child in topic.content"
+              class="handle"
+              :to="'/doc/'+child.id"
+              :key="child.id"
+              :id="child.id"
+            >
+              {{ child.name }}
+            </router-link>
           </div>
         </div>
       </div>
@@ -83,6 +89,7 @@ export default {
       .then((json) => {
         this.topics = json.topics;
       });
+    this.updateActive();
   },
   components: {
     UilEstate,
@@ -105,13 +112,6 @@ export default {
       } else {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
-    },
-    updateState(fileName) {
-      console.log(fileName);
-      const state = {
-        title: 'favorites', topic: '#favorites', content: '## this is the favorites', tags: ['#booya', '#ya', '#test'],
-      };
-      this.$store.commit('setContentView', state);
     },
   },
 };
