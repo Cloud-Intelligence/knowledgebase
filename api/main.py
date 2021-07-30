@@ -4,7 +4,12 @@ from werkzeug.wrappers import response
 from loguru import logger
 import ujson as json
 
-from authentication import AuthError, requires_auth, requires_scope, get_token_auth_header
+from authentication import (
+    AuthError,
+    requires_auth,
+    requires_scope,
+    get_token_auth_header,
+)
 from utils.file_tools import file_list, load_file, save_file
 
 APP = Flask(__name__)
@@ -25,7 +30,7 @@ def public():
     return jsonify(message=response)
 
 
-@APP.route('/api/documents/', methods=['GET', 'POST'])
+@APP.route("/api/documents/", methods=["GET", "POST"])
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
 def index():
@@ -34,7 +39,14 @@ def index():
         return jsonify(success=True)
     else:
         files = file_list(request.current_user)
-        files = [{"id": str(f.pop('_id')),  "name": f['name'], "title": f['data']['title']} for f in files]
+        files = [
+            {
+                "id": str(f.pop("_id")),
+                "name": f["name"],
+                "title": f["data"]["title"],
+            }
+            for f in files
+        ]
         return jsonify(data=files)
 
 
@@ -44,14 +56,17 @@ def index():
 def detail(file_id):
     try:
         ret = load_file(file_id)
-        del ret['_id']
-        return jsonify(data=ret['data'])
+        del ret["_id"]
+        return jsonify(data=ret["data"])
     except FileNotFoundError:
-        raise AuthError({
-            "code": "File not found",
-            "description": "The file you have requested does not exist"
-        }, 404)
+        raise AuthError(
+            {
+                "code": "File not found",
+                "description": "The file you have requested does not exist",
+            },
+            404,
+        )
 
 
-if __name__ == '__main__':
-    APP.run(debug=True, host='0.0.0.0')
+if __name__ == "__main__":
+    APP.run(debug=True, host="0.0.0.0")
