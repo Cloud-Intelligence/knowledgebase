@@ -32,7 +32,8 @@
     /* Colours */
     --body-colour: #f8f9fa;
     --font-colour: #212529;
-    --body-alt-colour: #6c757d;
+    --body-alt-colour: #545b5e;
+    --content-colour: #f5f7f8;
     --side-bar-colour: #e9ecef;
     /*=======================*/
 
@@ -97,12 +98,13 @@ img{
 .body {
     margin-left: 0;
     transition: margin-left 0.5s;
+    height: 100vh;
 }
 
 .container {
     width: 100%;
     height: 100%;
-    padding: 1rem 0 1rem 1rem;
+    padding: 1rem;
     margin: 0;
 }
 

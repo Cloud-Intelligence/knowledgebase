@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <sidebar
-      :userName="this.$auth.user.name"
-      :userImage="this.$auth.user.picture"
+      :user-name="this.$auth.user.name"
+      :user-image="this.$auth.user.picture"
       v-on:tray="toggleTray"
     ></sidebar>
     <div :class="collapsed ? 'body closed' : 'body open'">
