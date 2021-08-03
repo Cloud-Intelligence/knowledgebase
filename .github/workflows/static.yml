@@ -8,9 +8,12 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Annotate
-      - uses: a-b-r-o-w-n/eslint-action@v2.1.0
+        uses: a-b-r-o-w-n/eslint-action@v2.1.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: './front-end'
+      - name: Run misspell with reviewdog
+        uses: reviewdog/action-misspell@v1.9.0
 
