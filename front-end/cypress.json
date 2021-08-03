@@ -1,8 +1,12 @@
 {
+    "projectId": "z5nx7c",
+    "baseUrl": "http://localhost:8080/",
+    "port": 9001,
     "ignoreTestFiles": [
         "**/__snapshots__/*",
         "**/__image_snapshots__/*"
     ],
+    "browser": { "chromeWebSecurity": false },
     "env": {
         "cypress-plugin-snapshots": {
             "autoCleanUp": false,
@@ -16,7 +20,7 @@
             "imageConfig": {
                 "createDiffImage": true,
                 "resizeDevicePixelRatio": true,
-                "threshold": 0.001,
+                "threshold": 0.01,
                 "thresholdType": "percent"
             },
             "screenshotConfig": {

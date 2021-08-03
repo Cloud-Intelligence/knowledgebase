@@ -1,0 +1,26 @@
+name: E2E Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ui-test:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cypress.io
+        uses: cypress-io/github-action@v2.9.7
+        with:
+          start: 'yarn test-server'
+          working-directory: 'front-end/'
+          wait-on: 'http://localhost:8080'
+          browser: chrome
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

@@ -2,6 +2,17 @@ version: '2.6'
  
 tasks:
   default:
-    description: run the wiki server
     cmds:
       - docker-compose up --build
+  install:
+    cmds:
+      - docker-compose run ui yarn install
+  cypress:
+    cmds:
+      - docker-compose run ui yarn run cypress open
+  test:
+    cmds:
+      - docker-compose run ui yarn test
+  ci:
+    cmds:
+      - docker-compose run -u root ui yarn ci

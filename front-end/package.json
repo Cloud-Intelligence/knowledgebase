@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --mode dev",
+    "test-server": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "cypress run",
+    "ci": "start-server-and-test test-server http-get://localhost:8080 test"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.16.1",
@@ -17,6 +20,7 @@
     "miragejs": "^0.1.41",
     "sass": "^1.35.2",
     "sass-loader": "^10",
+    "start-server-and-test": "^1.13.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
