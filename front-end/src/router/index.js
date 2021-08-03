@@ -16,7 +16,7 @@ const routes = [
     beforeEnter: authGuard,
   },
   {
-    path: '/doc/:id',
+    path: '/documents/:id',
     name: 'Document',
     component: Document,
     props: true,
