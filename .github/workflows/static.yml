@@ -1,0 +1,48 @@
+name: Static Analysis
+
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: ESLint Action eslintrc
+        uses: mrdivyansh/eslint-action@v1.0.7
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          eslint-rc: 'front-end/.eslintrc.js'
+          execute-on-files: 'front-end/'
+
+  jshint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Code review using JSHint
+        uses: moneyforward/jshint-action@v0.0.1
+        with: 
+          files: 'front-end/'
+          
+  goodcheck:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Analyze code statically using Goodcheck
+        uses: moneyforward/goodcheck-action@v0
+        with: 
+          files: 'front-end/'
+          
+  misspell:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Analyze code statically using misspell
+        uses: moneyforward/misspell-action@v0
