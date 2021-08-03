@@ -7,42 +7,15 @@ on:
 jobs:
   eslint:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-      - name: ESLint Action eslintrc
-        uses: mrdivyansh/eslint-action@v1.0.7
+      - name: Annotate
+      - uses: a-b-r-o-w-n/eslint-action@v2.1.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          eslint-rc: 'front-end/.eslintrc.js'
-          execute-on-files: 'front-end/'
-
-  jshint:
-    runs-on: ubuntu-latest
-
+          working-directory: './front-end'
+  spelling:
+    runs-on: ubunut-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Code review using JSHint
-        uses: moneyforward/jshint-action@v0.0.1
-        with: 
-          working_directory: 'front-end/'
-          
-  goodcheck:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Analyze code statically using Goodcheck
-        uses: moneyforward/goodcheck-action@v0
-        with: 
-          working_directory: 'front-end/'
-          
-  misspell:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Analyze code statically using misspell
-        uses: moneyforward/misspell-action@v0
-        with:
-          working_directory: 'front-end/'
+    - name: Check spelling
+      uses: check-spelling/check-spelling@v0.0.19
+  
