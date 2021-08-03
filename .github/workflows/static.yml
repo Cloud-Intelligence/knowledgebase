@@ -27,7 +27,7 @@ jobs:
       - name: Code review using JSHint
         uses: moneyforward/jshint-action@v0.0.1
         with: 
-          files: 'front-end/'
+          working_directory: 'front-end/'
           
   goodcheck:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
       - name: Analyze code statically using Goodcheck
         uses: moneyforward/goodcheck-action@v0
         with: 
-          files: 'front-end/'
+          working_directory: 'front-end/'
           
   misspell:
     runs-on: ubuntu-latest
@@ -46,3 +46,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Analyze code statically using misspell
         uses: moneyforward/misspell-action@v0
+        with:
+          working_directory: 'front-end/'
