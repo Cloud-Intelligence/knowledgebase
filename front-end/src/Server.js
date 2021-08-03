@@ -6,54 +6,72 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
     environment,
 
     models: {
-      topic: Model,
+      document: Model,
       file: Model,
     },
 
     // eslint-disable-next-line no-shadow
     seeds(server) {
-      // create the pseudo topic structures
-      server.create('topic', { name: 'frontend', content: { css: { name: 'css.md', id: 12 }, links: { name: 'links.md', id: 13 }, Docker: { name: 'Docker.md', id: 14 } } });
-      server.create('topic', { name: 'projects', content: { 'cool tools': { name: 'cool tools.md', id: 21 }, FunProjects: 'Fun projects.md', 'main notes': 'main notes.md' } });
+      // create the pseudo documents
+      server.create('document', { title: 'css', id: 12, topic: 'frontend' });
+      server.create('document', { title: 'links', id: 13, topic: 'frontend' });
+      server.create('document', { title: 'Docker', id: 14, topic: 'frontend' });
+      server.create('document', { title: 'cool tools', id: 21, topic: 'projects' });
+      server.create('document', { title: 'fun stuff', id: 31, topic: 'fun' });
 
       // craete a pseudo colection for files
       server.create('file', {
         id: 12,
-        name: 'links.md',
         data: {
-          topic: 'frontend', title: 'Links', content: '## these are the links', tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'Links', content: '## these are the links', tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
       server.create('file', {
         id: 13,
-        name: 'css.md',
         data: {
-          topic: 'frontend', title: 'CSS', content: '## this is CSS', tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'CSS', content: '## this is CSS', tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
       server.create('file', {
         id: 14,
-        name: 'Docker.md',
         data: {
-          topic: 'frontend', title: 'Docker', content: '## this is Docker', tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'Docker', content: '## this is Docker', tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
 
       server.create('file', {
         id: 21,
-        name: 'links.md',
         data: {
-          topic: 'projects', title: 'Cool Tools', content: '## these are the tools', tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'Cool Tools', content: '## these are the tools', tags: ['#cloudIntelligence', '#home', '#booyah'],
+        },
+      });
+      server.create('file', {
+        id: 31,
+        data: {
+          title: 'fun stuffs', content: '## this is fun', tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
     },
 
     routes() {
-      this.namespace = 'api';
+      this.timing = 0;
 
-      this.get('/topics', (schema) => schema.topics.all());
+      this.urlPrefix = 'http://localhost:5000';
 
-      this.get('/file/:id', (schema, request) => schema.files.findBy({ id: request.params.id }));
+      this.namespace = '/api';
+
+      this.get('/documents', (schema) => ({ data: schema.documents.all().models }));
+
+      this.get('/documents/:id', (schema, request) => {
+        const req = schema.files.findBy({ id: request.params.id });
+        return {
+          data: {
+            content: req.data.content,
+            tags: req.data.tags,
+            title: req.data.title,
+          },
+        };
+      });
 
       this.passthrough(`https://${auth0Domain.bypass}/oauth/token`);
     },

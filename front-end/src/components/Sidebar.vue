@@ -28,26 +28,26 @@
       </div>
       <div class="handles child">
         <p class="subtitle">collections</p>
-        <div v-for="topic in topics" class="topic" :key="topic.name">
+        <div v-for="(children, topic) in topics" class="topic" :key="topic">
           <button
             class="handle"
-            :id="topic.name"
-            @click="toggleAccordion(topic.name)"
+            :id="topic"
+            @click="toggleAccordion(topic)"
           >
-            {{ topic.name }}
+            {{ topic }}
             <span class="drop_down icon"
               ><uil-angle-down></uil-angle-down
             ></span>
           </button>
           <div class="children collapsed">
             <router-link
-              v-for="child in topic.content"
+              v-for="child in children"
               class="handle"
-              :to="'/doc/'+child.id"
+              :to="'/documents/'+child.id"
               :key="child.id"
               :id="child.id"
             >
-              {{ child.name }}
+              {{ child.title }}
             </router-link>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       collapsed: false,
-      topics: null,
+      topics: {},
     };
   },
   props: {
@@ -80,10 +80,22 @@ export default {
   },
   created() {
     // fetch the topics from mirage
-    fetch('/api/topics')
+    fetch('http://localhost:5000/api/documents')
       .then((res) => res.json())
       .then((json) => {
-        this.topics = json.topics;
+        const files = json.data;
+        const tmp = {};
+        // eslint-disable-next-line no-plusplus
+        for (let i = 0; i < files.length; i++) {
+          const fileTopic = files[i].topic;
+          if (fileTopic in tmp) {
+            tmp[fileTopic].push(files[i]);
+          } else {
+            tmp[fileTopic] = [];
+            tmp[fileTopic].push(files[i]);
+          }
+        }
+        this.topics = tmp;
       });
   },
   components: {

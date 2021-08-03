@@ -6,7 +6,7 @@ const authGuard = (to, _from, next) => {
 
   // eslint-disable-next-line consistent-return
   const fn = () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (['development', 'test'].includes(process.env.NODE_ENV)) {
       authService.isAuthenticated = true;
       authService.user = {
         given_name: 'test_user',

@@ -5,7 +5,6 @@
         <div class="heading">
           <div class="container head">
             <h1 class="title">{{ title }}</h1>
-            <p class="tag">#{{ topic }}</p>
           </div>
           <div class="container icons">
             <uil-trash-alt class="trash"></uil-trash-alt>
@@ -32,7 +31,7 @@
 import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
 
 export default {
-  name: 'Home',
+  name: 'Document',
   components: {
     UilTrashAlt,
     UilEdit,
@@ -51,13 +50,12 @@ export default {
   },
   methods: {
     updateState() {
-      fetch(`/api/file/${this.id}`)
+      fetch(`http://localhost:5000/api/documents/${this.id}`)
         .then((res) => res.json())
         .then((json) => {
-          this.topic = json.file.data.topic;
-          this.title = json.file.data.title;
-          this.content = json.file.data.content;
-          this.tags = json.file.data.tags;
+          this.title = json.data.title;
+          this.content = json.data.content;
+          this.tags = json.data.tags;
         });
     },
   },
