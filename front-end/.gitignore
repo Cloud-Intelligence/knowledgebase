@@ -25,3 +25,4 @@ pnpm-debug.log*
 #cypress stuff
 cypress/screenshots/
 cypress/videos/
+cypress/videos/sidebar.spec.js.mp4
