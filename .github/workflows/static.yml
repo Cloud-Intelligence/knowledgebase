@@ -13,9 +13,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: './front-end'
-  spelling:
-    runs-on: ubunut-latest
-    steps:
-    - name: Check spelling
-      uses: check-spelling/check-spelling@v0.0.19
-  
+
