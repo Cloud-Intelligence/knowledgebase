@@ -7,7 +7,7 @@
     "test-server": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "cypress run",
+    "test": "cypress run --browser chrome",
     "ci": "start-server-and-test test-server http-get://localhost:8080 test"
   },
   "dependencies": {

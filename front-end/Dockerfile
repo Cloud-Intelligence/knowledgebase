@@ -1,4 +1,4 @@
-FROM cypress/base:ubuntu19-node12.14.1
+FROM  cypress/browsers:node14.17.0-chrome91-ff89
 
 WORKDIR /usr/src/app/app
 COPY ./package.json ./
