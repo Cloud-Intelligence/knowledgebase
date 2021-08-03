@@ -80,7 +80,7 @@ export default {
   },
   created() {
     // fetch the topics from mirage
-    fetch('http://localhost:5000/api/documents')
+    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
       .then((res) => res.json())
       .then((json) => {
         const files = json.data;

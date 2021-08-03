@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     updateState() {
-      fetch(`http://localhost:5000/api/documents/${this.id}`)
+      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/${this.id}`)
         .then((res) => res.json())
         .then((json) => {
           this.title = json.data.title;
