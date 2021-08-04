@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <button class="add_record button">+</button>
+      <router-link class="add_record button" to="/create">+</router-link>
     </div>
   </section>
 </template>
