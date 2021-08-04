@@ -3,16 +3,16 @@
     <div class="container">
       <div class="layout">
         <div class="fields">
-          <div class="dropdown is-active">
+          <div class="dropdown">
             <div class="dropdown-trigger">
               <button
                 class="button"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >
-                <span>{{topic}}</span>
+                <span>{{ topic }}</span>
                 <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  <uil-angle-down></uil-angle-down>
                 </span>
               </button>
             </div>
@@ -26,8 +26,12 @@
                   {{ topic }}
                 </a>
                 <hr class="dropdown-divider" />
-                <div class="add_topic columns">
-                  <input class="input column is-three-quarters" type="text" placeholder="#Topic" />
+                <div class="dropdown-item add_topic columns">
+                  <input
+                    class="input column is-three-quarters"
+                    type="text"
+                    placeholder="#Topic"
+                  />
                   <button class="button column add_button">+</button>
                 </div>
               </div>
@@ -36,14 +40,16 @@
 
           <input class="input" type="text" placeholder="#Title" />
 
-          <div class="dropdown is-active">
+          <div class="dropdown">
             <div class="dropdown-trigger">
               <button
                 class="button"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >
-                <span v-for="(tag, index) in tags" class="tag " :key="index">{{tag}}</span>
+                <span v-for="(tag, index) in tags" class="tag" :key="index">{{
+                  tag
+                }}</span>
                 <span class="icon is-small">
                   <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -59,8 +65,12 @@
                   {{ tag }}
                 </a>
                 <hr class="dropdown-divider" />
-                <div class="add_topic columns">
-                  <input class="input column is-three-quarters" type="text" placeholder="#Tag" />
+                <div class="dropdown-item add_topic columns">
+                  <input
+                    class="input column is-three-quarters"
+                    type="text"
+                    placeholder="#Tag"
+                  />
                   <button class="button column add_button">+</button>
                 </div>
               </div>
@@ -73,43 +83,43 @@
 </template>
 
 <script>
+
+import { UilAngleDown } from '@iconscout/vue-unicons';
+
 export default {
   data() {
     return {
-      topic: '',
-      content: '',
-      title: '',
+      topic: '#Topic',
+      content: '<p>Dummy content</p>',
+      title: '#Title',
       tags: [],
       loaded_topics: [],
       loaded_tags: [],
     };
   },
+  components: {
+    UilAngleDown,
+  },
   created() {
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
-      .then((res) => res.json())
-      .then((json) => {
-        const files = json.data;
-        const tmpTopics = [];
-        const tmpTags = [];
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < files.length; i++) {
-          const fileTopic = files[i].topic;
-          const fileTags = files[i].tags;
-          if (!(fileTopic in tmpTopics)) {
-            tmpTopics.push(fileTopic);
-          }
+    this.getData();
+  },
+  methods: {
+    getData() {
+      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
+        .then((res) => res.json())
+        .then((json) => {
+          const files = json.data;
+          const tmp = [];
           // eslint-disable-next-line no-plusplus
-          for (let j = 0; j < fileTags.length; j++) {
-            const tag = fileTags[j];
-            if (!(tag in tmpTags)) {
-              tmpTags.push(tag);
+          for (let i = 0; i < files.length; i++) {
+            const fileTopic = files[i].topic;
+            if (!tmp.includes(fileTopic)) {
+              tmp.push(fileTopic);
             }
           }
-        }
-        this.topics = tmpTopics;
-        this.tags = tmpTags;
-        console.log(this.topics);
-      });
+          this.loaded_topics = tmp;
+        });
+    },
   },
 };
 </script>
