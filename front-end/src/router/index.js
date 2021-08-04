@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Document from '../views/Document.vue';
 import Search from '../views/Search.vue';
 import Favorites from '../views/Favorites.vue';
+import Create from '../views/Create.vue';
 import authGuard from '../auth/authGuard';
 
 Vue.use(VueRouter);
@@ -32,6 +33,12 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search,
+    beforeEnter: authGuard,
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: Create,
     beforeEnter: authGuard,
   },
 ];
