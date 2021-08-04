@@ -39,7 +39,6 @@ export default {
   },
   data() {
     return {
-      topic: null,
       title: null,
       content: null,
       tags: null,
