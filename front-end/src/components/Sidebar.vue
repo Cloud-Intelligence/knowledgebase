@@ -52,7 +52,11 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
+=======
+      <router-link class="add_record button" to="/create">+</router-link>
+>>>>>>> 1e96037 (added router link to sidebar to navigate)
     </div>
   </section>
 </template>
