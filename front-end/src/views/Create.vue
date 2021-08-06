@@ -2,6 +2,9 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
+        <div class="editor">
+          <quill-editor ref="myTextEditor" v-model="content"></quill-editor>
+        </div>
         <div class="fields">
           <div class="dropdown" id="topics">
             <div class="dropdown-trigger">
