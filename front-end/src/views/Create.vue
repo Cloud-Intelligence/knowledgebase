@@ -3,6 +3,7 @@
     <div class="container">
       <div class="layout">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div class="form columns">
           <div class="fields column">
             <div class="dropdown" id="topics">
@@ -189,6 +190,11 @@
           This field is required
         </p>
 =======
+=======
+        <div class="editor">
+          <quill-editor ref="myTextEditor" v-model="content"></quill-editor>
+        </div>
+>>>>>>> 2a3561c (added quill)
         <div class="fields">
           <div class="dropdown" id="topics">
             <div class="dropdown-trigger">
