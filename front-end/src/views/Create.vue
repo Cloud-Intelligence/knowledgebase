@@ -190,6 +190,7 @@ export default {
 
 #main .editor .quill-editor .ql-container  {
   height: 100%;
+  max-height: 100%;
   overflow-y: auto;
 }
 
@@ -202,14 +203,25 @@ export default {
   margin-bottom: 1rem;
 }
 
+#main .layout {
+  max-height: 100%;
+  overflow-y: hidden;
+  padding: 0 1rem 1rem;
+}
+
 #main .editor {
+  display: flex;
   height: 100%;
+  overflow-y: auto;
 }
 
 #main .editor .quill-editor {
   display: flex;
+  max-width: 100%;
+  max-height: 100%;
   flex-direction: column;
   height: 100%;
+  width: 100%;
 }
 
 #main .form .submit .save {

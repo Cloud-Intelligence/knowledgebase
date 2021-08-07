@@ -71,6 +71,7 @@
 /* default base styling */
 html {
     scroll-behavior: smooth;
+    overflow-y: auto !important; 
     background-color: var(--body-colour);
 }
 
