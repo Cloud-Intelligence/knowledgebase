@@ -37,9 +37,10 @@
                       type="text"
                       placeholder="#Topic"
                       v-model="new_topic"
+                      @keydown.enter="submitTopic(new_topic)"
                     />
                     <button
-                      class="button column add_button"
+                      class="button column add_button is-one-quarter"
                       @click="submitTopic(new_topic)"
                     >
                       <uil-check></uil-check>
@@ -100,9 +101,10 @@
                       type="text"
                       placeholder="#Tag"
                       v-model="new_tag"
+                      @keydown.enter="submitTag(new_tag)"
                     />
                     <button
-                      class="button column add_button"
+                      class="button column add_button is-one-quarter"
                       @click="submitTag(new_tag)"
                     >
                       +
@@ -238,6 +240,10 @@ export default {
 }
 
 #main .form .fields .dropdown .dropdown-trigger {
+  width: 100%;
+}
+
+#main .form .fields .dropdown .dropdown-menu {
   width: 100%;
 }
 
