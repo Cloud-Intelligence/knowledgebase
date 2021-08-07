@@ -4,6 +4,7 @@
       <div class="layout">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div class="form columns">
           <div class="fields column">
             <div class="dropdown" id="topics">
@@ -219,90 +220,124 @@
                   v-for="(topic, index) in loaded_topics"
                   class="dropdown-item"
                   :key="index"
+=======
+        <div class="form columns">
+          <div class="fields column">
+            <div class="dropdown" id="topics">
+              <div class="dropdown-trigger">
+                <button
+                  class="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                  @click="tiggerDropdown('topics')"
+>>>>>>> 19ad657 (added styling for quill and fields)
                 >
-                  {{ topic }}
-                </a>
-                <hr class="dropdown-divider" />
-                <div class="dropdown-item add_element columns">
-                  <input
-                    class="input column is-three-quarters"
-                    type="text"
-                    placeholder="#Topic"
-                    v-model="new_topic"
-                  />
-                  <button
-                    class="button column add_button"
-                    @click="submitTopic(new_topic)"
-                  >
-                    <uil-check></uil-check>
-                  </button>
-                </div>
+                  <div class="child-container">
+                    <p v-if="topic">{{ topic }}</p>
+                    <p v-else>#topic</p>
+                  </div>
+                  <span class="icon is-small">
+                    <uil-angle-down class="icon-arrow"></uil-angle-down>
+                  </span>
+                </button>
               </div>
-            </div>
-          </div>
-
-          <input
-            class="input"
-            type="text"
-            placeholder="#Title"
-            v-model="title"
-          />
-
-          <div class="dropdown" id="tags">
-            <div class="dropdown-trigger">
-              <button
-                class="button"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu"
-                @click="tiggerDropdown('tags')"
-              >
-                <div class="child-container" v-if="tags.length">
-                  <div
-                    v-for="(tag, index) in tags"
-                    class="tag"
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a
+                    v-for="(topic, index) in loaded_topics"
+                    class="dropdown-item"
                     :key="index"
-                    v-on:click.stop="deleteTag(tag)"
                   >
-                    <p>{{ tag }}</p>
-                    <p class="icon-close"><uil-times></uil-times></p>
+                    {{ topic }}
+                  </a>
+                  <hr class="dropdown-divider" />
+                  <div class="dropdown-item add_element columns">
+                    <input
+                      class="input column is-three-quarters"
+                      type="text"
+                      placeholder="#Topic"
+                      v-model="new_topic"
+                    />
+                    <button
+                      class="button column add_button"
+                      @click="submitTopic(new_topic)"
+                    >
+                      <uil-check></uil-check>
+                    </button>
                   </div>
                 </div>
-                <div class="child-container" v-else>
-                  <p>#tags</p>
-                </div>
-                <span class="icon is-small">
-                  <uil-angle-down class="icon-arrow"></uil-angle-down>
-                </span>
-              </button>
+              </div>
             </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a
-                  v-for="(tag, index) in loaded_tags"
-                  class="dropdown-item"
-                  :key="index"
-                  @click="submitTag(tag)"
+
+            <input
+              class="input"
+              type="text"
+              placeholder="#Title"
+              v-model="title"
+            />
+
+            <div class="dropdown" id="tags">
+              <div class="dropdown-trigger">
+                <button
+                  class="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                  @click="tiggerDropdown('tags')"
                 >
-                  {{ tag }}
-                </a>
-                <hr class="dropdown-divider" />
-                <div class="dropdown-item add_element columns">
-                  <input
-                    class="input column is-three-quarters"
-                    type="text"
-                    placeholder="#Tag"
-                    v-model="new_tag"
-                  />
-                  <button
-                    class="button column add_button"
-                    @click="submitTag(new_tag)"
+                  <div class="child-container" v-if="tags.length">
+                    <div
+                      v-for="(tag, index) in tags"
+                      class="tag"
+                      :key="index"
+                      v-on:click.stop="deleteTag(tag)"
+                    >
+                      <p>{{ tag }}</p>
+                      <p class="icon-close"><uil-times></uil-times></p>
+                    </div>
+                  </div>
+                  <div class="child-container" v-else>
+                    <p>#tags</p>
+                  </div>
+                  <span class="icon is-small">
+                    <uil-angle-down class="icon-arrow"></uil-angle-down>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a
+                    v-for="(tag, index) in loaded_tags"
+                    class="dropdown-item"
+                    :key="index"
+                    @click="submitTag(tag)"
                   >
-                    +
-                  </button>
+                    {{ tag }}
+                  </a>
+                  <hr class="dropdown-divider" />
+                  <div class="dropdown-item add_element columns">
+                    <input
+                      class="input column is-three-quarters"
+                      type="text"
+                      placeholder="#Tag"
+                      v-model="new_tag"
+                    />
+                    <button
+                      class="button column add_button"
+                      @click="submitTag(new_tag)"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="submit column">
+            <button class="save button is-info">save</button>
+          </div>
+        </div>
+        <div class="editor">
+          <quill-editor ref="myTextEditor" v-model="content"></quill-editor>
         </div>
 >>>>>>> c63005a (added new create page and removed redundant data in documents view)
       </div>
@@ -352,7 +387,7 @@ export default {
   data() {
     return {
       topic: '',
-      content: '<p>Dummy content</p>',
+      content: '',
       title: '',
       tags: [],
       loaded_topics: [],
@@ -500,29 +535,56 @@ export default {
 >>>>>>> c63005a (added new create page and removed redundant data in documents view)
 =======
 
+<style>
+
+#main .editor .quill-editor .ql-container  {
+  height: 100%;
+  overflow-y: auto;
+}
+
+</style>
+
 <style scoped>
+
 #main .fields > * {
   width: 100%;
-  max-width: 300px;
   margin-bottom: 1rem;
 }
 
-#main .fields .dropdown {
+#main .editor {
+  height: 100%;
+}
+
+#main .editor .quill-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#main .form .submit .save {
+  width: 100%;
+}
+
+#main .form {
+  display: flex;
+}
+
+#main .form .fields .dropdown {
   width: 100%;
   display: flex;
 }
 
-#main .fields .dropdown .dropdown-trigger {
+#main .form .fields .dropdown .dropdown-trigger {
   width: 100%;
 }
 
-#main .fields .dropdown .dropdown-trigger .button {
+#main .form .fields .dropdown .dropdown-trigger .button {
   width: 100%;
   height: max-content;
   justify-content: initial;
 }
 
-#main .fields .dropdown .dropdown-trigger .button .child-container {
+#main .form .fields .dropdown .dropdown-trigger .button .child-container {
   width: 90%;
   height: max-content;
   display: flex;
@@ -530,40 +592,51 @@ export default {
   overflow: hidden;
 }
 
-#main .fields .dropdown .dropdown-trigger .button .child-container .tag {
+#main .form .fields .dropdown .dropdown-trigger .button .child-container .tag {
   transition: background-color 0.25s;
   margin: 5px 5px 5px 0;
   height: 2rem;
 }
 
-#main .fields .dropdown .dropdown-trigger .button .child-container .tag:hover {
+#main .form .fields .dropdown .dropdown-trigger .button .child-container .tag:hover {
   background-color: grey;
 }
 
-#main .fields .dropdown .dropdown-trigger .button .child-container .tag .icon-close {
+#main
+  .form
+  .fields
+  .dropdown
+  .dropdown-trigger
+  .button
+  .child-container
+  .tag
+  .icon-close {
   margin-left: 5px;
 }
 
-#main .fields .dropdown .dropdown-trigger .button .icon {
+#main .form .fields .dropdown .dropdown-trigger .button .icon {
   width: 10%;
   margin-left: auto;
   justify-content: flex-end;
 }
 
-#main .fields .dropdown .dropdown-menu .dropdown-content .dropdown-item .input {
+#main .form .fields .dropdown .dropdown-menu .dropdown-content .dropdown-item .input {
   border-radius: 10px 0 0 10px;
 }
 
 #main
+  .form
   .fields
   .dropdown
   .dropdown-menu
   .dropdown-content
   .dropdown-item.add_element {
-    margin: 1px 0 1px 0;
-  }
+  margin: 1px 0 1px 0;
+  display: flex;
+}
 
 #main
+  .form
   .fields
   .dropdown
   .dropdown-menu
