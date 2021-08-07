@@ -16,6 +16,7 @@
 #main .heading {
     width: 100%;
     height: 5rem;
+    display: flex;
 }
 
 #main .heading .container.head {
@@ -33,7 +34,7 @@
 }
 
 #main .heading .container.icons > * {
-    float: left;
+    float: right;
     font-size: 2rem;
     margin-left: 0.5rem;
     margin-top: 0.5rem;
