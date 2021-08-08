@@ -27,6 +27,7 @@
                     v-for="(topic, index) in loaded_topics"
                     class="dropdown-item"
                     :key="index"
+                    @click="submitTopic(topic)"
                   >
                     {{ topic }}
                   </a>
@@ -170,7 +171,7 @@ export default {
       document.getElementById('topics').classList.toggle('is-active');
     },
     submitTag(tag) {
-      if (this.tags.includes(tag) || this.loaded_tags.includes(tag)) {
+      if (this.tags.includes(tag)) {
         // do somthing validation wise
       } else {
         this.tags.push(tag);
