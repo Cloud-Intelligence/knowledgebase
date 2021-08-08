@@ -148,25 +148,20 @@ export default {
     UilTimes,
   },
   created() {
-    this.getData();
+    // fetch all uniue tags
+    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/tags`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.loaded_tags = json.data.tags;
+      });
+    // fetch all topics
+    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/topics`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.loaded_topics = json.data.topics;
+      });
   },
   methods: {
-    getData() {
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
-        .then((res) => res.json())
-        .then((json) => {
-          const files = json.data;
-          const tmp = [];
-          // eslint-disable-next-line no-plusplus
-          for (let i = 0; i < files.length; i++) {
-            const fileTopic = files[i].topic;
-            if (!tmp.includes(fileTopic)) {
-              tmp.push(fileTopic);
-            }
-          }
-          this.loaded_topics = tmp;
-        });
-    },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
     },
