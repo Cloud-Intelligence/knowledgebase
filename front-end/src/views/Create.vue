@@ -36,7 +36,7 @@
                     <input
                       class="input column is-three-quarters"
                       type="text"
-                      placeholder="#Topic"
+                      placeholder="#New topic"
                       v-model="new_topic"
                       @keydown.enter="submitTopic(new_topic)"
                     />
@@ -52,7 +52,7 @@
             </div>
 
             <input
-              class="input"
+              class="input title_input"
               type="text"
               placeholder="#Title"
               v-model="title"
@@ -100,7 +100,7 @@
                     <input
                       class="input column is-three-quarters"
                       type="text"
-                      placeholder="#Tag"
+                      placeholder="#New tag"
                       v-model="new_tag"
                       @keydown.enter="submitTag(new_tag)"
                     />
@@ -228,6 +228,10 @@ export default {
 
 #main .form {
   display: flex;
+}
+
+#main .fields .title_input {
+  padding: 0.5em 1em;
 }
 
 #main .form .fields .dropdown {
