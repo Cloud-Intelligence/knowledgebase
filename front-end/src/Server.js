@@ -60,6 +60,26 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
 
       this.namespace = '/api';
 
+      let id = 100;
+
+      this.post('/documents', (schema, request) => {
+        const attr = JSON.parse(request.requestBody);
+        id += 1;
+        schema.documents.create({
+          title: attr.data.title,
+          id,
+          topic: attr.data.topic,
+        });
+        schema.files.create({
+          id,
+          data: {
+            title: attr.data.title,
+            content: attr.data.content,
+            tags: attr.data.tags,
+          },
+        });
+      });
+
       this.get('/documents', (schema) => ({ data: schema.documents.all().models }));
 
       this.get('/documents/:id', (schema, request) => {

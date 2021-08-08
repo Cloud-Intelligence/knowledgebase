@@ -116,7 +116,7 @@
             </div>
           </div>
           <div class="submit column">
-            <button class="save button is-info">save</button>
+            <button class="save button is-info" @click="submitForm()">save</button>
           </div>
         </div>
         <div class="editor">
@@ -171,14 +171,50 @@ export default {
       document.getElementById('topics').classList.toggle('is-active');
     },
     submitTag(tag) {
-      if (this.tags.includes(tag)) {
-        // do somthing validation wise
-      } else {
+      if (!this.tags.includes(tag)) {
         this.tags.push(tag);
       }
     },
     deleteTag(tag) {
       this.tags = this.tags.filter((value) => value !== tag);
+    },
+    submitForm() {
+      const { topic } = this;
+      const { title } = this;
+      const { tags } = this;
+      const { content } = this;
+
+      if (topic === '') {
+        console.log('topic empty');
+      } else if (title === '') {
+        console.log('title empty');
+      } else if (tags.length === 0) {
+        console.log('tags empty');
+      } else if (content === '') {
+        console.log('content empty');
+      } else {
+        const data = {
+          topic,
+          data: {
+            title,
+            content,
+            tags,
+          },
+        };
+        fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(data), // body data type must match "Content-Type" header
+        });
+      }
     },
   },
 };
