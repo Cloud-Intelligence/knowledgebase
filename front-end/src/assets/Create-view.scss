@@ -10,20 +10,26 @@
         max-height: 100%;
         overflow-y: hidden;
         padding: 0 1rem 1rem;
-    }
-  
-    .editor {
-        display: flex;
-        height: 100%;
-        overflow-y: auto;
 
-        .quill-editor {
+        .editor {
             display: flex;
-            max-width: 100%;
-            max-height: 100%;
-            flex-direction: column;
             height: 100%;
-            width: 100%;
+            overflow-y: auto;
+            transition: box-shadow 0.25s;
+    
+            .quill-editor {
+                display: flex;
+                max-width: 100%;
+                max-height: 100%;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .editor.invalid {
+            box-shadow: 0 0.5em 1em -0.125em rgb(255 0 0 / 10%),
+                        0 0px 0 1px rgb(255 0 0 / 10%);
         }
     }
   

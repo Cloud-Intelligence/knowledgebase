@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <router-link class="add_record button" to="/create">+</router-link>
+      <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
     </div>
   </section>
 </template>
@@ -64,6 +64,7 @@ import {
   UilStar,
   UilAngleLeft,
   UilAngleDown,
+  UilPlus,
 } from '@iconscout/vue-unicons';
 
 export default {
@@ -104,6 +105,7 @@ export default {
     UilStar,
     UilAngleLeft,
     UilAngleDown,
+    UilPlus,
   },
   methods: {
     toggleTray() {

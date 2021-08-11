@@ -166,7 +166,7 @@
           </div>
         </div>
         <div
-          class="editor"
+          :class="!content == '' || is_valid? 'editor box':' editor box invalid'"
           id="editor"
         >
           <quill-editor ref="myTextEditor" v-model="content" :class="
@@ -264,24 +264,24 @@ export default {
 
       if (topic === '' || title === '' || tags.length === 0 || content === '') {
         this.is_valid = false;
-      } else {
-        this.is_valid = true;
-        const data = {
-          topic,
-          data: {
-            title,
-            content,
-            tags,
-          },
-        };
-        fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+        return;
       }
+      this.is_valid = true;
+      const data = {
+        topic,
+        data: {
+          title,
+          content,
+          tags,
+        },
+      };
+      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
     },
   },
 };
