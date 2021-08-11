@@ -160,7 +160,10 @@
             </p>
           </div>
           <div class="submit column">
-            <button class="save button is-info" @click="submitForm()">
+            <button :class="loading?
+              'save button is-info is-loading':
+              'save button is-info'"
+              @click="submitForm()">
               save
             </button>
           </div>
@@ -218,6 +221,7 @@ export default {
       new_topic: '',
       new_tag: '',
       is_valid: true,
+      loading: false,
     };
   },
   components: {
@@ -258,12 +262,14 @@ export default {
       this.tags = this.tags.filter((value) => value !== tag);
     },
     submitForm() {
+      this.loading = true;
       const {
         topic, title, tags, content,
       } = this;
 
       if (topic === '' || title === '' || tags.length === 0 || content === '') {
         this.is_valid = false;
+        this.loading = false;
         return;
       }
       this.is_valid = true;
@@ -281,6 +287,8 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+      }).then(() => {
+        this.loading = false;
       });
     },
   },
