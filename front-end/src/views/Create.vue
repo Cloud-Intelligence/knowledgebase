@@ -224,9 +224,15 @@
         <div class="form columns">
           <div class="fields column">
             <div class="dropdown" id="topics">
-              <div class="dropdown-trigger">
+              <div
+                class="dropdown-trigger"
+              >
                 <button
-                  class="button"
+                  :class="
+                  !topic == '' || is_valid
+                    ? 'button'
+                    : 'button is-danger is-outlined'
+                "
                   aria-haspopup="true"
                   aria-controls="dropdown-menu"
                   @click="tiggerDropdown('topics')"
@@ -270,18 +276,47 @@
                 </div>
               </div>
             </div>
+            <p
+              :class="
+                !topic == '' || is_valid
+                  ? 'help is-danger is-hidden'
+                  : 'help is-danger'
+              "
+            >
+              this filed is required
+            </p>
 
             <input
-              class="input title_input"
+              :class="
+                !title == '' || is_valid
+                  ? 'input title_input'
+                  : 'input title_input is-danger is-outlined'
+              "
               type="text"
               placeholder="#Title"
               v-model="title"
+              id="title"
             />
+            <p
+              :class="
+                !title == '' || is_valid
+                  ? 'help is-danger is-hidden'
+                  : 'help is-danger'
+              "
+            >
+              This field is required
+            </p>
 
             <div class="dropdown" id="tags">
-              <div class="dropdown-trigger">
+              <div
+                class="dropdown-trigger"
+              >
                 <button
-                  class="button"
+                  :class="
+                  !tags.length == 0 || is_valid
+                    ? 'button'
+                    : 'button is-danger is-outlined'
+                "
                   aria-haspopup="true"
                   aria-controls="dropdown-menu"
                   @click="tiggerDropdown('tags')"
@@ -328,21 +363,51 @@
                       class="button column add_button is-one-quarter"
                       @click="submitTag(new_tag)"
                     >
-                      +
+                      <uil-plus></uil-plus>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+            <p
+              :class="
+                !tags.length == 0 || is_valid
+                  ? 'help is-danger is-hidden'
+                  : 'help is-danger'
+              "
+            >
+              This filed is required
+            </p>
           </div>
           <div class="submit column">
-            <button class="save button is-info" @click="submitForm()">save</button>
+            <button class="save button is-info" @click="submitForm()">
+              save
+            </button>
           </div>
         </div>
-        <div class="editor">
-          <quill-editor ref="myTextEditor" v-model="content"></quill-editor>
+        <div
+          class="editor"
+          id="editor"
+        >
+          <quill-editor ref="myTextEditor" v-model="content" :class="
+            !content == '' || is_valid
+              ? ''
+              : 'is-danger is-outlined'
+          "></quill-editor>
         </div>
+<<<<<<< HEAD
 >>>>>>> c63005a (added new create page and removed redundant data in documents view)
+=======
+        <p
+          :class="
+            !content == '' || is_valid
+              ? 'help is-danger is-hidden'
+              : 'help is-danger'
+          "
+        >
+          This field is required
+        </p>
+>>>>>>> 1b3ebed (changes resolved)
       </div>
     </div>
   </section>
@@ -352,6 +417,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1b3ebed (changes resolved)
 import {
   UilAngleDown,
   UilCheck,
@@ -367,6 +435,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 import { listTags, listTopics, postDocument } from '../api/documents';
@@ -383,6 +452,8 @@ import { UilAngleDown } from '@iconscout/vue-unicons';
 =======
 import { UilAngleDown, UilCheck, UilTimes } from '@iconscout/vue-unicons';
 >>>>>>> c183cb5 (added form fields to add document details)
+=======
+>>>>>>> 1b3ebed (changes resolved)
 
 >>>>>>> dadbbfd (added dropdowns)
 >>>>>>> c4bd1db (added dropdowns)
@@ -486,13 +557,19 @@ export default {
 =======
       new_topic: '',
       new_tag: '',
+<<<<<<< HEAD
 >>>>>>> c183cb5 (added form fields to add document details)
+=======
+      is_valid: true,
+>>>>>>> 1b3ebed (changes resolved)
     };
   },
   components: {
+    quillEditor,
     UilAngleDown,
     UilCheck,
     UilTimes,
+    UilPlus,
   },
   created() {
     // fetch all uniue tags
@@ -525,20 +602,14 @@ export default {
       this.tags = this.tags.filter((value) => value !== tag);
     },
     submitForm() {
-      const { topic } = this;
-      const { title } = this;
-      const { tags } = this;
-      const { content } = this;
+      const {
+        topic, title, tags, content,
+      } = this;
 
-      if (topic === '') {
-        console.log('topic empty');
-      } else if (title === '') {
-        console.log('title empty');
-      } else if (tags.length === 0) {
-        console.log('tags empty');
-      } else if (content === '') {
-        console.log('content empty');
+      if (topic === '' || title === '' || tags.length === 0 || content === '') {
+        this.is_valid = false;
       } else {
+        this.is_valid = true;
         const data = {
           topic,
           data: {
@@ -548,17 +619,11 @@ export default {
           },
         };
         fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-          body: JSON.stringify(data), // body data type must match "Content-Type" header
+          body: JSON.stringify(data),
         });
       }
     },
@@ -570,144 +635,14 @@ export default {
 =======
 
 <style>
-
-#main .editor .quill-editor .ql-container  {
+#main .editor .quill-editor .ql-container {
   height: 100%;
   max-height: 100%;
   overflow-y: auto;
 }
-
 </style>
 
-<style scoped>
-
-#main .fields > * {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-#main .layout {
-  max-height: 100%;
-  overflow-y: hidden;
-  padding: 0 1rem 1rem;
-}
-
-#main .editor {
-  display: flex;
-  height: 100%;
-  overflow-y: auto;
-}
-
-#main .editor .quill-editor {
-  display: flex;
-  max-width: 100%;
-  max-height: 100%;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-#main .form .submit .save {
-  width: 100%;
-}
-
-#main .form {
-  display: flex;
-}
-
-#main .fields .title_input {
-  padding: 0.5em 1em;
-}
-
-#main .form .fields .dropdown {
-  width: 100%;
-  display: flex;
-}
-
-#main .form .fields .dropdown .dropdown-trigger {
-  width: 100%;
-}
-
-#main .form .fields .dropdown .dropdown-menu {
-  width: 100%;
-}
-
-#main .form .fields .dropdown .dropdown-trigger .button {
-  width: 100%;
-  height: max-content;
-  justify-content: initial;
-}
-
-#main .form .fields .dropdown .dropdown-trigger .button .child-container {
-  width: 90%;
-  height: max-content;
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-
-#main .form .fields .dropdown .dropdown-trigger .button .child-container .tag {
-  transition: background-color 0.25s;
-  margin: 5px 5px 5px 0;
-  height: 2rem;
-}
-
-#main .form .fields .dropdown .dropdown-trigger .button .child-container .tag:hover {
-  background-color: grey;
-}
-
-#main
-  .form
-  .fields
-  .dropdown
-  .dropdown-trigger
-  .button
-  .child-container
-  .tag
-  .icon-close {
-  margin-left: 5px;
-}
-
-#main .form .fields .dropdown .dropdown-trigger .button .icon {
-  width: 10%;
-  margin-left: auto;
-  justify-content: flex-end;
-}
-
-#main .form .fields .dropdown .dropdown-menu .dropdown-content .dropdown-item .input {
-  border-radius: 10px 0 0 10px;
-}
-
-#main
-  .form
-  .fields
-  .dropdown
-  .dropdown-menu
-  .dropdown-content
-  .dropdown-item.add_element {
-  margin: 1px 0 1px 0;
-  display: flex;
-}
-
-#main
-  .form
-  .fields
-  .dropdown
-  .dropdown-menu
-  .dropdown-content
-  .dropdown-item.add_element
-  .button {
-  border-radius: 0 10px 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-.dropdown .dropdown-trigger .button .icon-arrow {
-  transition: transform 0.25s;
-}
-
-.dropdown.is-active .dropdown-trigger .button .icon-arrow {
-  transform: rotate(180deg);
-}
+<style lang="scss">
+@import "../assets/Create-view.scss";
 </style>
 >>>>>>> c183cb5 (added form fields to add document details)

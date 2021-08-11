@@ -4,16 +4,6 @@ import router from './router';
 
 import 'bulma/css/bulma.css';
 
-// eslint-disable-next-line import/order
-import VueQuillEditor from 'vue-quill-editor';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.core.css'; // import styles
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.snow.css'; // for snow theme
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.bubble.css'; // for bubble theme
-
 // Import the plugin here
 import { Auth0Plugin } from './auth';
 
@@ -38,9 +28,6 @@ Vue.use(Auth0Plugin, {
     );
   },
 });
-
-// Use the quill editor globally
-Vue.use(VueQuillEditor);
 
 if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
   makeServer({ bypass: domain });
