@@ -167,6 +167,7 @@
               'save button is-info is-loading':
               'save button is-info'"
               @click="submitForm()">
+<<<<<<< HEAD
               save
             </button>
           </div>
@@ -381,6 +382,8 @@
           </div>
           <div class="submit column">
             <button class="save button is-info" @click="submitForm()">
+=======
+>>>>>>> a335f1f (added loading on save)
               save
             </button>
           </div>
@@ -561,7 +564,11 @@ export default {
 >>>>>>> c183cb5 (added form fields to add document details)
 =======
       is_valid: true,
+<<<<<<< HEAD
 >>>>>>> 1b3ebed (changes resolved)
+=======
+      loading: false,
+>>>>>>> a335f1f (added loading on save)
     };
   },
   components: {
@@ -602,12 +609,14 @@ export default {
       this.tags = this.tags.filter((value) => value !== tag);
     },
     submitForm() {
+      this.loading = true;
       const {
         topic, title, tags, content,
       } = this;
 
       if (topic === '' || title === '' || tags.length === 0 || content === '') {
         this.is_valid = false;
+        this.loading = false;
         return;
       }
       this.is_valid = true;
@@ -625,6 +634,8 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+      }).then(() => {
+        this.loading = false;
       });
     },
   },
