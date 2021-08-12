@@ -224,6 +224,9 @@ export default {
       loading: false,
     };
   },
+  props: {
+    refreshSidebar: Function,
+  },
   components: {
     quillEditor,
     UilAngleDown,
@@ -290,6 +293,7 @@ export default {
       }).then(() => {
         this.loading = false;
       });
+      this.refreshSidebar();
     },
   },
 };

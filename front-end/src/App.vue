@@ -4,9 +4,10 @@
       :user-name="this.$auth.user.name"
       :user-image="this.$auth.user.picture"
       v-on:tray="toggleTray"
+      ref="sidebar"
     ></sidebar>
     <div :class="collapsed ? 'body closed' : 'body open'">
-      <router-view />
+      <router-view :refreshSidebar="refreshSidebar" />
     </div>
   </div>
 </template>
@@ -30,6 +31,9 @@ export default {
   methods: {
     toggleTray() {
       this.collapsed = !this.collapsed;
+    },
+    refreshSidebar() {
+      this.$refs.sidebar.getDocuments();
     },
   },
 };

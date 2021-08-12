@@ -68,7 +68,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         schema.documents.create({
           title: attr.data.title,
           id,
-          topic: attr.data.topic,
+          topic: attr.topic,
         });
         schema.files.create({
           id,

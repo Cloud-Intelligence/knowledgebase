@@ -78,26 +78,10 @@ export default {
   props: {
     userName: String,
     userImage: String,
+    bus: Object,
   },
   created() {
-    // fetch the topics from mirage
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
-      .then((res) => res.json())
-      .then((json) => {
-        const files = json.data;
-        const tmp = {};
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < files.length; i++) {
-          const fileTopic = files[i].topic;
-          if (fileTopic in tmp) {
-            tmp[fileTopic].push(files[i]);
-          } else {
-            tmp[fileTopic] = [];
-            tmp[fileTopic].push(files[i]);
-          }
-        }
-        this.topics = tmp;
-      });
+    this.getDocuments();
   },
   components: {
     UilEstate,
@@ -121,6 +105,26 @@ export default {
       } else {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
+    },
+    getDocuments() {
+      // fetch the topics from mirage
+      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
+        .then((res) => res.json())
+        .then((json) => {
+          const files = json.data;
+          const tmp = {};
+          // eslint-disable-next-line no-plusplus
+          for (let i = 0; i < files.length; i++) {
+            const fileTopic = files[i].topic;
+            if (fileTopic in tmp) {
+              tmp[fileTopic].push(files[i]);
+            } else {
+              tmp[fileTopic] = [];
+              tmp[fileTopic].push(files[i]);
+            }
+          }
+          this.topics = tmp;
+        });
     },
   },
 };
