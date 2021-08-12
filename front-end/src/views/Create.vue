@@ -571,6 +571,9 @@ export default {
 >>>>>>> a335f1f (added loading on save)
     };
   },
+  props: {
+    refreshSidebar: Function,
+  },
   components: {
     quillEditor,
     UilAngleDown,
@@ -637,6 +640,7 @@ export default {
       }).then(() => {
         this.loading = false;
       });
+      this.refreshSidebar();
     },
   },
 };
