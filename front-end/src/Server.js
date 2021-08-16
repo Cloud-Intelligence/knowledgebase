@@ -48,7 +48,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
       server.create('file', {
         id: 31,
         data: {
-          title: 'fun stuffs', content: '## this is fun', tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'fun stuffs', content: '## this is fun', tags: ['#cloudIntelligence', '#home', '#booyah', '#yay'],
         },
       });
     },
@@ -60,6 +60,26 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
 
       this.namespace = '/api';
 
+      let id = 100;
+
+      this.post('/documents', (schema, request) => {
+        const attr = JSON.parse(request.requestBody);
+        id += 1;
+        schema.documents.create({
+          title: attr.data.title,
+          id,
+          topic: attr.topic,
+        });
+        schema.files.create({
+          id,
+          data: {
+            title: attr.data.title,
+            content: attr.data.content,
+            tags: attr.data.tags,
+          },
+        });
+      });
+
       this.get('/documents', (schema) => ({ data: schema.documents.all().models }));
 
       this.get('/documents/:id', (schema, request) => {
@@ -69,6 +89,41 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
             content: req.data.content,
             tags: req.data.tags,
             title: req.data.title,
+          },
+        };
+      });
+
+      this.get('/documents/tags', (schema) => {
+        const tags = [];
+        const req = schema.files.all().models;
+        // eslint-disable-next-line array-callback-return
+        req.map((file) => {
+          // eslint-disable-next-line no-plusplus
+          for (let index = 0; index < file.attrs.data.tags.length; index++) {
+            if (!tags.includes(file.attrs.data.tags[index])) {
+              tags.push(file.attrs.data.tags[index]);
+            }
+          }
+        });
+        return {
+          data: {
+            tags,
+          },
+        };
+      });
+
+      this.get('/documents/topics', (schema) => {
+        const topics = [];
+        const req = schema.documents.all().models;
+        // eslint-disable-next-line array-callback-return
+        req.map((document) => {
+          if (!topics.includes(document.topic)) {
+            topics.push(document.topic);
+          }
+        });
+        return {
+          data: {
+            topics,
           },
         };
       });

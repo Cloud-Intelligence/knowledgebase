@@ -52,6 +52,11 @@ describe('sidebar', () => {
     cy.get('#12').click();
     cy.get('.body').toMatchImageSnapshot();
   });
+  it('routes to create page on click of plus sign', () => {
+    cy.visit('/');
+    cy.get('a.add_record.button').click();
+    cy.get('.body').toMatchImageSnapshot();
+  });
   it('contains dropdown collections', () => {
     cy.visit('/');
     cy.get('.topic');

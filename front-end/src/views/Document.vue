@@ -13,8 +13,7 @@
           </div>
         </div>
         <div class="content">
-          <div class="text">
-            {{ content }}
+          <div class="text" v-html="content">
           </div>
         </div>
         <div class="foot">
@@ -39,7 +38,6 @@ export default {
   },
   data() {
     return {
-      topic: null,
       title: null,
       content: null,
       tags: null,
