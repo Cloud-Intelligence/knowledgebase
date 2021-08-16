@@ -9,4 +9,4 @@ RUN yarn run cypress install
 
 EXPOSE 8080
 
-CMD ["yarn", "serve"]
+CMD ["yarn", "test-server"]
