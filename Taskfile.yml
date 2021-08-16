@@ -16,3 +16,6 @@ tasks:
   ci:
     cmds:
       - docker-compose run -u root ui yarn ci
+  dev:
+    cmds:
+      - docker-compose up

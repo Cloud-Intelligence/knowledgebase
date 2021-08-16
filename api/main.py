@@ -42,7 +42,7 @@ def index():
         files = [
             {
                 "id": str(f.pop("_id")),
-                "name": f["name"],
+                "topic": f["topic"],
                 "title": f["data"]["title"],
             }
             for f in files

@@ -308,5 +308,5 @@ export default {
 </style>
 
 <style lang="scss">
-@import "../assets/Create-view.scss";
+@import "../assets/create-view.scss";
 </style>
