@@ -7,7 +7,7 @@ from jose import jwt
 from flask import Flask, request, jsonify, _request_ctx_stack
 from loguru import logger
 
-DEVELOPMENT = os.environ.get("DEVELOPMENT", True)
+DEVELOPMENT = os.environ.get("DEVELOPMENT", 1) == 1
 AUTH0_DOMAIN = os.environ.get("API_DOMAIN")
 API_AUDIENCE = os.environ.get("API_AUDIENCE")
 ALGORITHMS = ["RS256"]

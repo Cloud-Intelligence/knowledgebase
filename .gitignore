@@ -3,4 +3,7 @@ data/wiki/cache/
 .vscode
 node_modules/
 
+api/.env
+api/.env.production
+
 __pycache__/
