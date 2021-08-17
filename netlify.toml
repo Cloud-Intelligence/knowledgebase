@@ -1,2 +1,8 @@
 [context.deploy-preview]
   command = "yarn build --mode test"
+[context.deploy-preview.environment]
+  NODE_ENV = "test"
+[context.branch-deploy]
+  command = "yarn build --mode test"
+[context.branch-deploy.environment]
+  NODE_ENV = "test"
