@@ -1,12 +1,15 @@
+from os import getenv
+
 from pymongo import MongoClient
-import ujson as json
+
+MANGO_URL = getenv("DB_URL")
 
 
 def create_connection():
-    client = MongoClient("db:27017")
-    return client.admin
+    client = MongoClient(MANGO_URL)
+    return client.wiki
 
 
 def drop():
-    client = MongoClient("db:27017")
-    return client.admin.folders.drop()
+    client = MongoClient(MANGO_URL)
+    return client.wiki.folders.drop()

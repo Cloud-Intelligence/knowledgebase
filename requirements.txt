@@ -8,3 +8,5 @@ flask-cors
 six
 python-dotenv
 pymongo
+pymongo[srv]
+gunicorn
