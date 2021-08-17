@@ -27,3 +27,13 @@ def save_file(contents):
 def load_file(file_id):
     cursor = DB.folders.find_one({"_id": ObjectId(file_id)})
     return cursor
+
+
+def tags():
+    cursor = DB.folders.distinct("data.tags")
+    return list(cursor)
+
+
+def topics():
+    cursor = DB.folders.distinct("topic")
+    return list(cursor)

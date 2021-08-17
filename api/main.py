@@ -10,7 +10,7 @@ from authentication import (
     requires_scope,
     get_token_auth_header,
 )
-from utils.file_tools import file_list, load_file, save_file
+from utils.file_tools import file_list, load_file, save_file, tags, topics
 
 APP = Flask(__name__)
 CORS(APP)
@@ -66,6 +66,22 @@ def detail(file_id):
             },
             404,
         )
+
+
+@APP.route("/api/documents/topics/")
+@cross_origin(headers=["Content-Type", "Authorization"])
+@requires_auth
+def topic_list():
+    ret = topics()
+    return jsonify(data=ret)
+
+
+@APP.route("/api/documents/tags/")
+@cross_origin(headers=["Content-Type", "Authorization"])
+@requires_auth
+def tag_list():
+    ret = tags()
+    return jsonify(data=ret)
 
 
 if __name__ == "__main__":
