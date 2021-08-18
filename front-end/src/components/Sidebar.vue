@@ -54,6 +54,12 @@
       </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <div class="logout">
+        <button class="button" @click="logout">Logout</button>
+      </div>
+>>>>>>> 279b803 (created login redirect and route guarding fixes)
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
 =======
       <router-link class="add_record button" to="/create">+</router-link>
@@ -132,6 +138,12 @@ export default {
         }
       }
       this.topics = tmp;
+    },
+    logout() {
+      this.$auth.logout({
+        returnTo: `${window.location.origin}/login`,
+        clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
+      });
     },
   },
 };
