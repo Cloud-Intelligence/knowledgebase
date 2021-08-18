@@ -52,21 +52,7 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <div class="logout">
-        <button class="button" @click="logout">Logout</button>
-      </div>
->>>>>>> 279b803 (created login redirect and route guarding fixes)
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
-=======
-      <router-link class="add_record button" to="/create">+</router-link>
->>>>>>> 1e96037 (added router link to sidebar to navigate)
-=======
-      <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
->>>>>>> d2e2d70 (added icon for plus and styled the quill div for validation)
     </div>
   </section>
 </template>
@@ -138,12 +124,6 @@ export default {
         }
       }
       this.topics = tmp;
-    },
-    logout() {
-      this.$auth.logout({
-        returnTo: `${window.location.origin}/login`,
-        clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
-      });
     },
   },
 };

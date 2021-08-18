@@ -2,9 +2,6 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         <div class="form columns">
           <div class="fields column">
             <div class="dropdown" id="topics">
@@ -167,7 +164,6 @@
               'save button is-info is-loading':
               'save button is-info'"
               @click="submitForm()">
-<<<<<<< HEAD
               save
             </button>
           </div>
@@ -191,238 +187,12 @@
         >
           This field is required
         </p>
-=======
-=======
-        <div class="editor">
-          <quill-editor ref="myTextEditor" v-model="content"></quill-editor>
-        </div>
->>>>>>> 2a3561c (added quill)
-        <div class="fields">
-          <div class="dropdown" id="topics">
-            <div class="dropdown-trigger">
-              <button
-                class="button"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu"
-                @click="tiggerDropdown('topics')"
-              >
-                <div class="child-container">
-                  <p v-if="topic">{{ topic }}</p>
-                  <p v-else>#topic</p>
-                </div>
-                <span class="icon is-small">
-                  <uil-angle-down class="icon-arrow"></uil-angle-down>
-                </span>
-              </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a
-                  v-for="(topic, index) in loaded_topics"
-                  class="dropdown-item"
-                  :key="index"
-=======
-        <div class="form columns">
-          <div class="fields column">
-            <div class="dropdown" id="topics">
-              <div
-                class="dropdown-trigger"
-              >
-                <button
-                  :class="
-                  !topic == '' || is_valid
-                    ? 'button'
-                    : 'button is-danger is-outlined'
-                "
-                  aria-haspopup="true"
-                  aria-controls="dropdown-menu"
-                  @click="tiggerDropdown('topics')"
->>>>>>> 19ad657 (added styling for quill and fields)
-                >
-                  <div class="child-container">
-                    <p v-if="topic">{{ topic }}</p>
-                    <p v-else>#topic</p>
-                  </div>
-                  <span class="icon is-small">
-                    <uil-angle-down class="icon-arrow"></uil-angle-down>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <a
-                    v-for="(topic, index) in loaded_topics"
-                    class="dropdown-item"
-                    :key="index"
-                    @click="submitTopic(topic)"
-                  >
-                    {{ topic }}
-                  </a>
-                  <hr class="dropdown-divider" />
-                  <div class="dropdown-item add_element columns">
-                    <input
-                      class="input column is-three-quarters"
-                      type="text"
-                      placeholder="#New topic"
-                      v-model="new_topic"
-                      @keydown.enter="submitTopic(new_topic)"
-                    />
-                    <button
-                      class="button column add_button is-one-quarter"
-                      @click="submitTopic(new_topic)"
-                    >
-                      <uil-check></uil-check>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p
-              :class="
-                !topic == '' || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-            >
-              this filed is required
-            </p>
-
-            <input
-              :class="
-                !title == '' || is_valid
-                  ? 'input title_input'
-                  : 'input title_input is-danger is-outlined'
-              "
-              type="text"
-              placeholder="#Title"
-              v-model="title"
-              id="title"
-            />
-            <p
-              :class="
-                !title == '' || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-            >
-              This field is required
-            </p>
-
-            <div class="dropdown" id="tags">
-              <div
-                class="dropdown-trigger"
-              >
-                <button
-                  :class="
-                  !tags.length == 0 || is_valid
-                    ? 'button'
-                    : 'button is-danger is-outlined'
-                "
-                  aria-haspopup="true"
-                  aria-controls="dropdown-menu"
-                  @click="tiggerDropdown('tags')"
-                >
-                  <div class="child-container" v-if="tags.length">
-                    <div
-                      v-for="(tag, index) in tags"
-                      class="tag"
-                      :key="index"
-                      v-on:click.stop="deleteTag(tag)"
-                    >
-                      <p>{{ tag }}</p>
-                      <p class="icon-close"><uil-times></uil-times></p>
-                    </div>
-                  </div>
-                  <div class="child-container" v-else>
-                    <p>#tags</p>
-                  </div>
-                  <span class="icon is-small">
-                    <uil-angle-down class="icon-arrow"></uil-angle-down>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <a
-                    v-for="(tag, index) in loaded_tags"
-                    class="dropdown-item"
-                    :key="index"
-                    @click="submitTag(tag)"
-                  >
-                    {{ tag }}
-                  </a>
-                  <hr class="dropdown-divider" />
-                  <div class="dropdown-item add_element columns">
-                    <input
-                      class="input column is-three-quarters"
-                      type="text"
-                      placeholder="#New tag"
-                      v-model="new_tag"
-                      @keydown.enter="submitTag(new_tag)"
-                    />
-                    <button
-                      class="button column add_button is-one-quarter"
-                      @click="submitTag(new_tag)"
-                    >
-                      <uil-plus></uil-plus>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p
-              :class="
-                !tags.length == 0 || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-            >
-              This filed is required
-            </p>
-          </div>
-          <div class="submit column">
-            <button class="save button is-info" @click="submitForm()">
-=======
->>>>>>> a335f1f (added loading on save)
-              save
-            </button>
-          </div>
-        </div>
-        <div
-          :class="!content == '' || is_valid? 'editor box':' editor box invalid'"
-          id="editor"
-        >
-          <quill-editor ref="myTextEditor" v-model="content" :class="
-            !content == '' || is_valid
-              ? ''
-              : 'is-danger is-outlined'
-          "></quill-editor>
-        </div>
-<<<<<<< HEAD
->>>>>>> c63005a (added new create page and removed redundant data in documents view)
-=======
-        <p
-          :class="
-            !content == '' || is_valid
-              ? 'help is-danger is-hidden'
-              : 'help is-danger'
-          "
-        >
-          This field is required
-        </p>
->>>>>>> 1b3ebed (changes resolved)
       </div>
     </div>
   </section>
 </template>
 
 <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1b3ebed (changes resolved)
 import {
   UilAngleDown,
   UilCheck,
@@ -438,6 +208,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 <<<<<<< HEAD
@@ -460,6 +231,9 @@ import { UilAngleDown, UilCheck, UilTimes } from '@iconscout/vue-unicons';
 
 >>>>>>> dadbbfd (added dropdowns)
 >>>>>>> c4bd1db (added dropdowns)
+=======
+
+>>>>>>> b79767a (fixed some conflicts)
 export default {
   data() {
     return {
@@ -469,6 +243,7 @@ export default {
       tags: [],
       loaded_topics: [],
       loaded_tags: [],
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       new_topic: '',
@@ -558,17 +333,12 @@ export default {
 </style>
 =======
 =======
+=======
+>>>>>>> b79767a (fixed some conflicts)
       new_topic: '',
       new_tag: '',
-<<<<<<< HEAD
->>>>>>> c183cb5 (added form fields to add document details)
-=======
       is_valid: true,
-<<<<<<< HEAD
->>>>>>> 1b3ebed (changes resolved)
-=======
       loading: false,
->>>>>>> a335f1f (added loading on save)
     };
   },
   props: {
@@ -645,9 +415,6 @@ export default {
   },
 };
 </script>
-<<<<<<< HEAD
->>>>>>> c63005a (added new create page and removed redundant data in documents view)
-=======
 
 <style>
 #main .editor .quill-editor .ql-container {
@@ -660,4 +427,3 @@ export default {
 <style lang="scss">
 @import "../assets/create-view.scss";
 </style>
->>>>>>> c183cb5 (added form fields to add document details)
