@@ -1,0 +1,119 @@
+// styling for the create page
+
+#main {
+    .fields > * {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+  
+    .layout {
+        max-height: 100%;
+        overflow-y: hidden;
+        padding: 0 1rem 1rem;
+    }
+  
+    .editor {
+        display: flex;
+        height: 100%;
+        overflow-y: auto;
+
+        .quill-editor {
+            display: flex;
+            max-width: 100%;
+            max-height: 100%;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+    }
+  
+    .form {
+        display: flex;
+
+        .submit .save {
+            width: 100%;
+        }
+
+        .fields{ 
+            .title_input {
+                padding: 0.5em 1em;
+            }
+
+            .dropdown {
+                width: 100%;
+                display: flex;
+
+                .dropdown-trigger {
+                    width: 100%;
+
+                    .button {
+                        width: 100%;
+                        height: max-content;
+                        justify-content: initial;
+
+                        .icon {
+                            width: 10%;
+                            margin-left: auto;
+                            justify-content: flex-end;
+                        }
+
+                        .icon-arrow {
+                            transition: transform 0.25s;
+                        }
+
+                        .child-container {
+                            width: 90%;
+                            height: max-content;
+                            display: flex;
+                            flex-wrap: wrap;
+                            overflow: hidden;
+
+                            .tag {
+                                transition: background-color 0.25s;
+                                margin: 5px 5px 5px 0;
+                                height: 2rem;
+
+                                .icon-close {
+                                    margin-left: 5px;
+                                }
+                            }
+
+                            .tag:hover {
+                                background-color: grey;
+                            }
+                        }
+                    }
+                }
+
+                .dropdown-menu {
+                    width: 100%;
+
+                    .dropdown-content{
+                        .dropdown-item .input {
+                            border-radius: 10px 0 0 10px;
+                        }
+
+                        .dropdown-item.add_element {
+                            margin: 1px 0 1px 0;
+                            display: flex;
+
+                            .button {
+                                border-radius: 0 10px 10px 0;
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dropdown .dropdown-trigger .button .icon-arrow {
+    transition: transform 0.25s;
+  }
+  
+  .dropdown.is-active .dropdown-trigger .button .icon-arrow {
+    transform: rotate(180deg);
+  }

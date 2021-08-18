@@ -52,6 +52,9 @@
           </div>
         </div>
       </div>
+      <div class="logout">
+        <router-link class="button" @click="logout" to="/login">Logout</router-link>
+      </div>
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
     </div>
   </section>
@@ -66,6 +69,8 @@ import {
   UilAngleDown,
   UilPlus,
 } from '@iconscout/vue-unicons';
+
+import { listDocuments } from '../api/documents';
 
 export default {
   name: 'Sidebar',
@@ -108,23 +113,22 @@ export default {
     },
     getDocuments() {
       // fetch the topics from mirage
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
-        .then((res) => res.json())
-        .then((json) => {
-          const files = json.data;
-          const tmp = {};
-          // eslint-disable-next-line no-plusplus
-          for (let i = 0; i < files.length; i++) {
-            const fileTopic = files[i].topic;
-            if (fileTopic in tmp) {
-              tmp[fileTopic].push(files[i]);
-            } else {
-              tmp[fileTopic] = [];
-              tmp[fileTopic].push(files[i]);
-            }
-          }
-          this.topics = tmp;
-        });
+      listDocuments().then((d) => console.log(d));
+      const tmp = {};
+      // eslint-disable-next-line no-plusplus
+      // for (let i = 0; i < files.length; i++) {
+      //   const fileTopic = files[i].topic;
+      //   if (fileTopic in tmp) {
+      //     tmp[fileTopic].push(files[i]);
+      //   } else {
+      //     tmp[fileTopic] = [];
+      //     tmp[fileTopic].push(files[i]);
+      //   }
+      // }
+      this.topics = tmp;
+    },
+    logout() {
+      this.$auth.logout(process.env.VUE_APP_CLIENT_ID);
     },
   },
 };

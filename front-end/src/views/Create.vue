@@ -284,7 +284,7 @@ export default {
           tags,
         },
       };
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
+      fetch(`${process.env.VUE_APP_BASE_API_URL}api/documents`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
