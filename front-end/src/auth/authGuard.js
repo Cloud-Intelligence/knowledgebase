@@ -6,25 +6,30 @@ const authGuard = (to, _from, next) => {
 
   // eslint-disable-next-line consistent-return
   const fn = () => {
-    if (['development', 'test'].includes(process.env.NODE_ENV)) {
-      authService.isAuthenticated = true;
-      authService.user = {
-        given_name: 'test_user',
-        family_name: 'user',
-        nickname: 'testy.testface',
-        name: 'testicle test test jr',
-        picture: 'https://lh3.googleusercontent.com/a-/AOh14GisixCcwF8PhCe6uxmfPauFVixuq0QW7KVtRTKnTA=s96-c',
-        locale: 'en',
-        updated_at: '2021-07-23T06:38:29.918Z',
-        email: 'test@cloudIntelligence.co.za',
-        email_verified: true,
-      };
-      return next();
-    }
+    // if (['development', 'test'].includes(process.env.NODE_ENV)) {
+    //   authService.isAuthenticated = true;
+    //   authService.user = {
+    //     given_name: 'test_user',
+    //     family_name: 'user',
+    //     nickname: 'testy.testface',
+    //     name: 'testicle test test jr',
+    //     picture: 'https://lh3.googleusercontent.com/a-/AOh14GisixCcwF8PhCe6uxmfPauFVixuq0QW7KVtRTKnTA=s96-c',
+    //     locale: 'en',
+    //     updated_at: '2021-07-23T06:38:29.918Z',
+    //     email: 'test@cloudIntelligence.co.za',
+    //     email_verified: true,
+    //   };
+    //   return next();
+    // }
 
     // If the user is authenticated, continue with the route
     if (authService.isAuthenticated) {
       return next();
+    }
+
+    if (authService.error) {
+      console.error(authService.error);
+      return next({ path: '/login', params: { error: authService.error } });
     }
 
     // Otherwise, log in

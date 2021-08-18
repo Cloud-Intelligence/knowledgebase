@@ -52,6 +52,9 @@
           </div>
         </div>
       </div>
+      <div class="logout">
+        <button class="button" @click="logout">Logout</button>
+      </div>
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
     </div>
   </section>
@@ -125,6 +128,12 @@ export default {
           }
           this.topics = tmp;
         });
+    },
+    logout() {
+      this.$auth.logout({
+        returnTo: `${window.location.origin}/login`,
+        clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
+      });
     },
   },
 };
