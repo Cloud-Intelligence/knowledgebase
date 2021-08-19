@@ -237,18 +237,20 @@ export default {
     UilPlus,
   },
   created() {
-    // fetch all uniue tags
-    listTags()
-      .then((json) => {
-        this.loaded_tags = json.data.tags;
-      });
+    // fetch all unique tags
+    this.fetchUniqueTags();
     // fetch all topics
-    listTopics()
-      .then((json) => {
-        this.loaded_topics = json.data.topics;
-      });
+    this.fetchUniquetopics();
   },
   methods: {
+    async fetchUniqueTags() {
+      const tags = await listTags();
+      this.loaded_tags = tags.data.tags;
+    },
+    async fetchUniquetopics() {
+      const topics = await listTopics();
+      this.loaded_topics = topics.data.topics;
+    },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
     },
@@ -264,7 +266,7 @@ export default {
     deleteTag(tag) {
       this.tags = this.tags.filter((value) => value !== tag);
     },
-    submitForm() {
+    async submitForm() {
       this.loading = true;
       const {
         topic, title, tags, content,
