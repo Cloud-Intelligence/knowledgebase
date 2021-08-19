@@ -24,10 +24,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
 
       return newConfig;
     },
-    (error) => {
-      console.error(error); // for debug
-      return Promise.reject(error);
-    },
+    (error) => Promise.reject(error),
   );
 }
 
