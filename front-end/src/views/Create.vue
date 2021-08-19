@@ -209,6 +209,8 @@ import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
 
+import { listTags, listTopics, postDocument } from '../api/documents';
+
 export default {
   data() {
     return {
@@ -236,14 +238,12 @@ export default {
   },
   created() {
     // fetch all uniue tags
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/tags`)
-      .then((res) => res.json())
+    listTags()
       .then((json) => {
         this.loaded_tags = json.data.tags;
       });
     // fetch all topics
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/topics`)
-      .then((res) => res.json())
+    listTopics()
       .then((json) => {
         this.loaded_topics = json.data.topics;
       });
@@ -284,15 +284,10 @@ export default {
           tags,
         },
       };
-      fetch(`${process.env.VUE_APP_BASE_API_URL}api/documents`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        this.loading = false;
-      });
+      postDocument(JSON.stringify(data))
+        .then(() => {
+          this.loading = false;
+        });
       this.refreshSidebar();
     },
   },

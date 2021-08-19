@@ -7,3 +7,32 @@ export function listDocuments() {
     method: 'get',
   }).then((r) => r.data);
 }
+
+export function getDocument(id) {
+  return request({
+    url: `api/documents/${id}`,
+    method: 'get',
+  }).then((r) => r.data);
+}
+
+export function postDocument(data) {
+  return request({
+    url: 'api/documents/',
+    method: 'post',
+    data,
+  }).then((r) => r.data);
+}
+
+export function listTags() {
+  return request({
+    url: 'api/documents/tags',
+    method: 'get',
+  }).then((r) => r.data);
+}
+
+export function listTopics() {
+  return request({
+    url: 'api/documents/topics',
+    method: 'get',
+  }).then((r) => r.data);
+}

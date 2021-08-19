@@ -111,20 +111,21 @@ export default {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
     },
-    getDocuments() {
+    async getDocuments() {
       // fetch the topics from mirage
-      listDocuments().then((d) => console.log(d));
+      const data = await listDocuments();
+      const files = data.data;
       const tmp = {};
       // eslint-disable-next-line no-plusplus
-      // for (let i = 0; i < files.length; i++) {
-      //   const fileTopic = files[i].topic;
-      //   if (fileTopic in tmp) {
-      //     tmp[fileTopic].push(files[i]);
-      //   } else {
-      //     tmp[fileTopic] = [];
-      //     tmp[fileTopic].push(files[i]);
-      //   }
-      // }
+      for (let i = 0; i < files.length; i++) {
+        const fileTopic = files[i].topic;
+        if (fileTopic in tmp) {
+          tmp[fileTopic].push(files[i]);
+        } else {
+          tmp[fileTopic] = [];
+          tmp[fileTopic].push(files[i]);
+        }
+      }
       this.topics = tmp;
     },
     logout() {

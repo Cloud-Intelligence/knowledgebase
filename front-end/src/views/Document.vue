@@ -28,6 +28,7 @@
 
 <script>
 import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
+import { getDocument } from '../api/documents';
 
 export default {
   name: 'Document',
@@ -48,8 +49,7 @@ export default {
   },
   methods: {
     updateState() {
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/${this.id}`)
-        .then((res) => res.json())
+      getDocument(this.id)
         .then((json) => {
           this.title = json.data.title;
           this.content = json.data.content;
