@@ -48,13 +48,11 @@ export default {
     id: String,
   },
   methods: {
-    updateState() {
-      getDocument(this.id)
-        .then((json) => {
-          this.title = json.data.title;
-          this.content = json.data.content;
-          this.tags = json.data.tags;
-        });
+    async updateState() {
+      const document = await getDocument(this.id);
+      this.title = document.data.title;
+      this.content = document.data.content;
+      this.tags = document.data.tags;
     },
   },
   watch: {

@@ -244,12 +244,12 @@ export default {
   },
   methods: {
     async fetchUniqueTags() {
-      const tags = await listTags();
-      this.loaded_tags = tags.data.tags;
+      const resp = await listTags();
+      this.loaded_tags = resp.data.tags;
     },
     async fetchUniquetopics() {
-      const topics = await listTopics();
-      this.loaded_topics = topics.data.topics;
+      const resp = await listTopics();
+      this.loaded_topics = resp.data.topics;
     },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
@@ -286,10 +286,8 @@ export default {
           tags,
         },
       };
-      postDocument(JSON.stringify(data))
-        .then(() => {
-          this.loading = false;
-        });
+      await postDocument(JSON.stringify(data));
+      this.loading = false;
       this.refreshSidebar();
     },
   },
