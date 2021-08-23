@@ -208,32 +208,9 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 import { listTags, listTopics, postDocument } from '../api/documents';
 
-=======
-=======
->>>>>>> c63005a (added new create page and removed redundant data in documents view)
-<<<<<<< HEAD
->>>>>>> 6f1512a (added new create page and removed redundant data in documents view)
-=======
-=======
-
-import { UilAngleDown } from '@iconscout/vue-unicons';
-=======
-import { UilAngleDown, UilCheck, UilTimes } from '@iconscout/vue-unicons';
->>>>>>> c183cb5 (added form fields to add document details)
-=======
->>>>>>> 1b3ebed (changes resolved)
-
->>>>>>> dadbbfd (added dropdowns)
->>>>>>> c4bd1db (added dropdowns)
-=======
-
->>>>>>> b79767a (fixed some conflicts)
 export default {
   data() {
     return {
@@ -243,9 +220,6 @@ export default {
       tags: [],
       loaded_topics: [],
       loaded_tags: [],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       new_topic: '',
       new_tag: '',
       is_valid: true,
