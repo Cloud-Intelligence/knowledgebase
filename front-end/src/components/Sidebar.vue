@@ -16,24 +16,20 @@
         </div>
       </div>
       <div class="default_handles child">
-        <router-link to="/" class="handle" id="Home" >
+        <router-link to="/" class="handle" id="Home">
           <uil-estate class="icon"></uil-estate> Home
         </router-link>
-        <router-link to="/search" class="handle" id="Search" >
+        <router-link to="/search" class="handle" id="Search">
           <uil-search class="icon"></uil-search> Search
         </router-link>
-        <router-link to="/favorites" class="handle" id="Favorites" >
+        <router-link to="/favorites" class="handle" id="Favorites">
           <uil-star class="icon"></uil-star> Favorites
         </router-link>
       </div>
       <div class="handles child">
         <p class="subtitle">collections</p>
         <div v-for="(children, topic) in topics" class="topic" :key="topic">
-          <button
-            class="handle"
-            :id="topic"
-            @click="toggleAccordion(topic)"
-          >
+          <button class="handle" :id="topic" @click="toggleAccordion(topic)">
             {{ topic }}
             <span class="drop_down icon"
               ><uil-angle-down></uil-angle-down
@@ -43,7 +39,7 @@
             <router-link
               v-for="child in children"
               class="handle"
-              :to="'/documents/'+child.id"
+              :to="'/documents/' + child.id"
               :key="child.id"
               :id="child.id"
             >
@@ -52,8 +48,12 @@
           </div>
         </div>
       </div>
-      <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
-      <router-link class="logout" to="/login"><uil-signout class="icon"></uil-signout></router-link>
+      <router-link class="add_record button" to="/create"
+        ><uil-plus></uil-plus
+      ></router-link>
+      <router-link class="logout" to="/login" @click.native="logout()"
+        ><uil-signout class="icon"></uil-signout
+      ></router-link>
     </div>
   </section>
 </template>
@@ -127,6 +127,9 @@ export default {
         }
       }
       this.topics = tmp;
+    },
+    logout() {
+      this.$auth.logout();
     },
   },
 };
