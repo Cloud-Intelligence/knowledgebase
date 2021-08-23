@@ -53,6 +53,7 @@
         </div>
       </div>
       <router-link class="add_record button" to="/create"><uil-plus></uil-plus></router-link>
+      <router-link class="logout" to="/login"><uil-signout class="icon"></uil-signout></router-link>
     </div>
   </section>
 </template>
@@ -65,6 +66,7 @@ import {
   UilAngleLeft,
   UilAngleDown,
   UilPlus,
+  UilSignout,
 } from '@iconscout/vue-unicons';
 
 import { listDocuments } from '../api/documents';
@@ -92,6 +94,7 @@ export default {
     UilAngleLeft,
     UilAngleDown,
     UilPlus,
+    UilSignout,
   },
   methods: {
     toggleTray() {
