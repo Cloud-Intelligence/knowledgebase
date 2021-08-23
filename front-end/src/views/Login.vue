@@ -7,7 +7,7 @@
             <div class="image">
               <img src="../assets/images/CI-Logo.png" alt="Logo image">
             </div>
-          <router-link to="/">
+          <router-link class="button is-primary is-light" to="/">
             login
           </router-link>
           </div>
@@ -30,5 +30,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#main .login .box {
+  max-width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main .login .box .image {
+  width: 45%;
+  min-width: 3rem;
+  margin-bottom: 5rem;
 }
 </style>
