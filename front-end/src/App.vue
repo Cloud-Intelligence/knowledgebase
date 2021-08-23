@@ -4,9 +4,10 @@
       :user-name="this.$auth.user.name"
       :user-image="this.$auth.user.picture"
       v-on:tray="toggleTray"
+      v-if="!(this.$route.name == 'login')"
       ref="sidebar"
     ></sidebar>
-    <div :class="collapsed ? 'body closed' : 'body open'">
+    <div :class="collapsed || (this.$route.name == 'login') ? 'body closed' : 'body open'">
       <router-view :refreshSidebar="refreshSidebar" />
     </div>
   </div>
