@@ -110,8 +110,7 @@ export default {
     },
     async getDocuments() {
       // fetch the topics from mirage
-      const data = await listDocuments();
-      const files = data.data;
+      const files = await listDocuments();
       const tmp = {};
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < files.length; i++) {
