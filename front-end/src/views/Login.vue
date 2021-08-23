@@ -5,7 +5,7 @@
         <div class="login">
           <div class="box">
             <div class="image">
-
+              <img src="../assets/images/CI-Logo.png" alt="Logo image">
             </div>
           <router-link to="/">
             login
