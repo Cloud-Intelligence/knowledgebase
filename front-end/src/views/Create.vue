@@ -209,6 +209,8 @@ import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
 
+import { listTags, listTopics, postDocument } from '../api/documents';
+
 export default {
   data() {
     return {
@@ -235,20 +237,20 @@ export default {
     UilPlus,
   },
   created() {
-    // fetch all uniue tags
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/tags`)
-      .then((res) => res.json())
-      .then((json) => {
-        this.loaded_tags = json.data.tags;
-      });
+    // fetch all unique tags
+    this.fetchUniqueTags();
     // fetch all topics
-    fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents/topics`)
-      .then((res) => res.json())
-      .then((json) => {
-        this.loaded_topics = json.data.topics;
-      });
+    this.fetchUniquetopics();
   },
   methods: {
+    async fetchUniqueTags() {
+      const resp = await listTags();
+      this.loaded_tags = resp.data.tags;
+    },
+    async fetchUniquetopics() {
+      const resp = await listTopics();
+      this.loaded_topics = resp.data.topics;
+    },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
     },
@@ -264,7 +266,7 @@ export default {
     deleteTag(tag) {
       this.tags = this.tags.filter((value) => value !== tag);
     },
-    submitForm() {
+    async submitForm() {
       this.loading = true;
       const {
         topic, title, tags, content,
@@ -284,15 +286,8 @@ export default {
           tags,
         },
       };
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        this.loading = false;
-      });
+      await postDocument(JSON.stringify(data));
+      this.loading = false;
       this.refreshSidebar();
     },
   },

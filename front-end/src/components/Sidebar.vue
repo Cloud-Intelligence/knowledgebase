@@ -67,6 +67,8 @@ import {
   UilPlus,
 } from '@iconscout/vue-unicons';
 
+import { listDocuments } from '../api/documents';
+
 export default {
   name: 'Sidebar',
   data() {
@@ -106,25 +108,22 @@ export default {
         children.style.maxHeight = `${children.scrollHeight}px`;
       }
     },
-    getDocuments() {
+    async getDocuments() {
       // fetch the topics from mirage
-      fetch(`${process.env.VUE_APP_BASE_API_URL}/api/documents`)
-        .then((res) => res.json())
-        .then((json) => {
-          const files = json.data;
-          const tmp = {};
-          // eslint-disable-next-line no-plusplus
-          for (let i = 0; i < files.length; i++) {
-            const fileTopic = files[i].topic;
-            if (fileTopic in tmp) {
-              tmp[fileTopic].push(files[i]);
-            } else {
-              tmp[fileTopic] = [];
-              tmp[fileTopic].push(files[i]);
-            }
-          }
-          this.topics = tmp;
-        });
+      const resp = await listDocuments();
+      const files = resp.data;
+      const tmp = {};
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < files.length; i++) {
+        const fileTopic = files[i].topic;
+        if (fileTopic in tmp) {
+          tmp[fileTopic].push(files[i]);
+        } else {
+          tmp[fileTopic] = [];
+          tmp[fileTopic].push(files[i]);
+        }
+      }
+      this.topics = tmp;
     },
   },
 };

@@ -33,8 +33,6 @@ if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
   makeServer({ bypass: domain });
 }
 
-console.log(process.env.VUE_APP_MOCK_SERVER_ENABLED);
-
 Vue.config.productionTip = false;
 
 new Vue({
