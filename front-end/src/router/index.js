@@ -20,6 +20,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../views/Login.vue'),
+    props: (route) => ({ error: route.query.error }),
     beforeEnter: authGuard,
   },
   {
