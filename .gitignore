@@ -2,8 +2,11 @@ data/wiki/cache/
 .idea
 .vscode
 node_modules/
+<<<<<<< HEAD
 
 api/.env
 api/.env.production
+=======
+>>>>>>> 2080508 (added new screenshots for docker rendering)
 
 __pycache__/
