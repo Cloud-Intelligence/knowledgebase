@@ -2,10 +2,9 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
-        <div class="error-message">
+        <div :class="error_is_hidden? 'error-message hide':'error-message'">
           <div
             v-if="this.error_message"
-            ref="error-message"
             class="notification is-danger is-light"
           >
             <button class="delete" @click="removeError(500)"></button>
@@ -36,6 +35,7 @@ export default {
   data() {
     return {
       error_message: null,
+      error_is_hidden: false,
     };
   },
   created() {
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     removeError(timeout = 1000) {
-      this.$refs.error_message.classList.toggle('hide');
+      this.error_is_hidden = true;
       setTimeout(() => {
         this.error_message = null;
       }, timeout);
