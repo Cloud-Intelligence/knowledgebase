@@ -3,9 +3,13 @@
     <div class="container">
       <div class="layout">
         <div class="error-message">
-          <div v-if="this.error_message" class="notification is-danger is-light">
+          <div
+            v-if="this.error_message"
+            ref="error-message"
+            class="notification is-danger is-light"
+          >
             <button class="delete" @click="removeError(500)"></button>
-            {{this.error}}
+            {{ this.error }}
           </div>
         </div>
         <div class="login">
@@ -36,19 +40,22 @@ export default {
   },
   created() {
     this.error_message = this.error;
-    setTimeout(() => { this.removeError(); }, 10000);
+    setTimeout(() => {
+      this.removeError();
+    }, 10000);
   },
   methods: {
     removeError(timeout = 1000) {
-      document.querySelector('#main .error-message').classList.toggle('hide');
-      setTimeout(() => { this.error_message = null; }, timeout);
+      this.$refs.error_message.classList.toggle('hide');
+      setTimeout(() => {
+        this.error_message = null;
+      }, timeout);
     },
   },
 };
 </script>
 
 <style>
-
 #main .error-message {
   position: fixed;
   width: 100%;
