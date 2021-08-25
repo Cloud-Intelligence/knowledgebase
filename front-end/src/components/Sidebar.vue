@@ -48,12 +48,12 @@
           </div>
         </div>
       </div>
-      <router-link class="add_record button" to="/create"
-        ><uil-plus></uil-plus
-      ></router-link>
-      <router-link class="logout" to="/login" @click.native="logout()"
-        ><uil-signout class="icon"></uil-signout
-      ></router-link>
+      <router-link class="add_record button" to="/create">
+        <uil-plus></uil-plus>
+      </router-link>
+      <router-link class="logout" to="/login" @click.native="logout()">
+        <uil-signout class="icon"></uil-signout>
+      </router-link>
     </div>
   </section>
 </template>
