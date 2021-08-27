@@ -28,7 +28,6 @@ const authGuard = (to, _from, next) => {
     }
 
     if (authService.error) {
-      console.error(authService.error);
       return next({ path: '/login', params: { error: authService.error } });
     }
 
