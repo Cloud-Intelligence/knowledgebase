@@ -209,6 +209,7 @@ import 'quill/dist/quill.snow.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.bubble.css';
 
+// eslint-disable-next-line import/no-cycle
 import { listTags, listTopics, postDocument } from '../api/documents';
 
 export default {

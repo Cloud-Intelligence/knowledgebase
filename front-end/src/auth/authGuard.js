@@ -27,6 +27,10 @@ const authGuard = (to, _from, next) => {
       return next();
     }
 
+    if (authService.error) {
+      return next({ path: '/login', params: { error: authService.error } });
+    }
+
     // Otherwise, log in
     authService.loginWithRedirect({ appState: { targetUrl: to.fullPath } });
   };
