@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import Router from '../router';
 
-const service = axios.create({
+const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_API_URL, // url = base url + request url
   timeout: 15000, // request timeout
 });
@@ -15,7 +15,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
     });
 
     // request interceptor
-    service.interceptors.request.use(
+    request.interceptors.request.use(
       async (config) => {
         const newConfig = { ...config };
         const token = await auth0.getTokenSilently();
@@ -34,4 +34,4 @@ if (['production'].includes(process.env.NODE_ENV)) {
   }
 }
 
-export default service;
+export default request;
