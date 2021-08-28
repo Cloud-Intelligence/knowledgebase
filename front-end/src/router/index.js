@@ -1,10 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import Document from '../views/Document.vue';
-import Search from '../views/Search.vue';
-import Favorites from '../views/Favorites.vue';
-import Create from '../views/Create.vue';
 import authGuard from '../auth/authGuard';
 
 Vue.use(VueRouter);
@@ -13,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('../views/Home.vue'),
     beforeEnter: authGuard,
   },
   {
@@ -26,26 +21,26 @@ const routes = [
   {
     path: '/documents/:id',
     name: 'Document',
-    component: Document,
+    component: () => import('../views/Document.vue'),
     props: true,
     beforeEnter: authGuard,
   },
   {
     path: '/favorites',
     name: 'Favorites',
-    component: Favorites,
+    component: () => import('../views/Favorites.vue'),
     beforeEnter: authGuard,
   },
   {
     path: '/search',
     name: 'Search',
-    component: Search,
+    component: () => import('../views/Search.vue'),
     beforeEnter: authGuard,
   },
   {
     path: '/create',
     name: 'Create',
-    component: Create,
+    component: () => import('../views/Create.vue'),
     beforeEnter: authGuard,
   },
 ];
