@@ -60,7 +60,7 @@ def get_token_auth_header():
     return token
 
 
-def get_rsa_key():
+def get_rsa_key(token):
     jsonurl = urlopen("https://" + AUTH0_DOMAIN + "/.well-known/jwks.json")
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
@@ -82,7 +82,7 @@ def decode_token():
         return {"email": "dev@example.com"}
 
     token = get_token_auth_header()
-    rsa_key = get_rsa_key()
+    rsa_key = get_rsa_key(token)
     if not rsa_key:
         raise AuthError(
             {
