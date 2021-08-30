@@ -20,19 +20,22 @@ export function postDocument(data) {
     url: 'api/documents/',
     method: 'post',
     data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }).then((r) => r.data);
 }
 
 export function listTags() {
   return request({
-    url: 'api/documents/tags',
+    url: 'api/documents/tags/',
     method: 'get',
   }).then((r) => r.data);
 }
 
 export function listTopics() {
   return request({
-    url: 'api/documents/topics',
+    url: 'api/documents/topics/',
     method: 'get',
   }).then((r) => r.data);
 }
