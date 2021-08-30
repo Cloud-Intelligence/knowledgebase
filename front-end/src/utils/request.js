@@ -10,6 +10,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
   const auth0 = new Auth0Client({
     domain: process.env.VUE_APP_AUTH0_DOMAIN,
     client_id: process.env.VUE_APP_CLIENT_ID,
+    audience: process.env.VUE_APP_AUDIENCE,
   });
 
   // request interceptor
