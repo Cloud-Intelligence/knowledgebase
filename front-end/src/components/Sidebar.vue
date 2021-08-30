@@ -51,9 +51,9 @@
       <router-link class="add_record button" to="/create">
         <uil-plus></uil-plus>
       </router-link>
-      <router-link class="logout" to="/login" @click.native="logout()">
+      <button class="logout" @click="logout()">
         <uil-signout class="icon"></uil-signout>
-      </router-link>
+      </button>
     </div>
   </section>
 </template>
@@ -129,7 +129,9 @@ export default {
       this.topics = tmp;
     },
     logout() {
-      this.$auth.logout();
+      this.$auth.logout({
+        returnTo: `${process.env.BASE_URL}login/`,
+      });
     },
   },
 };
