@@ -23,19 +23,15 @@ describe('create', () => {
         cy.get('#main').toMatchImageSnapshot();
     });
     it('corrects validation on field input', () => {
-        cy.visit('/create');
-        cy.get('.save.button').click();
-        
         cy.get('#title').type('Test');
-        cy.get('#main').toMatchImageSnapshot();
 
         cy.get('#topics .dropdown-trigger').click();
-        cy.get('.dropdown-menu .dropdown-content .dropdown-item').first().click();
-        cy.get('#main').toMatchImageSnapshot();
+        cy.get('.dropdown-item.add_element input').first().type('New topic');
+        cy.get('.dropdown-item.add_element button').first().click();
 
         cy.get('#tags .dropdown-trigger').click();
-        cy.get('.dropdown-menu .dropdown-content .dropdown-item').last().prev().prev().click();
-        cy.get('#main').toMatchImageSnapshot();
+        cy.get('.dropdown-item.add_element input').last().type('New tag');
+        cy.get('.dropdown-item.add_element button').last().click();
 
         cy.get('.ql-editor').type('test');
         cy.get('#main').toMatchImageSnapshot();
