@@ -4,18 +4,21 @@ tasks:
   default:
     cmds:
       - docker-compose up --build
-  install:
-    cmds:
-      - docker-compose run ui yarn install
-  cypress:
-    cmds:
-      - docker-compose run ui yarn run cypress open
-  test:
-    cmds:
-      - docker-compose run ui yarn test
-  ci:
-    cmds:
-      - docker-compose run -u root ui yarn ci
   dev:
     cmds:
       - docker-compose up
+  ui_dev:
+    cmds:
+      - docker-compose run ui test-server
+  ui_install:
+    cmds:
+      - docker-compose run ui install
+  cypress:
+    cmds:
+      - docker-compose run ui run cypress open
+  cli_test:
+    cmds:
+      - docker-compose run ui test
+  ci:
+    cmds:
+      - docker-compose run -u root ui ci

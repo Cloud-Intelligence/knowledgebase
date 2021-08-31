@@ -16,6 +16,7 @@ services:
   ui:
     build:
       context: ./front-end
+    command: "dev-server"
     ports:
       - 8080:8080
     environment:
