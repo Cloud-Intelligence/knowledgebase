@@ -246,11 +246,11 @@ export default {
   methods: {
     async fetchUniqueTags() {
       const resp = await listTags();
-      this.loaded_tags = resp.data.tags;
+      this.loaded_tags = resp.tags;
     },
     async fetchUniquetopics() {
       const resp = await listTopics();
-      this.loaded_topics = resp.data.topics;
+      this.loaded_topics = resp.topics;
     },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
