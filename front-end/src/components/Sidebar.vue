@@ -48,8 +48,8 @@
           </div>
         </div>
       </div>
-      <router-link class="add_record button" to="/create">
-        <uil-plus></uil-plus>
+      <router-link class="add_record" to="/create">
+        <uil-plus-circle class="icon"></uil-plus-circle>
       </router-link>
       <router-link class="logout" to="/login" @click.native="logout()">
         <uil-signout class="icon"></uil-signout>
@@ -65,7 +65,7 @@ import {
   UilStar,
   UilAngleLeft,
   UilAngleDown,
-  UilPlus,
+  UilPlusCircle,
   UilSignout,
 } from '@iconscout/vue-unicons';
 
@@ -93,7 +93,7 @@ export default {
     UilStar,
     UilAngleLeft,
     UilAngleDown,
-    UilPlus,
+    UilPlusCircle,
     UilSignout,
   },
   methods: {
