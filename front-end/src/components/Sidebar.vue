@@ -39,7 +39,7 @@
             <router-link
               v-for="child in children"
               class="handle"
-              :to="'/documents/' + child.id"
+              :to="'/documents/' + child.id + '/'"
               :key="child.id"
               :id="child.id"
             >
