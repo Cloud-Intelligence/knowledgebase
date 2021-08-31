@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3"
 
 services:
   wiki:
@@ -12,9 +12,11 @@ services:
     env_file:
       - ./api/.env
     restart: unless-stopped
+
   ui:
     build:
       context: ./front-end
+    command: "dev-server"
     ports:
       - 8080:8080
     environment:
@@ -23,9 +25,9 @@ services:
     volumes:
       - ./front-end:/usr/src/app/app
       - ./front-end/node_modules:/usr/src/app/app/node_modules
-  db:
+
+  wiki_db:
     image: mongo
-    container_name: mongodb
     environment:
       - PUID=1000
       - PGID=1000

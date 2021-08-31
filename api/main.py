@@ -35,8 +35,8 @@ def public():
 @requires_auth
 def index():
     if request.method == "POST":
-        save_file(json.loads(request.data))
-        return jsonify(success=True)
+        res = save_file(json.loads(request.data))
+        return jsonify(success=True, id=str(res))
     else:
         files = file_list(request.current_user)
         files = [
