@@ -54,7 +54,7 @@ describe('sidebar', () => {
   });
   it('routes to create page on click of plus sign', () => {
     cy.visit('/');
-    cy.get('a.add_record.button').click();
+    cy.get('a.add_record').click();
     cy.get('.body').toMatchImageSnapshot();
   });
   it('contains dropdown collections', () => {
