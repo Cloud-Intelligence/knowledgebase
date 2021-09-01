@@ -16,7 +16,6 @@ const routes = [
     name: 'login',
     component: () => import('../views/Login.vue'),
     props: (route) => ({ error: route.query.error }),
-    beforeEnter: authGuard,
   },
   {
     path: '/documents/:id',
