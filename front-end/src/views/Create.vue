@@ -287,9 +287,11 @@ export default {
           tags,
         },
       };
-      await postDocument(JSON.stringify(data));
+      const resp = await postDocument(JSON.stringify(data));
+      const { id } = resp;
       this.loading = false;
       this.refreshSidebar();
+      this.$router.push(`/documents/${id}/`);
     },
   },
 };
