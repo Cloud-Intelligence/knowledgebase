@@ -8,7 +8,7 @@
             class="notification is-danger is-light"
           >
             <button class="delete" @click="removeError(500)"></button>
-            {{ this.error }}
+            {{ this.error_message }}
           </div>
         </div>
         <div class="form columns">
@@ -281,11 +281,15 @@ export default {
     appendError(error) {
       this.error_message = error;
       setTimeout(() => {
-        this.error_is_hidden = true;
-        setTimeout(() => {
-          this.error_message = null;
-        }, 500);
-      }, 10000);
+        this.removeError(500);
+      }, 5000);
+    },
+    removeError(timeout = 1000) {
+      this.error_is_hidden = true;
+      setTimeout(() => {
+        this.error_message = null;
+        this.error_is_hidden = false;
+      }, timeout);
     },
     async submitForm() {
       this.loading = true;
@@ -313,8 +317,9 @@ export default {
         this.loading = false;
         this.refreshSidebar();
         this.$router.push(`/documents/${id}/`);
-      } catch (error) {
-        this.appendError(error);
+      } catch {
+        this.appendError('Server not responding to post');
+        this.loading = false;
       }
     },
   },

@@ -5,7 +5,8 @@
         position: fixed;
         width: 100%;
         left: 0;
-        top: 1rem;
+        z-index: 100;
+        top: -5rem;
         display: flex;
         justify-content: center;
         transition: top 0.5s;
@@ -16,7 +17,9 @@
     }
 
     .error-message .notification {
+        position: relative;
         max-width: 25rem;
+        bottom: -6rem;
     }
 
     .fields > * {
