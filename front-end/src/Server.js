@@ -86,9 +86,11 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         const req = schema.files.findBy({ id: request.params.id });
         return {
           data: {
-            content: req.data.content,
-            tags: req.data.tags,
-            title: req.data.title,
+            data: {
+              content: req.data.content,
+              tags: req.data.tags,
+              title: req.data.title,
+            },
           },
         };
       });

@@ -50,9 +50,9 @@ export default {
   methods: {
     async updateState() {
       const document = await getDocument(this.id);
-      this.title = document.data.title;
-      this.content = document.data.content;
-      this.tags = document.data.tags;
+      this.title = document.data.data.title;
+      this.content = document.data.data.content;
+      this.tags = document.data.data.tags;
     },
   },
   watch: {
