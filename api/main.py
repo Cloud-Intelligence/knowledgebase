@@ -10,7 +10,7 @@ from authentication import (
     requires_scope,
     get_token_auth_header,
 )
-from utils.file_tools import file_list, load_file, save_file, update_file, tags, topics
+from utils.file_tools import file_list, load_file, save_file, update_file, delete_file, tags, topics
 
 APP = Flask(__name__)
 CORS(APP)
@@ -50,7 +50,7 @@ def index():
         return jsonify(data=files)
 
 
-@APP.route("/api/documents/<string:file_id>/", methods=["GET", "POST"])
+@APP.route("/api/documents/<string:file_id>/", methods=["GET", "POST", "DELETE"])
 @cross_origin(headers=["Content-Type", "Authorization"])
 @requires_auth
 def detail(file_id):
@@ -58,12 +58,12 @@ def detail(file_id):
         res = update_file(file_id, json.loads(request.data))
         del res["_id"]
         return jsonify(data=res)
+    elif request.method == "DELETE":
+        delete_file(file_id)
+        return jsonify(data={"success": True})
     else:
-        try:
-            ret = load_file(file_id)
-            del ret["_id"]
-            return jsonify(data=ret)
-        except FileNotFoundError:
+        ret = load_file(file_id)
+        if not ret:
             raise AuthError(
                 {
                     "code": "File not found",
@@ -71,6 +71,9 @@ def detail(file_id):
                 },
                 404,
             )
+
+        del ret["_id"]
+        return jsonify(data=ret)
 
 
 @APP.route("/api/documents/topics/")

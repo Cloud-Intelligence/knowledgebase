@@ -41,6 +41,10 @@ def update_file(file_id, contents):
     return file
 
 
+def delete_file(file_id):
+    DB.folders.delete_one({"_id": ObjectId(file_id)})
+
+
 def tags():
     cursor = DB.folders.distinct("data.tags")
     return list(cursor)
