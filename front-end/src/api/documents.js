@@ -10,7 +10,7 @@ export function listDocuments() {
 
 export function getDocument(id) {
   return request({
-    url: `api/documents/${id}`,
+    url: `api/documents/${id}/`,
     method: 'get',
   }).then((r) => r.data);
 }
