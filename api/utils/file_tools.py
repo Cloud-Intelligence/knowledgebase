@@ -29,6 +29,22 @@ def load_file(file_id):
     return cursor
 
 
+def update_file(file_id, contents):
+    file = load_file(file_id)
+    if title := contents.get("title"):
+        file["title"] = title
+
+    for k, v in contents.get("data", {}).items():
+        file['data'][k] = v
+
+    res = DB.folders.update_one({"_id": ObjectId(file_id)}, {"$set": file})
+    return file
+
+
+def delete_file(file_id):
+    DB.folders.delete_one({"_id": ObjectId(file_id)})
+
+
 def tags():
     cursor = DB.folders.distinct("data.tags")
     return list(cursor)
