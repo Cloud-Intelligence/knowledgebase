@@ -130,7 +130,8 @@ export default {
     },
     logout() {
       this.$auth.logout({
-        returnTo: `${process.env.BASE_URL}login/`,
+        returnTo: `${window.location.origin}/login`,
+        client_ID: process.env.VUE_APP_CLIENT_ID,
       });
     },
   },
