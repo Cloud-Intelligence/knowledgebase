@@ -2,15 +2,17 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
-        <div class="delete-container is-overlay" v-if="showDeleteForm">
-          <div class="form">
-            <h1>Are you sure you want to delete this document?</h1>
-            <div class="columns">
-              <button class="button column is-info" @click="deleteDoc">yes</button>
-              <button class="button column is-info" @click="cancelDelete">No</button>
+        <transition name="fade">
+          <div class="delete-container is-overlay" v-if="showDeleteForm">
+            <div class="form">
+              <h1>Are you sure you want to delete this document?</h1>
+              <div class="columns">
+                <button class="button column is-info" @click="deleteDoc">Yes</button>
+                <button class="button column is-info" @click="cancelDelete">No</button>
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
         <div class="heading">
           <div class="container head">
             <h1 class="title">{{ title }}</h1>
@@ -73,8 +75,9 @@ export default {
     },
     async deleteDoc() {
       const resp = await deleteDocument(this.id);
-      this.refreshSidebar();
       console.log(resp);
+      this.refreshSidebar();
+      this.$router.push('/');
       this.showDeleteForm = false;
     },
     cancelDelete() {
