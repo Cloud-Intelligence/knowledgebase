@@ -13,6 +13,30 @@
     height: 100%;
 }
 
+#main .delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+#main .delete-container .form {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: max-content;
+}
+
+#main .delete-container .form > h1 {
+    margin-bottom: 2rem;
+}
+
+#main .delete-container .form .button {
+    margin: 1rem;
+    line-height: 100%;
+}
+
 #main .heading {
     width: 100%;
     height: 5rem;

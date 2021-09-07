@@ -2,12 +2,21 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
+        <div class="delete-container is-overlay" v-if="showDeleteForm">
+          <div class="form">
+            <h1>Are you sure you want to delete this document?</h1>
+            <div class="columns">
+              <button class="button column is-info" @click="deleteDoc">yes</button>
+              <button class="button column is-info" @click="cancelDelete">No</button>
+            </div>
+          </div>
+        </div>
         <div class="heading">
           <div class="container head">
             <h1 class="title">{{ title }}</h1>
           </div>
           <div class="container icons">
-            <div class="trash" @click="deleteDoc">
+            <div class="trash" @click="showDelete">
               <uil-trash-alt></uil-trash-alt>
             </div>
             <div class="edit">
@@ -48,6 +57,7 @@ export default {
       title: null,
       content: null,
       tags: null,
+      showDeleteForm: false,
     };
   },
   props: {
@@ -65,6 +75,13 @@ export default {
       const resp = await deleteDocument(this.id);
       this.refreshSidebar();
       console.log(resp);
+      this.showDeleteForm = false;
+    },
+    cancelDelete() {
+      this.showDeleteForm = false;
+    },
+    showDelete() {
+      this.showDeleteForm = true;
     },
   },
   watch: {
