@@ -7,9 +7,15 @@
             <h1 class="title">{{ title }}</h1>
           </div>
           <div class="container icons">
-            <uil-trash-alt class="trash"></uil-trash-alt>
-            <uil-edit class="edit"></uil-edit>
-            <uil-star class="star"></uil-star>
+            <div class="trash" @click="deleteDoc">
+              <uil-trash-alt></uil-trash-alt>
+            </div>
+            <div class="edit">
+              <uil-edit class="edit"></uil-edit>
+            </div>
+            <div class="star">
+              <uil-star class="star"></uil-star>
+            </div>
           </div>
         </div>
         <div class="content">
@@ -53,6 +59,9 @@ export default {
       this.title = document.data.data.title;
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
+    },
+    deleteDoc() {
+      console.log('clicked');
     },
   },
   watch: {
