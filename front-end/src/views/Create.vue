@@ -317,8 +317,12 @@ export default {
         this.loading = false;
         this.refreshSidebar();
         this.$router.push(`/documents/${id}/`);
-      } catch {
-        this.appendError('Server not responding to post');
+      } catch (error) {
+        if (error.response.status) {
+          this.appendError(`Error ${error.response.status}, failure to commit post.`);
+        } else {
+          this.appendError(error.message);
+        }
         this.loading = false;
       }
     },
