@@ -78,12 +78,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
             tags: attr.data.tags,
           },
         });
-        return {
-          data: {
-            success: true,
-            id,
-          },
-        };
+        return { success: true, id };
       });
 
       this.get('/documents', (schema) => ({ data: schema.documents.all().models }));
