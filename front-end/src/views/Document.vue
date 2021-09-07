@@ -34,7 +34,7 @@
 
 <script>
 import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
-import { getDocument } from '../api/documents';
+import { deleteDocument, getDocument } from '../api/documents';
 
 export default {
   name: 'Document',
@@ -52,6 +52,7 @@ export default {
   },
   props: {
     id: String,
+    refreshSidebar: Function,
   },
   methods: {
     async updateState() {
@@ -60,8 +61,10 @@ export default {
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
     },
-    deleteDoc() {
-      console.log('clicked');
+    async deleteDoc() {
+      const resp = await deleteDocument(this.id);
+      this.refreshSidebar();
+      console.log(resp);
     },
   },
   watch: {

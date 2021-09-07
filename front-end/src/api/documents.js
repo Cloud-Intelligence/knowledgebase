@@ -26,6 +26,13 @@ export function postDocument(data) {
   }).then((r) => r.data);
 }
 
+export function deleteDocument(id) {
+  return request({
+    url: `api/documents/${id}/`,
+    method: 'delete',
+  }).then((r) => r.data);
+}
+
 export function listTags() {
   return request({
     url: 'api/documents/tags/',
