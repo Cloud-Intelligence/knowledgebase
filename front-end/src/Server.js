@@ -108,7 +108,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
           }
         });
         return {
-          tags,
+          data: tags,
         };
       });
 
@@ -122,7 +122,7 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
           }
         });
         return {
-          topics,
+          data: topics,
         };
       });
 
