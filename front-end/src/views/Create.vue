@@ -2,6 +2,15 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
+        <div :class="error_is_hidden? 'error-message hide':'error-message'">
+          <div
+            v-if="this.error_message"
+            class="notification is-danger is-light"
+          >
+            <button class="delete" @click="removeError(500)"></button>
+            {{ this.error_message }}
+          </div>
+        </div>
         <div class="form columns">
           <div class="fields column">
             <div class="dropdown" id="topics">
@@ -224,6 +233,8 @@ export default {
       new_topic: '',
       new_tag: '',
       is_valid: true,
+      error_message: null,
+      error_is_hidden: false,
       loading: false,
     };
   },
@@ -267,6 +278,19 @@ export default {
     deleteTag(tag) {
       this.tags = this.tags.filter((value) => value !== tag);
     },
+    appendError(error) {
+      this.error_message = error;
+      setTimeout(() => {
+        this.removeError(500);
+      }, 5000);
+    },
+    removeError(timeout = 1000) {
+      this.error_is_hidden = true;
+      setTimeout(() => {
+        this.error_message = null;
+        this.error_is_hidden = false;
+      }, timeout);
+    },
     async submitForm() {
       this.loading = true;
       const {
@@ -287,9 +311,20 @@ export default {
           tags,
         },
       };
-      await postDocument(JSON.stringify(data));
-      this.loading = false;
-      this.refreshSidebar();
+      try {
+        const resp = await postDocument(JSON.stringify(data));
+        const { id } = resp;
+        this.loading = false;
+        this.refreshSidebar();
+        this.$router.push(`/documents/${id}/`);
+      } catch (error) {
+        if (error.response.status) {
+          this.appendError(`Error ${error.response.status}, failure to commit post.`);
+        } else {
+          this.appendError(error.message);
+        }
+        this.loading = false;
+      }
     },
   },
 };

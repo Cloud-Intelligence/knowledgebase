@@ -1,11 +1,32 @@
 // styling for the create page
 
 #main {
+    .error-message {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        z-index: 100;
+        top: -5rem;
+        display: flex;
+        justify-content: center;
+        transition: top 0.5s;
+    }
+    
+    .error-message.hide {
+        top: -10rem;
+    }
+
+    .error-message .notification {
+        position: relative;
+        max-width: 25rem;
+        bottom: -6rem;
+    }
+
     .fields > * {
         width: 100%;
         margin-bottom: 1rem;
     }
-  
+
     .layout {
         max-height: 100%;
         overflow-y: hidden;
@@ -16,7 +37,7 @@
             height: 100%;
             overflow-y: auto;
             transition: box-shadow 0.25s;
-    
+
             .quill-editor {
                 display: flex;
                 max-width: 100%;
@@ -28,11 +49,10 @@
         }
 
         .editor.invalid {
-            box-shadow: 0 0.5em 1em -0.125em rgb(255 0 0 / 10%),
-                        0 0px 0 1px rgb(255 0 0 / 10%);
+            box-shadow: 0 0.5em 1em -0.125em rgb(255 0 0 / 10%), 0 0px 0 1px rgb(255 0 0 / 10%);
         }
     }
-  
+
     .form {
         display: flex;
 
@@ -40,7 +60,7 @@
             width: 100%;
         }
 
-        .fields{ 
+        .fields {
             .title_input {
                 padding: 0.5em 1em;
             }
@@ -94,7 +114,7 @@
                 .dropdown-menu {
                     width: 100%;
 
-                    .dropdown-content{
+                    .dropdown-content {
                         .dropdown-item .input {
                             border-radius: 10px 0 0 10px;
                         }
@@ -118,9 +138,8 @@
 
 .dropdown .dropdown-trigger .button .icon-arrow {
     transition: transform 0.25s;
-  }
-  
-  .dropdown.is-active .dropdown-trigger .button .icon-arrow {
+}
+
+.dropdown.is-active .dropdown-trigger .button .icon-arrow {
     transform: rotate(180deg);
-  }
-  
+}
