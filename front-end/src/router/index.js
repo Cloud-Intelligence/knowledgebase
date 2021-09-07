@@ -41,6 +41,9 @@ const routes = [
     name: 'Create',
     component: () => import('../views/Create.vue'),
     beforeEnter: authGuard,
+    meta: {
+      title: 'Create document',
+    },
   },
 ];
 
