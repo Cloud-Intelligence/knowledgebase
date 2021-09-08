@@ -21,16 +21,14 @@ const authGuard = (to, _from, next) => {
       };
       return next();
     }
-
+    if (to.query.error) {
+      authService.isAuthenticated = false;
+      return next({ path: '/login', params: { error: to.query.error_description } });
+    }
     // If the user is authenticated, continue with the route
     if (authService.isAuthenticated) {
       return next();
     }
-
-    if (authService.error) {
-      return next({ path: '/login', params: { error: authService.error } });
-    }
-
     // Otherwise, log in
     authService.loginWithRedirect({ appState: { targetUrl: to.fullPath } });
   };
