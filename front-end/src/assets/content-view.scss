@@ -13,6 +13,40 @@
     height: 100%;
 }
 
+#main .delete-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+    backdrop-filter: blur(8px);
+}
+
+#main .delete-container .form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: max-content;
+}
+
+#main .delete-container .form > h1 {
+    margin-bottom: 2rem;
+}
+
+#main .delete-container .form .button {
+    margin: 1rem;
+    line-height: 100%;
+}
+
+#main .fade-enter-active, .fade-leave-active {
+    transition: opacity .25s;
+}
+
+#main .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
 #main .heading {
     width: 100%;
     height: 5rem;
@@ -35,6 +69,7 @@
 
 #main .heading .container.icons > * {
     float: right;
+    cursor: pointer;
     font-size: 2rem;
     margin-left: 0.5rem;
     margin-top: 0.5rem;
