@@ -29,9 +29,7 @@
 <script>
 export default {
   name: 'login',
-  props: {
-    error: String,
-  },
+  props: ['error'],
   data() {
     return {
       error_message: null,
