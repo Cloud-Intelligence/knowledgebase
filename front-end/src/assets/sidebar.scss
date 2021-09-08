@@ -136,6 +136,7 @@
         align-items: center;
         justify-content: center;
         z-index: var(--level-1);
+        border: none;
         bottom: 1.5rem;
         right: 1.5rem;
         width: 2rem;
@@ -159,6 +160,8 @@
         align-items: center;
         justify-content: center;
         z-index: var(--level-1);
+        border: none;
+        cursor: pointer;
         bottom: 1.5rem;
         left: 1.5rem;
         width: 2rem;
