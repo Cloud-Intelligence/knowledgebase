@@ -63,6 +63,7 @@ describe('create', () => {
        cy.get('.dropdown-item.add_element button').last().click();
        cy.get('.ql-editor').type('test');
        cy.get('.save.button').click();
+       cy.wait(500);
        cy.get('.body').toMatchImageSnapshot();
     });
 });
