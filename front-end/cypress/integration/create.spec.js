@@ -51,5 +51,19 @@ describe('create', () => {
         cy.get('.dropdown-item.add_element input').last().type('New tag 2');
         cy.get('.dropdown-item.add_element button').last().click();
         cy.get('#tags .dropdown-trigger').toMatchImageSnapshot();
-    })
+    });
+    it('redirects after the document has been posted', () => {
+       cy.visit('/create');
+       cy.get('#title').type('Test');
+       cy.get('#topics .dropdown-trigger').click();
+       cy.get('.dropdown-item.add_element input').first().type('New topic');
+       cy.get('.dropdown-item.add_element button').first().click();
+       cy.get('#tags .dropdown-trigger').click();
+       cy.get('.dropdown-item.add_element input').last().type('New tag');
+       cy.get('.dropdown-item.add_element button').last().click();
+       cy.get('.ql-editor').type('test');
+       cy.get('.save.button').click();
+       cy.wait(500);
+       cy.get('.body').toMatchImageSnapshot();
+    });
 });
