@@ -72,6 +72,7 @@ export default {
       this.title = document.data.data.title;
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
+      this.showDeleteForm = false;
     },
     async deleteDoc() {
       const resp = await deleteDocument(this.id);
