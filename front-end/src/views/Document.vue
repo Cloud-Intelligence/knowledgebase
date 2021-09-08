@@ -51,6 +51,7 @@ export default {
     async updateState() {
       const document = await getDocument(this.id);
       this.title = document.data.data.title;
+      window.document.title = `${this.title} - Wiki`;
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
     },
@@ -62,7 +63,7 @@ export default {
       },
     },
   },
-  created() {
+  mounted() {
     this.updateState();
   },
 };
