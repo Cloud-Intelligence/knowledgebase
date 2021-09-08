@@ -29,18 +29,27 @@ const routes = [
     name: 'Favorites',
     component: () => import('../views/Favorites.vue'),
     beforeEnter: authGuard,
+    meta: {
+      title: 'CI Wiki - Favorites',
+    },
   },
   {
     path: '/search',
     name: 'Search',
     component: () => import('../views/Search.vue'),
     beforeEnter: authGuard,
+    meta: {
+      title: 'CI Wiki - Search',
+    },
   },
   {
     path: '/create',
     name: 'Create',
     component: () => import('../views/Create.vue'),
     beforeEnter: authGuard,
+    meta: {
+      title: 'CI Wiki - New Document',
+    },
   },
 ];
 
@@ -48,6 +57,12 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const title = to.meta.title || 'CloudIntelligence - Wiki';
+  document.title = title;
+  return next();
 });
 
 export default router;
