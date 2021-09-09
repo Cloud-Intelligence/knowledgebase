@@ -25,7 +25,8 @@
     "start-server-and-test": "^1.13.1",
     "vue": "^2.6.11",
     "vue-quill-editor": "^3.0.6",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-simple-spinner": "^1.2.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

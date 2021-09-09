@@ -27,6 +27,7 @@
         </router-link>
       </div>
       <div class="handles child">
+        <Spinner></Spinner>
         <p class="subtitle">collections</p>
         <div v-for="(children, topic) in topics" class="topic" :key="topic">
           <button class="handle" :id="topic" @click="toggleAccordion(topic)">
@@ -69,6 +70,8 @@ import {
   UilSignout,
 } from '@iconscout/vue-unicons';
 
+import Spinner from 'vue-simple-spinner'
+
 import { listDocuments } from '../api/documents';
 
 export default {
@@ -95,6 +98,7 @@ export default {
     UilAngleDown,
     UilPlusCircle,
     UilSignout,
+    Spinner,
   },
   methods: {
     toggleTray() {
