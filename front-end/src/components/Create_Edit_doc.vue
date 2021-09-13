@@ -198,6 +198,16 @@
 </template>
 
 <script>
+import {listTags, listTopics, postDocument, updateDocument} from "@/api/documents";
+import {quillEditor} from "vue-quill-editor";
+import {UilAngleDown, UilCheck, UilPlus, UilTimes} from "@iconscout/vue-unicons";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'quill/dist/quill.core.css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'quill/dist/quill.snow.css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'quill/dist/quill.bubble.css';
+
 export default {
   name: "Create_Edit_doc",
   data() {
@@ -323,6 +333,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+#main .editor .quill-editor .ql-container {
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+</style>
 
+<style lang="scss">
+@import "../assets/create-view.scss";
 </style>
