@@ -1,5 +1,5 @@
 <template>
-  <div class="create-edit">
+  <div class="create_edit">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -198,9 +198,22 @@
 </template>
 
 <script>
-import {listTags, listTopics, postDocument, updateDocument} from "@/api/documents";
-import {quillEditor} from "vue-quill-editor";
-import {UilAngleDown, UilCheck, UilPlus, UilTimes} from "@iconscout/vue-unicons";
+
+import { quillEditor } from 'vue-quill-editor';
+
+import {
+  UilAngleDown,
+  UilCheck,
+  UilPlus,
+  UilTimes,
+} from '@iconscout/vue-unicons';
+
+import {
+  listTags,
+  listTopics,
+  postDocument,
+  updateDocument,
+} from '../api/documents';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'quill/dist/quill.core.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -209,7 +222,7 @@ import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 
 export default {
-  name: "Create_Edit_doc",
+  name: 'CreateEditDoc',
   data() {
     return {
       topic: '',
@@ -229,7 +242,7 @@ export default {
   props: {
     refreshSidebar: Function,
     id: String,
-    fields: Object
+    fields: Object,
   },
   components: {
     quillEditor,
@@ -245,7 +258,7 @@ export default {
     this.fetchUniquetopics();
 
     // Set the fields if an doc edit
-    if(this.id) {
+    if (this.id) {
       this.title = this.fields.title;
       this.tags = this.fields.tags;
       this.topic = this.fields.topic;
@@ -310,8 +323,8 @@ export default {
         },
       };
       try {
-        if(this.id){
-          const resp = await updateDocument(JSON.stringify(data));
+        if (this.id) {
+          await updateDocument(JSON.stringify(data));
           this.$router.push(`/documents/${this.id}`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
@@ -330,7 +343,7 @@ export default {
       }
     },
   },
-}
+};
 </script>
 
 <style>
@@ -342,5 +355,5 @@ export default {
 </style>
 
 <style lang="scss">
-@import "../assets/create-view.scss";
+@import "../assets/create-edit-view";
 </style>

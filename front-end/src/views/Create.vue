@@ -2,20 +2,22 @@
   <section class="main" id="main">
     <div class="container">
       <div class="layout">
-        <create_-edit_doc></create_-edit_doc>
+        <CreateEditDoc :refreshSidebar="refreshSidebar"></CreateEditDoc>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import Create_Edit_doc from "@/components/Create_Edit_doc";
+
+import CreateEditDoc from '../components/CreateEditDoc.vue';
+
 export default {
   props: {
     refreshSidebar: Function,
   },
   components: {
-    Create_Edit_doc,
+    CreateEditDoc,
   },
-}
+};
 </script>

@@ -31,9 +31,9 @@ export function updateDocument(id, data) {
     url: `api/documents/${id}/`,
     method: 'post',
     data,
-    headers:{
+    headers: {
       'Content-Type': 'application/json',
-    }
+    },
   }).then((r) => r.data);
 }
 
