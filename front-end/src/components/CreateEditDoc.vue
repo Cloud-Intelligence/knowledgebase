@@ -328,7 +328,7 @@ export default {
       };
       try {
         if (this.id) {
-          await updateDocument(JSON.stringify(data));
+          await updateDocument(this.id, JSON.stringify(data));
           this.$router.push(`/documents/${this.id}/`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
