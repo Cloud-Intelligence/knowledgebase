@@ -209,6 +209,7 @@ import {
 } from '@iconscout/vue-unicons';
 
 import {
+  getDocument,
   listTags,
   listTopics,
   postDocument,
@@ -242,7 +243,6 @@ export default {
   props: {
     refreshSidebar: Function,
     id: String,
-    fields: Object,
   },
   components: {
     quillEditor,
@@ -251,7 +251,7 @@ export default {
     UilTimes,
     UilPlus,
   },
-  created() {
+  mounted() {
     // fetch all unique tags
     this.fetchUniqueTags();
     // fetch all topics
@@ -259,10 +259,7 @@ export default {
 
     // Set the fields if an doc edit
     if (this.id) {
-      this.title = this.fields.title;
-      this.tags = this.fields.tags;
-      this.topic = this.fields.topic;
-      this.content = this.fields.content;
+      this.fetchDocument();
     }
   },
   methods: {
@@ -273,6 +270,13 @@ export default {
     async fetchUniquetopics() {
       const resp = await listTopics();
       this.loaded_topics = resp.data;
+    },
+    async fetchDocument() {
+      // TODO: serve topic in resp getDocument
+      const resp = await getDocument(this.id);
+      this.title = resp.data.data.title;
+      this.tags = resp.data.data.tags;
+      this.content = resp.data.data.content;
     },
     tiggerDropdown(id) {
       document.getElementById(id).classList.toggle('is-active');
@@ -325,7 +329,7 @@ export default {
       try {
         if (this.id) {
           await updateDocument(JSON.stringify(data));
-          this.$router.push(`/documents/${this.id}`);
+          this.$router.push(`/documents/${this.id}/`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
           const { id } = resp;

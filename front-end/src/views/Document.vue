@@ -21,7 +21,7 @@
             <div class="trash" @click="showDelete">
               <uil-trash-alt></uil-trash-alt>
             </div>
-            <div class="edit">
+            <div class="edit" @click="editDoc">
               <uil-edit class="edit"></uil-edit>
             </div>
             <div class="star">
@@ -87,6 +87,9 @@ export default {
     },
     showDelete() {
       this.showDeleteForm = true;
+    },
+    editDoc() {
+      this.$router.push({ path: `/edit/${this.id}` });
     },
   },
   watch: {
