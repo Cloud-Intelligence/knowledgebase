@@ -6,6 +6,7 @@ describe('create', () => {
     });
     it('has form fields', () => {
         cy.visit('/create');
+        cy.wait(500);
         cy.contains('#topic');
         cy.contains('#tags');
         cy.contains('save');
@@ -19,6 +20,7 @@ describe('create', () => {
     });
     it('validates user input', () => {
         cy.visit('/create');
+        cy.wait(500);
         cy.get('.save.button').click();
         cy.get('#main').toMatchImageSnapshot();
     });
@@ -38,6 +40,7 @@ describe('create', () => {
     });
     it('allows adding new topics', () => {
         cy.visit('/create');
+        cy.wait(500);
         cy.get('#topics .dropdown-trigger').click();
         cy.get('.dropdown-item.add_element input').first().type('New topic');
         cy.get('.dropdown-item.add_element button').first().click();
@@ -45,6 +48,7 @@ describe('create', () => {
     });
     it('allows adding new tags', () => {
         cy.visit('/create');
+        cy.wait(500);
         cy.get('#tags .dropdown-trigger').click();
         cy.get('.dropdown-item.add_element input').last().type('New tag 1');
         cy.get('.dropdown-item.add_element button').last().click();
@@ -54,6 +58,7 @@ describe('create', () => {
     });
     it('redirects after the document has been posted', () => {
        cy.visit('/create');
+       cy.wait(500);
        cy.get('#title').type('Test');
        cy.get('#topics .dropdown-trigger').click();
        cy.get('.dropdown-item.add_element input').first().type('New topic');
