@@ -272,8 +272,8 @@ export default {
       this.loaded_topics = resp.data;
     },
     async fetchDocument() {
-      // TODO: serve topic in resp getDocument
       const resp = await getDocument(this.id);
+      this.topic = resp.data.topic;
       this.title = resp.data.data.title;
       this.tags = resp.data.data.tags;
       this.content = resp.data.data.content;
