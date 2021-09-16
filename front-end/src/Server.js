@@ -103,6 +103,13 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         };
       });
 
+      this.delete('/documents/:id', (schema, request) => {
+        const reqFile = schema.files.findBy({ id: request.params.id });
+        const reqDoc = schema.documents.findBy({ id: request.params.id });
+        reqFile.destroy();
+        reqDoc.destroy();
+      });
+
       this.get('/documents/tags', (schema) => {
         const tags = [];
         const req = schema.files.all().models;
