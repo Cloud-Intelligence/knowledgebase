@@ -51,6 +51,16 @@ const routes = [
       title: 'CI Wiki - New Document',
     },
   },
+  {
+    path: '/edit/:id',
+    name: 'Edit',
+    component: () => import('../views/Edit.vue'),
+    beforeEnter: authGuard,
+    props: true,
+    meta: {
+      title: 'CI Wiki - Edit Document',
+    },
+  },
 ];
 
 const router = new VueRouter({

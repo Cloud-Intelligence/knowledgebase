@@ -26,6 +26,17 @@ export function postDocument(data) {
   }).then((r) => r.data);
 }
 
+export function updateDocument(id, data) {
+  return request({
+    url: `api/documents/${id}/`,
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((r) => r.data);
+}
+
 export function deleteDocument(id) {
   return request({
     url: `api/documents/${id}/`,
