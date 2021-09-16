@@ -8,6 +8,11 @@
     z-index: var(--level-3);
     transition: left 0.5s, margin-right 0.5s;
 
+    .container {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
     .collapse_toggle {
         height: 3rem;
         width: 1.5rem;
@@ -108,8 +113,25 @@
         margin-left: 2.5px;
     }
 
+    .handles.child {
+        flex-grow: 1;
+        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
     .handles .subtitle {
         font-size: var(--small-font-size);
+    }
+
+    .handles .loading {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
     }
 
     .handles .topic .handle .drop_down.icon {
@@ -120,7 +142,7 @@
 
     .handles .topic .handle.active .drop_down.icon {
         transform: rotate(180deg);
-        margin-bottom: none;
+        margin-bottom: 0;
     }
 
     .handles .topic .children {

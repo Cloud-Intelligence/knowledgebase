@@ -3,6 +3,11 @@
     <div class="container">
       <div class="layout">
         <transition name="fade">
+          <div v-if="loading" class="loading is-overlay">
+            <Spinner line-fg-color="#000000"></Spinner>
+          </div>
+        </transition>
+        <transition name="fade">
           <div class="delete-container is-overlay" v-if="showDeleteForm">
             <div class="form">
               <h1>Are you sure you want to delete this document?</h1>
@@ -45,6 +50,7 @@
 
 <script>
 import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
+import Spinner from 'vue-simple-spinner';
 import { deleteDocument, getDocument } from '../api/documents';
 
 export default {
@@ -53,6 +59,7 @@ export default {
     UilTrashAlt,
     UilEdit,
     UilStar,
+    Spinner,
   },
   data() {
     return {
@@ -60,6 +67,7 @@ export default {
       content: null,
       tags: null,
       showDeleteForm: false,
+      loading: false,
     };
   },
   props: {
@@ -68,19 +76,22 @@ export default {
   },
   methods: {
     async updateState() {
+      this.loading = true;
       const document = await getDocument(this.id);
       this.title = document.data.data.title;
       window.document.title = `${this.title} - Wiki`;
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
       this.showDeleteForm = false;
+      this.loading = false;
     },
     async deleteDoc() {
+      this.showDeleteForm = false;
+      this.loading = true;
       const resp = await deleteDocument(this.id);
       console.log(resp);
       this.refreshSidebar();
       this.$router.push('/');
-      this.showDeleteForm = false;
     },
     cancelDelete() {
       this.showDeleteForm = false;

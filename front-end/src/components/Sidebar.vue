@@ -28,7 +28,10 @@
       </div>
       <div class="handles child">
         <p class="subtitle">collections</p>
-        <div v-for="(children, topic) in topics" class="topic" :key="topic">
+        <div v-if="loading" class="loading">
+          <Spinner line-fg-color="#000000"></Spinner>
+        </div>
+        <div v-else v-for="(children, topic) in topics" class="topic" :key="topic">
           <button class="handle" :id="topic" @click="toggleAccordion(topic)">
             {{ topic }}
             <span class="drop_down icon"
@@ -69,6 +72,8 @@ import {
   UilSignout,
 } from '@iconscout/vue-unicons';
 
+import Spinner from 'vue-simple-spinner';
+
 import { listDocuments } from '../api/documents';
 
 export default {
@@ -77,6 +82,7 @@ export default {
     return {
       collapsed: false,
       topics: {},
+      loading: false,
     };
   },
   props: {
@@ -95,6 +101,7 @@ export default {
     UilAngleDown,
     UilPlusCircle,
     UilSignout,
+    Spinner,
   },
   methods: {
     toggleTray() {
@@ -112,6 +119,7 @@ export default {
       }
     },
     async getDocuments() {
+      this.loading = true;
       // fetch the topics from mirage
       const resp = await listDocuments();
       const files = resp.data;
@@ -127,6 +135,7 @@ export default {
         }
       }
       this.topics = tmp;
+      this.loading = false;
     },
     logout() {
       this.$auth.logout({
