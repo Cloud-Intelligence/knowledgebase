@@ -1,10 +1,6 @@
 <template>
-  <section class="main" id="main">
-    <div class="container">
-      <div class="layout">
-        <CreateEditDoc :refreshSidebar="refreshSidebar"></CreateEditDoc>
-      </div>
-    </div>
+  <section class="Create" id="Create">
+    <CreateEditDoc :refreshSidebar="refreshSidebar"></CreateEditDoc>
   </section>
 </template>
 
