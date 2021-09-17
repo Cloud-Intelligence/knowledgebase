@@ -19,6 +19,7 @@
         position: absolute;
         display: flex;
         align-items: center;
+        color: var(--font-colour);
         background-color: var(--side-bar-colour);
         cursor: pointer;
         top: 1rem;
@@ -69,12 +70,13 @@
     .user .user_description .title {
         font-size: var(--normal-font-size);
         font-weight: var(--font-semi-bold);
+        color: var(--font-colour);
     }
 
     .user .user_description .subtitle {
         font-size: var(--small-font-size);
         font-weight: var(--font-medium);
-        color: var(--body-alt-colour);
+        color: var(--font-colour);
     }
 
     .handle {
@@ -125,6 +127,7 @@
 
     .handles .subtitle {
         font-size: var(--small-font-size);
+        color: var(--font-colour);
     }
 
     .handles .loading {
@@ -158,6 +161,7 @@
         align-items: center;
         justify-content: center;
         z-index: var(--level-1);
+        background: var(--side-bar-colour);
         border: none;
         bottom: 1.5rem;
         right: 1.5rem;
@@ -166,7 +170,7 @@
         transition: transform 0.25s;
 
         .icon {
-            color: var(--body-alt-colour);
+            color: var(--font-colour);
             height: 100%;
             width: 100%;
         }
@@ -182,6 +186,7 @@
         align-items: center;
         justify-content: center;
         z-index: var(--level-1);
+        background: var(--side-bar-colour);
         border: none;
         cursor: pointer;
         bottom: 1.5rem;
@@ -191,7 +196,7 @@
         transition: transform 0.25s;
 
         .icon {
-            color: var(--body-alt-colour);
+            color: var(--font-colour);
             width: 100%;
             height: 100%;
         }

@@ -356,6 +356,7 @@ export default {
   max-height: 100%;
   overflow-y: auto;
 }
+
 </style>
 
 <style lang="scss">
