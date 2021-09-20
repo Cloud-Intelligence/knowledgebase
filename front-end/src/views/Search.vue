@@ -1,5 +1,5 @@
 <template>
-  <section class="Search" id="Search">
+  <section class="search" id="search">
     <h1>this is the Search page</h1>
   </section>
 </template>
