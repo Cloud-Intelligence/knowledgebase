@@ -1,5 +1,5 @@
 <template>
-  <section class="Document" id="Document">
+  <section class="document" id="document">
     <transition name="fade">
       <div v-if="loading" class="loading is-overlay">
         <Spinner line-fg-color="#000000"></Spinner>
