@@ -1,5 +1,5 @@
 <template>
-  <section class="Create" id="Create">
+  <section class="create" id="create">
     <CreateEditDoc :refreshSidebar="refreshSidebar"></CreateEditDoc>
   </section>
 </template>
@@ -17,3 +17,7 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+@import '../assets/create-view.scss'
+</style>
