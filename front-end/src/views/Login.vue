@@ -1,5 +1,5 @@
 <template>
-  <section class="Login" id="Login">
+  <section class="login" id="login">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
