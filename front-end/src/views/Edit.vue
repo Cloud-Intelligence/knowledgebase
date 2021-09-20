@@ -1,5 +1,5 @@
 <template>
-  <section class="Edit" id="Edit">
+  <section class="edit" id="edit">
     <CreateEditDoc :refreshSidebar="refreshSidebar" :id="id"></CreateEditDoc>
   </section>
 </template>
