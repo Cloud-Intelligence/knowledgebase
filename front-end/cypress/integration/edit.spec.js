@@ -5,7 +5,7 @@ describe('edit', () => {
         cy.get('#12').first().click();
         cy.get('.heading .container.icons .edit').first().click();
         cy.wait(500);
-        cy.get('#main').toMatchImageSnapshot();
+        cy.get('#Edit').toMatchImageSnapshot();
     });
     it('From fields are populated', () => {
         cy.get('.fields.column').toMatchImageSnapshot();
