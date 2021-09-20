@@ -1,5 +1,5 @@
 <template>
-  <section class="Home" id="Home">
+  <section class="home" id="home">
     <h1>Home component</h1>
   </section>
 </template>
