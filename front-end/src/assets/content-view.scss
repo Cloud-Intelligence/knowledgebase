@@ -18,7 +18,7 @@
         .form {
             display: flex;
             flex-direction: column;
-            background: white;
+            background: var(--body-colour);
             padding: 2rem;
             border-radius: 1rem;
             width: max-content;
