@@ -2,7 +2,7 @@ describe('create', () => {
     it('matches image baseline', () => {
         cy.visit('/create');
         cy.wait(500);
-        cy.get('#Create').toMatchImageSnapshot();
+        cy.get('#create').toMatchImageSnapshot();
     });
     it('has form fields', () => {
         cy.visit('/create');
@@ -22,7 +22,7 @@ describe('create', () => {
         cy.visit('/create');
         cy.wait(500);
         cy.get('.save.button').click();
-        cy.get('#Create').toMatchImageSnapshot();
+        cy.get('#create').toMatchImageSnapshot();
     });
     it('corrects validation on field input', () => {
         cy.get('#title').type('Test');
@@ -36,7 +36,7 @@ describe('create', () => {
         cy.get('.dropdown-item.add_element button').last().click();
 
         cy.get('.ql-editor').type('test');
-        cy.get('#Create').toMatchImageSnapshot();
+        cy.get('#create').toMatchImageSnapshot();
     });
     it('allows adding new topics', () => {
         cy.visit('/create');
