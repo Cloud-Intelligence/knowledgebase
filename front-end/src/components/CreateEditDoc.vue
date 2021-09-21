@@ -351,14 +351,50 @@ export default {
 </script>
 
 <style>
-#main .editor .quill-editor .ql-container {
+
+#create .editor {
+  background: var(--content-colour);
+}
+
+#create .ql-toolbar {
+  border: 1px solid var(--body-colour);
+}
+
+#create .ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: var(--font-colour);
+}
+
+#create .ql-toolbar .ql-fill {
+  fill: var(--font-colour);
+  stroke: none;
+}
+
+#create .ql-toolbar .ql-picker {
+  color: var(--font-colour);
+}
+
+#create .ql-toolbar .ql-picker-options {
+  background: var(--content-colour);
+}
+
+#create .ql-container {
   height: 100%;
   max-height: 100%;
+  border: 1px solid var(--body-colour);
   overflow-y: auto;
+}
+
+#create .ql-container .ql-editor > * {
+  color: var(--font-colour);
+}
+
+#create .ql-container .ql-editor::before {
+  color: var(--font-colour);
 }
 
 </style>
 
 <style lang="scss">
-@import "../assets/create-edit-view";
+@import "../assets/document-create-edit";
 </style>
