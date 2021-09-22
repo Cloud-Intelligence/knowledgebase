@@ -22,3 +22,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/edit-view.scss';
+</style>
