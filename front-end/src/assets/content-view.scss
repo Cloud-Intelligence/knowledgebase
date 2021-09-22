@@ -74,6 +74,8 @@
     .content {
         margin-bottom: 0;
         flex: 1;
+        overflow-y: auto;
+        word-break: break-word;
 
         .text {
             width: 100%;
