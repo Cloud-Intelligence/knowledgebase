@@ -1,89 +1,95 @@
 /* main body styling */
-#main{
+#document{
     width: 100%;
     height: 100%;
     padding: 0 1.5rem;
     display: flex;
-    justify-content: center;
-}
-
-#main .delete-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 500;
-    backdrop-filter: blur(8px);
-}
-
-#main .delete-container .form {
-    display: flex;
     flex-direction: column;
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    width: max-content;
-}
+    color: var(--font-colour);
+    justify-content: center;
 
-#main .delete-container .form > h1 {
-    margin-bottom: 2rem;
-}
+    .delete-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 500;
+        backdrop-filter: blur(8px);
 
-#main .delete-container .form .button {
-    margin: 1rem;
-    line-height: 100%;
-}
+        .form {
+            display: flex;
+            flex-direction: column;
+            background: var(--body-colour);
+            padding: 2rem;
+            border-radius: 1rem;
+            width: max-content;
 
-#main .fade-enter-active, .fade-leave-active {
-    transition: opacity .25s;
-}
+            .button {
+                margin: 1rem;
+                line-height: 100%;
+            }
+        }
 
-#main .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-}
+        .form > h1 {
+            margin-bottom: 2rem;
+        }
+    }
 
-#main .heading {
-    width: 100%;
-    height: 5rem;
-    display: flex;
-}
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .25s;
+    }
 
-#main .heading .container.head {
-    float: left;
-}
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+    }
 
-#main .heading .container.head .title {
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
+    .heading {
+        width: 100%;
+        height: 5rem;
+        display: flex;
 
-#main .heading .container.icons {
-    float: right;
-}
+        .container.head {
+            float: left;
 
-#main .heading .container.icons > * {
-    float: right;
-    cursor: pointer;
-    font-size: 2rem;
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
-}
+            .title {
+                color: var(--font-colour);
+                margin: 0;
+                display: flex;
+                align-items: center;
+            }
+        }
 
-#main .content {
-    margin-bottom: 0;
-    flex: 1;
-}
+        .container.icons {
+            float: right;
+        }
 
-#main .content .text {
-    width: 100%;
-    height: 100%;
-    background-color: var(--content-colour);
-    border-radius: 0.5rem;
-    overflow-y: auto;
-    padding: 1rem;
-}
+        .container.icons > * {
+            float: right;
+            cursor: pointer;
+            font-size: 2rem;
+            margin-left: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    }
 
-#main .foot .container.tags {
-    float: right;
+    .content {
+        margin-bottom: 0;
+        flex: 1;
+
+        .text {
+            width: 100%;
+            height: 100%;
+            background-color: var(--content-colour);
+            border-radius: 0.5rem;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+    }
+
+    .foot .container.tags {
+        > * {
+            color: var(--font-colour);
+            background: var(--content-colour);
+        }
+    }
 }
 /*=======================*/

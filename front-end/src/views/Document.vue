@@ -1,48 +1,44 @@
 <template>
-  <section class="main" id="main">
-    <div class="container">
-      <div class="layout">
-        <transition name="fade">
-          <div v-if="loading" class="loading is-overlay">
-            <Spinner line-fg-color="#000000"></Spinner>
-          </div>
-        </transition>
-        <transition name="fade">
-          <div class="delete-container is-overlay" v-if="showDeleteForm">
-            <div class="form">
-              <h1>Are you sure you want to delete this document?</h1>
-              <div class="columns">
-                <button class="button column is-info" @click="deleteDoc">Yes</button>
-                <button class="button column is-info" @click="cancelDelete">No</button>
-              </div>
-            </div>
-          </div>
-        </transition>
-        <div class="heading">
-          <div class="container head">
-            <h1 class="title">{{ title }}</h1>
-          </div>
-          <div class="container icons">
-            <div class="trash" @click="showDelete">
-              <uil-trash-alt></uil-trash-alt>
-            </div>
-            <div class="edit" @click="editDoc">
-              <uil-edit class="edit"></uil-edit>
-            </div>
-            <div class="star">
-              <uil-star class="star"></uil-star>
-            </div>
+  <section class="document" id="document">
+    <transition name="fade">
+      <div v-if="loading" class="loading is-overlay">
+        <Spinner line-fg-color="#000000"></Spinner>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="delete-container is-overlay" v-if="showDeleteForm">
+        <div class="form">
+          <h1>Are you sure you want to delete this document?</h1>
+          <div class="columns">
+            <button class="button column is-info" @click="deleteDoc">Yes</button>
+            <button class="button column is-info" @click="cancelDelete">No</button>
           </div>
         </div>
-        <div class="content">
-          <div class="text" v-html="content">
-          </div>
+      </div>
+    </transition>
+    <div class="heading">
+      <div class="container head">
+        <h1 class="title">{{ title }}</h1>
+      </div>
+      <div class="container icons">
+        <div class="trash" @click="showDelete">
+          <uil-trash-alt></uil-trash-alt>
         </div>
-        <div class="foot">
-          <div class="container tags">
-            <p v-for="tag in tags" class="tag" :key="tag">{{ tag }}</p>
-          </div>
+        <div class="edit" @click="editDoc">
+          <uil-edit class="edit"></uil-edit>
         </div>
+        <div class="star">
+          <uil-star class="star"></uil-star>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="text" v-html="content">
+      </div>
+    </div>
+    <div class="foot">
+      <div class="container tags">
+        <p v-for="tag in tags" class="tag" :key="tag">{{ tag }}</p>
       </div>
     </div>
   </section>

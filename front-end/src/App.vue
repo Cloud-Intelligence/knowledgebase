@@ -8,7 +8,11 @@
       ref="sidebar"
     ></sidebar>
     <div :class="collapsed || (this.$route.name == 'login') ? 'body closed' : 'body open'">
-      <router-view :refreshSidebar="refreshSidebar" />
+      <div class="container">
+        <div class="layout">
+          <router-view :refreshSidebar="refreshSidebar" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

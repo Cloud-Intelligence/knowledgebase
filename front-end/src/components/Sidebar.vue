@@ -147,6 +147,6 @@ export default {
 };
 </script>
 
-<style lang="sass">
-@import '../assets/sidebar.scss'
+<style lang="scss">
+  @import '../assets/sidebar.scss';
 </style>
