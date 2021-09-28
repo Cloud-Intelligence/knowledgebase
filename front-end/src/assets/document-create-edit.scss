@@ -2,9 +2,13 @@
 
  .create_edit {
 
+     height: 100%;
+     z-index: var(--level-3);
      display: flex;
      flex-direction: column;
-     height: 100%;
+     background: var(--content-colour);
+     border-radius: 0.5rem;
+     padding: 0.5rem;
 
     .error-message {
         position: fixed;
@@ -15,180 +19,167 @@
         display: flex;
         justify-content: center;
         transition: top 0.5s;
+
+        .notification {
+            position: relative;
+            max-width: 25rem;
+            bottom: -6rem;
+        }
     }
     
     .error-message.hide {
         top: -10rem;
     }
 
-    .error-message .notification {
-        position: relative;
-        max-width: 25rem;
-        bottom: -6rem;
-    }
 
-    .fields {
+     .form {
+         display: flex;
+         justify-content: space-between;
+         background: var(--content-colour-alt);
 
-        #topics .dropdown-trigger .button {
-            border: var(--content-colour);
-            color: var(--font-colour);
-            background: var(--content-colour);
-        }
+         .submit{
+             display: flex;
+             align-items: center;
+         }
 
-        #title {
-            border: var(--content-colour);
-            color: var(--font-colour);
-            background: var(--content-colour);
-        }
+         .fields {
 
-        #title::placeholder {
-            color: var(--font-colour);
-            opacity: 1;
-        }
+             display: flex;
+             flex-direction: column;
 
-        #tags .dropdown-trigger .button {
-            border: var(--content-colour);
-            color: var(--font-colour);
-            background: var(--content-colour);
-        }
+             > * {
+                 margin-bottom: 0.5rem;
+             }
 
-        .dropdown-content {
-            background: var(--content-colour);
+             input {
+                 padding: 0 1rem;
+             }
 
-            .dropdown-item {
-                color: var(--font-colour);
+             .title-input {
+                 padding: 0.5em 1em;
+                 width: max-content;
+                 color: var(--font-colour);
+                 max-width: 100%;
+                 font-size: large;
+                 background: var(--content-colour);
+                 border: 1px var(--content-colour);
+             }
 
-                .input {
-                    border: var(--body-colour);
-                    background: var(--body-colour);
-                    color: var(--font-colour);
-                }
+             .dropdown {
+                 width: max-content;
+                 display: flex;
+                 flex-direction: column;
 
-                .input::placeholder {
-                    color: var(--font-colour);
-                    opacity: 1;
-                }
+                 .trigger {
+                     width: 100%;
+                     padding: 0.5em 1em;
+                     font-size: medium;
+                     color: var(--font-colour);
+                     border: 1px var(--content-colour);
+                     background: var(--content-colour);
+                 }
 
-                .button {
-                    border: var(--body-colour);
-                    background: var(--body-colour);
-                    color: var(--font-colour);
-                }
-            }
+                 .menu {
+                     width: 100%;
+                     z-index: var(--level-3);
+                     opacity: 1;
+                     position: absolute;
+                     top: 125%;
+                     transition: opacity .25s ease-in-out;
+                     height: auto;
+                     border: 1px solid var(--font-colour);
 
-            a:hover {
-                background: var(--body-colour);
-            }
-        }
+                     .dropdown-content {
+                         display: block;
+                         background: var(--content-colour);
 
-        > * {
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-    }
+                         .dropdown-item {
+                             color: var(--font-colour);
+                             background: var(--content-colour);
+                             border: none;
+                             cursor: pointer;
+                         }
 
-    .editor {
-        flex-grow: 1;
-        height: 100%;
-        overflow-y: hidden;
-        transition: box-shadow 0.25s;
+                         .dropdown-item:hover {
+                             background: var(--body-colour);
+                         }
+                     }
+                 }
 
-        .quill-editor {
-            display: flex;
-            max-width: 100%;
-            max-height: 100%;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-        }
-    }
+                 .menu.hide {
+                     opacity: 0;
+                     border: none;
+                     transition: opacity .25s ease-in-out;
 
-    .editor.invalid {
-        box-shadow: 0 0.5em 1em -0.125em rgb(255 0 0 / 10%), 0 0px 0 1px rgb(255 0 0 / 10%);
-    }
+                     .dropdown-content {
+                         display: none;
+                     }
+                 }
+             }
+         }
+     }
 
-    .form {
-        display: flex;
+     .quill-editor {
+         display: flex;
+         max-width: 100%;
+         max-height: 100%;
+         flex-direction: column;
+         height: 100%;
+         width: 100%;
+     }
 
-        .submit .save {
-            width: 100%;
-        }
+     .dropdown {
+         width: max-content;
+         display: flex;
+         flex-direction: column;
 
-        .fields {
-            .title_input {
-                padding: 0.5em 1em;
-            }
+         .trigger {
+             width: 100%;
+             padding: 0.5em 1em;
+             font-size: medium;
+             color: var(--font-colour);
+             border: 1px var(--content-colour);
+             background: var(--content-colour);
+         }
 
-            .dropdown {
-                width: 100%;
-                display: flex;
+         .menu {
+             width: 100%;
+             z-index: var(--level-3);
+             opacity: 1;
+             position: absolute;
+             bottom: 125%;
+             transition: opacity .25s ease-in-out;
+             height: auto;
+             border: 1px solid var(--font-colour);
 
-                .dropdown-trigger {
-                    width: 100%;
+             .dropdown-content {
+                 display: block;
+                 background: var(--content-colour);
 
-                    .button {
-                        width: 100%;
-                        height: max-content;
-                        justify-content: initial;
+                 .dropdown-item {
+                     color: var(--font-colour);
+                     background: var(--content-colour);
+                     border: none;
+                     cursor: pointer;
+                 }
 
-                        .icon {
-                            width: 10%;
-                            margin-left: auto;
-                            justify-content: flex-end;
-                        }
+                 .dropdown-item:hover {
+                     background: var(--body-colour);
+                 }
+             }
+         }
 
-                        .icon-arrow {
-                            transition: transform 0.25s;
-                        }
+         .menu.hide {
+             opacity: 0;
+             border: none;
+             transition: opacity .25s ease-in-out;
 
-                        .child-container {
-                            width: 90%;
-                            height: max-content;
-                            display: flex;
-                            flex-wrap: wrap;
-                            overflow: hidden;
-
-                            .tag {
-                                transition: background-color 0.25s;
-                                margin: 5px 5px 5px 0;
-                                height: 2rem;
-
-                                .icon-close {
-                                    margin-left: 5px;
-                                }
-                            }
-
-                            .tag:hover {
-                                background-color: grey;
-                            }
-                        }
-                    }
-                }
-
-                .dropdown-menu {
-                    width: 100%;
-
-                    .dropdown-content {
-                        .dropdown-item .input {
-                            border-radius: 10px 0 0 10px;
-                        }
-
-                        .dropdown-item.add_element {
-                            margin: 1px 0 1px 0;
-                            display: flex;
-
-                            .button {
-                                border-radius: 0 10px 10px 0;
-                                display: flex;
-                                align-items: center;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+             .dropdown-content {
+                 display: none;
+             }
+         }
+     }
+ }
 
 .dropdown .dropdown-trigger .button .icon-arrow {
     transition: transform 0.25s;
