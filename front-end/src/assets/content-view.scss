@@ -74,14 +74,27 @@
     .content {
         margin-bottom: 0;
         flex: 1;
+        overflow-y: auto;
+        word-break: break-word;
 
         .text {
             width: 100%;
             height: 100%;
             background-color: var(--content-colour);
             border-radius: 0.5rem;
-            overflow-y: auto;
             padding: 1rem;
+
+            > * {
+                color: var(--font-colour);
+            }
+
+            blockquote {
+                background: var(--body-colour);
+            }
+
+            pre {
+                background: var(--body-colour);
+            }
         }
     }
 

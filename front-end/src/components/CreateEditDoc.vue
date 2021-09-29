@@ -352,44 +352,44 @@ export default {
 
 <style>
 
-#create .editor {
+.create_edit .editor {
   background: var(--content-colour);
 }
 
-#create .ql-toolbar {
+.create_edit .ql-toolbar {
   border: 1px solid var(--body-colour);
 }
 
-#create .ql-toolbar .ql-stroke {
+.create_edit .ql-toolbar .ql-stroke {
   fill: none;
   stroke: var(--font-colour);
 }
 
-#create .ql-toolbar .ql-fill {
+.create_edit .ql-toolbar .ql-fill {
   fill: var(--font-colour);
   stroke: none;
 }
 
-#create .ql-toolbar .ql-picker {
+.create_edit .ql-toolbar .ql-picker {
   color: var(--font-colour);
 }
 
-#create .ql-toolbar .ql-picker-options {
+.create_edit .ql-toolbar .ql-picker-options {
   background: var(--content-colour);
 }
 
-#create .ql-container {
+.create_edit .ql-container {
   height: 100%;
   max-height: 100%;
   border: 1px solid var(--body-colour);
   overflow-y: auto;
 }
 
-#create .ql-container .ql-editor > * {
+.create_edit .ql-container .ql-editor > * {
   color: var(--font-colour);
 }
 
-#create .ql-container .ql-editor::before {
+.create_edit .ql-container .ql-editor::before {
   color: var(--font-colour);
 }
 
