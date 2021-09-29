@@ -4,7 +4,7 @@ describe('edit', () => {
         cy.get('.topic button').first().click();
         cy.get('#12').first().click();
         cy.get('.heading .container.icons .edit').first().click();
-        cy.wait(500);
+        cy.wait(1000);
         cy.get('#edit').toMatchImageSnapshot();
     });
     it('From fields are populated', () => {
@@ -19,7 +19,7 @@ describe('edit', () => {
     });
     it('redirects after the document has been updated', () => {
         cy.get('.save.button').click();
-        cy.wait(500);
+        cy.wait(1000);
         cy.get('.body').toMatchImageSnapshot();
     });
 });

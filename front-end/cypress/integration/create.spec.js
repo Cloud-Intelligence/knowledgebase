@@ -1,7 +1,7 @@
 describe('create', () => {
     it('matches image baseline', () => {
         cy.visit('/create');
-        cy.wait(500);
+        cy.wait(1000);
         cy.get('#create').toMatchImageSnapshot();
     });
     it('has form fields', () => {
