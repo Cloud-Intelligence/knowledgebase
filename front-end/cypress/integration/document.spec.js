@@ -8,6 +8,7 @@ describe('document', () => {
     });
     it('has a confirmation on delete', () => {
         cy.get('.heading .icons .trash').click();
+        cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('cancels delete on no button click', () => {
