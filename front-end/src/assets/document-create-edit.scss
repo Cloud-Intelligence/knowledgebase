@@ -2,8 +2,8 @@
 
  .create_edit {
 
+     position: relative;
      height: 100%;
-     z-index: var(--level-3);
      display: flex;
      flex-direction: column;
      background: var(--content-colour);
@@ -69,51 +69,22 @@
                  width: max-content;
                  display: flex;
                  flex-direction: column;
+                 position: relative;
+                 bottom: 0;
+                 right: 0;
 
                  .trigger {
                      width: 100%;
                      padding: 0.5em 1em;
                      font-size: medium;
                      color: var(--font-colour);
+                     text-align: left;
                      border: 1px var(--content-colour);
                      background: var(--content-colour);
                  }
 
                  .menu {
-                     width: 100%;
-                     z-index: var(--level-3);
-                     opacity: 1;
-                     position: absolute;
                      top: 125%;
-                     transition: opacity .25s ease-in-out;
-                     height: auto;
-                     border: 1px solid var(--font-colour);
-
-                     .dropdown-content {
-                         display: block;
-                         background: var(--content-colour);
-
-                         .dropdown-item {
-                             color: var(--font-colour);
-                             background: var(--content-colour);
-                             border: none;
-                             cursor: pointer;
-                         }
-
-                         .dropdown-item:hover {
-                             background: var(--body-colour);
-                         }
-                     }
-                 }
-
-                 .menu.hide {
-                     opacity: 0;
-                     border: none;
-                     transition: opacity .25s ease-in-out;
-
-                     .dropdown-content {
-                         display: none;
-                     }
                  }
              }
          }
@@ -132,12 +103,16 @@
          width: max-content;
          display: flex;
          flex-direction: column;
+         position: absolute;
+         bottom: 2rem;
+         right: 2rem;
 
          .trigger {
              width: 100%;
              padding: 0.5em 1em;
              font-size: medium;
              color: var(--font-colour);
+             text-align: right;
              border: 1px var(--content-colour);
              background: var(--content-colour);
          }
@@ -149,11 +124,11 @@
              position: absolute;
              bottom: 125%;
              transition: opacity .25s ease-in-out;
-             height: auto;
-             border: 1px solid var(--font-colour);
 
              .dropdown-content {
                  display: block;
+                 height: auto;
+                 border: 1px solid var(--font-colour);
                  background: var(--content-colour);
 
                  .dropdown-item {

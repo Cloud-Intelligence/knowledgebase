@@ -62,15 +62,14 @@
           ">
     </quill-editor>
     <div class="tags dropdown" ref="tags_dropdown">
-      <input
-          type="text"
-          v-model="tags"
-          placeholder="Tags"
+      <button
           class="tag-input trigger"
           aria-haspopup="true"
           aria-controls="dropdown-menu"
           @click="triggerDropdown('tags')"
       >
+        <button v-for="tag in tags" :key="tag">{{tag}}</button>
+      </button>
       <div class="menu hide" role="menu" id="tags" ref="tags_dropdown_menu">
         <div class="dropdown-content">
           <button
