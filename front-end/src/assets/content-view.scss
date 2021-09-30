@@ -8,6 +8,14 @@
     color: var(--font-colour);
     justify-content: center;
 
+    .loading {
+        z-index: var(--level-3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+    }
+
     .delete-container {
         display: flex;
         justify-content: center;

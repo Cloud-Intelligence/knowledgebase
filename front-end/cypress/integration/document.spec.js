@@ -3,10 +3,12 @@ describe('document', () => {
         cy.visit('/');
         cy.get('.topic button').first().click();
         cy.get('#12').click();
+        cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('has a confirmation on delete', () => {
         cy.get('.heading .icons .trash').click();
+        cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('cancels delete on no button click', () => {
