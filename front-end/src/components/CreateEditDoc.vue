@@ -22,7 +22,7 @@
             v-model="title"
             id="title"
         />
-        <div class="topics dropdown" ref="dropdown">
+        <div class="topics dropdown" ref="topics_dropdown">
           <input
               type="text"
               v-model="topic"
@@ -32,7 +32,7 @@
               aria-controls="dropdown-menu"
               @click="triggerDropdown('topic')"
           >
-          <div class="menu hide" role="menu" id="topic" ref="dropdown_menu">
+          <div class="menu hide" role="menu" id="topic" ref="topics_dropdown_menu">
             <div class="dropdown-content">
               <button
                   v-for="(topic, index) in loaded_topics"
@@ -61,17 +61,17 @@
               : 'is-danger is-outlined'
           ">
     </quill-editor>
-    <div class="tags dropdown" ref="dropdown">
+    <div class="tags dropdown" ref="tags_dropdown">
       <input
           type="text"
-          v-model="topic"
+          v-model="tags"
           placeholder="Tags"
-          class="topic-input trigger"
+          class="tag-input trigger"
           aria-haspopup="true"
           aria-controls="dropdown-menu"
           @click="triggerDropdown('tags')"
       >
-      <div class="menu hide" role="menu" id="tags" ref="dropdown_menu">
+      <div class="menu hide" role="menu" id="tags" ref="tags_dropdown_menu">
         <div class="dropdown-content">
           <button
               v-for="(tag, index) in loaded_tags"
@@ -137,7 +137,7 @@ export default {
     // fetch all unique tags
     this.fetchUniqueTags();
     // fetch all topics
-    this.fetchUniquetopics();
+    this.fetchUniqueTopics();
 
     // add event listener on document to close dropdowns
     document.addEventListener('click', this.documentClick);
@@ -156,7 +156,7 @@ export default {
       const resp = await listTags();
       this.loaded_tags = resp.data;
     },
-    async fetchUniquetopics() {
+    async fetchUniqueTopics() {
       const resp = await listTopics();
       this.loaded_topics = resp.data;
     },
@@ -172,18 +172,25 @@ export default {
       menu.classList.toggle('hide');
     },
     documentClick(event) {
-      const el = this.$refs.dropdown;
-      const menu = this.$refs.dropdown_menu;
+      const topicEl = this.$refs.topics_dropdown;
+      const tagEl = this.$refs.tags_dropdown;
+      const topicMenu = this.$refs.topics_dropdown_menu;
+      const tagMenu = this.$refs.tags_dropdown_menu;
       const { target } = event;
-      if (el !== target && !el.contains(target)) {
-        if (!menu.classList.contains('hide')) {
-          menu.classList.toggle('hide');
+      if (topicEl !== target && !topicEl.contains(target)) {
+        console.log('sd');
+        if (!topicMenu.classList.contains('hide')) {
+          topicMenu.classList.toggle('hide');
+        }
+      }
+      if (tagEl !== target && !tagEl.contains(target)) {
+        if (!tagMenu.classList.contains('hide')) {
+          tagMenu.classList.toggle('hide');
         }
       }
     },
     submitTopic(topic) {
       this.topic = topic;
-      console.log('vas');
     },
     submitTag(tag) {
       if (!this.tags.includes(tag)) {
