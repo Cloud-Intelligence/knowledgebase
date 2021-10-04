@@ -1,4 +1,5 @@
 # knowledgebase Wiki
+[![forthebadge](https://forthebadge.com/images/badges/built-by-neckbeards.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/certified-cousin-terio.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)
 [![E2E Test](https://github.com/Cloud-Intelligence/knowledgebase/actions/workflows/main.yml/badge.svg)](https://github.com/Cloud-Intelligence/knowledgebase/actions/workflows/main.yml)
 
 Stuff for the mind
