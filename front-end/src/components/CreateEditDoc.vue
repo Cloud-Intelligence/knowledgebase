@@ -157,6 +157,9 @@ export default {
     // add event listener on document to close dropdowns
     document.addEventListener('click', this.documentClick);
 
+    // add event listener on document to close dropdowns
+    document.addEventListener('click', this.documentClick);
+
     // Set the fields if an doc edit
     if (this.id) {
       this.fetchDocument();
