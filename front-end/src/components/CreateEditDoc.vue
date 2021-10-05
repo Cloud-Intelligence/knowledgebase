@@ -68,10 +68,23 @@
           aria-controls="dropdown-menu"
           @click="triggerDropdown('tags')"
       >
-        <button v-for="tag in tags" :key="tag">{{tag}}</button>
+        <div v-if="tags.length">
+          <button v-for="tag in tags" :key="tag" @click="deleteTag(tag)">
+            {{tag}} <span><uil-times></uil-times></span>
+          </button>
+        </div>
+        <div v-else>
+          <p>#tags</p>
+        </div>
       </button>
       <div class="menu hide" role="menu" id="tags" ref="tags_dropdown_menu">
         <div class="dropdown-content">
+          <div class="dropdown-item input-box">
+            <input class="text" type="text" placeholder="#new tag" v-model="new_tag">
+            <span>
+              <button class="button" @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
+            </span>
+          </div>
           <button
               v-for="(tag, index) in loaded_tags"
               class="dropdown-item"
@@ -91,6 +104,8 @@
 import { quillEditor } from 'vue-quill-editor';
 
 import {
+  UilTimes,
+  UilPlus,
 } from '@iconscout/vue-unicons';
 
 import {
@@ -117,7 +132,6 @@ export default {
       tags: [],
       loaded_topics: [],
       loaded_tags: [],
-      new_topic: '',
       new_tag: '',
       is_valid: true,
       error_message: null,
@@ -131,6 +145,8 @@ export default {
   },
   components: {
     quillEditor,
+    UilTimes,
+    UilPlus,
   },
   mounted() {
     // fetch all unique tags
@@ -177,7 +193,6 @@ export default {
       const tagMenu = this.$refs.tags_dropdown_menu;
       const { target } = event;
       if (topicEl !== target && !topicEl.contains(target)) {
-        console.log('sd');
         if (!topicMenu.classList.contains('hide')) {
           topicMenu.classList.toggle('hide');
         }
