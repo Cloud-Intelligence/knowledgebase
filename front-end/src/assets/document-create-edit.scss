@@ -45,6 +45,7 @@
          .fields {
 
              display: flex;
+             margin-bottom: 0.5rem;
 
              input {
                  height: 100%;
@@ -57,6 +58,7 @@
                  color: var(--font-colour);
                  height: 100%;
                  margin: 0 0.5rem;
+                 font-weight: bold;
              }
 
              .title-input {
