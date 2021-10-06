@@ -27,7 +27,7 @@
         </router-link>
       </div>
       <div class="handles child">
-        <p class="subtitle">collections</p>
+        <p class="subtitle">Collections</p>
         <div v-if="loading" class="loading">
           <Spinner line-fg-color="#000000"></Spinner>
         </div>
