@@ -11,17 +11,6 @@
     </div>
     <div class="form">
       <div class="fields">
-        <input
-            :class="
-                !title == '' || is_valid
-                  ? 'title-input'
-                  : 'title-input is-danger is-outlined'
-              "
-            type="text"
-            placeholder="Untitled document"
-            v-model="title"
-            id="title"
-        />
         <div class="topics dropdown" ref="topics_dropdown">
           <input
               type="text"
@@ -45,6 +34,18 @@
             </div>
           </div>
         </div>
+        <h1 class="delimeter">/</h1>
+        <input
+            :class="
+                !title == '' || is_valid
+                  ? 'title-input'
+                  : 'title-input is-danger is-outlined'
+              "
+            type="text"
+            placeholder="Untitled document"
+            v-model="title"
+            id="title"
+        />
       </div>
       <div class="submit">
         <button :class="loading?

@@ -45,37 +45,41 @@
          .fields {
 
              display: flex;
-             flex-direction: column;
-
-             > * {
-                 margin-bottom: 0.5rem;
-             }
 
              input {
+                 height: 100%;
                  padding: 0 1rem;
+             }
+
+             .delimeter {
+                 display: flex;
+                 align-items: center;
+                 color: var(--font-colour);
+                 height: 100%;
+                 margin: 0 0.5rem;
              }
 
              .title-input {
                  padding: 0.5em 1em;
-                 width: max-content;
                  color: var(--font-colour);
-                 max-width: 100%;
                  font-size: large;
                  background: var(--content-colour);
                  border: 1px var(--content-colour);
+                 flex-grow: 1;
              }
 
              .dropdown {
-                 width: max-content;
                  display: flex;
                  flex-direction: column;
                  position: relative;
                  bottom: 0;
                  right: 0;
+                 width: 33%;
 
                  .trigger {
                      text-align: left;
                      padding: 0.5em 1em;
+                     font-size: large;
                  }
 
                  .menu {
