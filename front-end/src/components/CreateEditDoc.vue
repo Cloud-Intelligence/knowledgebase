@@ -55,12 +55,10 @@
         </button>
       </div>
     </div>
-    <quill-editor ref="myTextEditor" v-model="content" :class="
-            !content == '' || is_valid
-              ? ''
-              : 'is-danger is-outlined'
-          ">
-    </quill-editor>
+    <div class="quill-container">
+      <quill-editor ref="myTextEditor" v-model="content">
+      </quill-editor>
+    </div>
     <div class="tags dropdown" ref="tags_dropdown">
       <button
           class="tag-input trigger"
