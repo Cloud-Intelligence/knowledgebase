@@ -1,5 +1,5 @@
 <template>
-  <div class="create_edit">
+  <div class="create_edit" @click="closeDropdowns()">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -11,7 +11,7 @@
     </div>
     <div class="form">
       <div class="fields">
-        <div class="topics dropdown" ref="topics_dropdown">
+        <div class="topics dropdown" @click.stop="">
           <input
               type="text"
               v-model="topic"
@@ -19,7 +19,7 @@
               class="topic-input trigger"
               aria-haspopup="true"
               aria-controls="dropdown-menu"
-              @click="triggerDropdown('topic')"
+              @click.prevent="triggerDropdown('topic')"
           >
           <div class="menu hide" role="menu" id="topic" ref="topics_dropdown_menu">
             <div class="dropdown-content">
@@ -60,7 +60,7 @@
       <quill-editor ref="myTextEditor" v-model="content">
       </quill-editor>
     </div>
-    <div class="tags dropdown" ref="tags_dropdown">
+    <div class="tags dropdown" @click.stop="">
       <button
           class="tag-input trigger"
           aria-haspopup="true"
@@ -153,20 +153,10 @@ export default {
     // fetch all topics
     this.fetchUniqueTopics();
 
-    // add event listener on document to close dropdowns
-    document.addEventListener('click', this.documentClick);
-
-    // add event listener on document to close dropdowns
-    document.addEventListener('click', this.documentClick);
-
     // Set the fields if an doc edit
     if (this.id) {
       this.fetchDocument();
     }
-  },
-  beforeDestroy() {
-    // destroy event listener on document to close dropdowns
-    document.removeEventListener('click', this.documentClick);
   },
   methods: {
     async fetchUniqueTags() {
@@ -188,21 +178,14 @@ export default {
       const menu = document.getElementById(dropdown);
       menu.classList.toggle('hide');
     },
-    documentClick(event) {
-      const topicEl = this.$refs.topics_dropdown;
-      const tagEl = this.$refs.tags_dropdown;
+    closeDropdowns() {
       const topicMenu = this.$refs.topics_dropdown_menu;
       const tagMenu = this.$refs.tags_dropdown_menu;
-      const { target } = event;
-      if (topicEl !== target && !topicEl.contains(target)) {
-        if (!topicMenu.classList.contains('hide')) {
-          topicMenu.classList.toggle('hide');
-        }
+      if (!topicMenu.classList.contains('hide')) {
+        topicMenu.classList.toggle('hide');
       }
-      if (tagEl !== target && !tagEl.contains(target)) {
-        if (!tagMenu.classList.contains('hide')) {
-          tagMenu.classList.toggle('hide');
-        }
+      if (!tagMenu.classList.contains('hide')) {
+        tagMenu.classList.toggle('hide');
       }
     },
     submitTopic(topic) {
