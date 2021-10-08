@@ -91,13 +91,15 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
       });
 
       this.get('/documents/:id', (schema, request) => {
-        const req = schema.files.findBy({ id: request.params.id });
+        const fileReq = schema.files.findBy({ id: request.params.id });
+        const docReq = schema.documents.findBy({ id: request.params.id });
         return {
           data: {
+            topic: docReq.topic,
             data: {
-              content: req.data.content,
-              tags: req.data.tags,
-              title: req.data.title,
+              content: fileReq.data.content,
+              tags: fileReq.data.tags,
+              title: fileReq.data.title,
             },
           },
         };

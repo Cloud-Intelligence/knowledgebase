@@ -8,16 +8,15 @@ describe('edit', () => {
         cy.get('#edit').toMatchImageSnapshot();
     });
     it('From fields are populated', () => {
-        cy.get('.fields.column').toMatchImageSnapshot();
-        cy.get('#editor').toMatchImageSnapshot();
+        cy.get('#edit').toMatchImageSnapshot();
     });
     it('has topics in dropdown', () => {
-        cy.get('.dropdown-trigger').first().click();
-        cy.get('.dropdown-trigger').first().toMatchImageSnapshot();
-        cy.get('.dropdown-menu .dropdown-content .add_element').first().toMatchImageSnapshot();
-        cy.get('.dropdown-trigger').first().click();
+        cy.get('.topic-input.trigger').first().click();
+        cy.get('.dropdown-content').first().toMatchImageSnapshot();
+        cy.get('.topic-input.trigger').first().click();
     });
     it('redirects after the document has been updated', () => {
+        cy.get('.topic-input.trigger').type('blah');
         cy.get('.save.button').click();
         cy.wait(1000);
         cy.get('.body').toMatchImageSnapshot();

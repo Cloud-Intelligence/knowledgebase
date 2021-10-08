@@ -1,5 +1,5 @@
 <template>
-  <div class="create_edit">
+  <div class="create_edit" @click="closeDropdowns()">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -9,164 +9,45 @@
         {{ this.error_message }}
       </div>
     </div>
-    <div class="form columns">
-      <div class="fields column">
-        <div class="dropdown" id="topics">
-          <div
-              class="dropdown-trigger"
+    <div class="form">
+      <div class="fields">
+        <div class="topics dropdown" @click.stop="">
+          <input
+              type="text"
+              v-model="topic"
+              placeholder="Topic"
+              class="topic-input trigger"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+              @click.prevent="triggerDropdown('topic')"
           >
-            <button
-                :class="
-                  !topic == '' || is_valid
-                    ? 'button'
-                    : 'button is-danger is-outlined'
-                "
-                aria-haspopup="true"
-                aria-controls="dropdown-menu"
-                @click="tiggerDropdown('topics')"
-            >
-              <div class="child-container">
-                <p v-if="topic">{{ topic }}</p>
-                <p v-else>#topic</p>
-              </div>
-              <span class="icon is-small">
-                    <uil-angle-down class="icon-arrow"></uil-angle-down>
-                  </span>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="menu hide" role="menu" id="topic" ref="topics_dropdown_menu">
             <div class="dropdown-content">
-              <a
+              <button
                   v-for="(topic, index) in loaded_topics"
                   class="dropdown-item"
                   :key="index"
                   @click="submitTopic(topic)"
               >
                 {{ topic }}
-              </a>
-              <hr class="dropdown-divider" />
-              <div class="dropdown-item add_element columns">
-                <input
-                    class="input column is-three-quarters"
-                    type="text"
-                    placeholder="#New topic"
-                    v-model="new_topic"
-                    @keydown.enter="submitTopic(new_topic)"
-                />
-                <button
-                    class="button column add_button is-one-quarter"
-                    @click="submitTopic(new_topic)"
-                >
-                  <uil-check></uil-check>
-                </button>
-              </div>
+              </button>
             </div>
           </div>
         </div>
-        <p
-            :class="
-                !topic == '' || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-        >
-          this filed is required
-        </p>
-
+        <h1 class="delimeter">/</h1>
         <input
             :class="
                 !title == '' || is_valid
-                  ? 'input title_input'
-                  : 'input title_input is-danger is-outlined'
+                  ? 'title-input'
+                  : 'title-input is-danger is-outlined'
               "
             type="text"
-            placeholder="#Title"
+            placeholder="Untitled document"
             v-model="title"
             id="title"
         />
-        <p
-            :class="
-                !title == '' || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-        >
-          This field is required
-        </p>
-
-        <div class="dropdown" id="tags">
-          <div
-              class="dropdown-trigger"
-          >
-            <button
-                :class="
-                  !tags.length == 0 || is_valid
-                    ? 'button'
-                    : 'button is-danger is-outlined'
-                "
-                aria-haspopup="true"
-                aria-controls="dropdown-menu"
-                @click="tiggerDropdown('tags')"
-            >
-              <div class="child-container" v-if="tags.length">
-                <div
-                    v-for="(tag, index) in tags"
-                    class="tag"
-                    :key="index"
-                    v-on:click.stop="deleteTag(tag)"
-                >
-                  <p>{{ tag }}</p>
-                  <p class="icon-close"><uil-times></uil-times></p>
-                </div>
-              </div>
-              <div class="child-container" v-else>
-                <p>#tags</p>
-              </div>
-              <span class="icon is-small">
-                    <uil-angle-down class="icon-arrow"></uil-angle-down>
-                  </span>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content">
-              <a
-                  v-for="(tag, index) in loaded_tags"
-                  class="dropdown-item"
-                  :key="index"
-                  @click="submitTag(tag)"
-              >
-                {{ tag }}
-              </a>
-              <hr class="dropdown-divider" />
-              <div class="dropdown-item add_element columns">
-                <input
-                    class="input column is-three-quarters"
-                    type="text"
-                    placeholder="#New tag"
-                    v-model="new_tag"
-                    @keydown.enter="submitTag(new_tag)"
-                />
-                <button
-                    class="button column add_button is-one-quarter"
-                    @click="submitTag(new_tag)"
-                >
-                  <uil-plus></uil-plus>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p
-            :class="
-                !tags.length == 0 || is_valid
-                  ? 'help is-danger is-hidden'
-                  : 'help is-danger'
-              "
-        >
-          This filed is required
-        </p>
       </div>
-      <div class="submit column">
+      <div class="submit">
         <button :class="loading?
               'save button is-info is-loading':
               'save button is-info'"
@@ -175,25 +56,45 @@
         </button>
       </div>
     </div>
-    <div
-        :class="!content == '' || is_valid? 'editor box':' editor box invalid'"
-        id="editor"
-    >
-      <quill-editor ref="myTextEditor" v-model="content" :class="
-            !content == '' || is_valid
-              ? ''
-              : 'is-danger is-outlined'
-          "></quill-editor>
+    <div class="quill-container">
+      <quill-editor ref="myTextEditor" v-model="content">
+      </quill-editor>
     </div>
-    <p
-        :class="
-            !content == '' || is_valid
-              ? 'help is-danger is-hidden'
-              : 'help is-danger'
-          "
-    >
-      This field is required
-    </p>
+    <div class="tags dropdown" @click.stop="">
+      <button
+          class="tag-input trigger"
+          aria-haspopup="true"
+          aria-controls="dropdown-menu"
+          @click="triggerDropdown('tags')"
+      >
+        <div v-if="tags.length">
+          <button v-for="tag in tags" :key="tag" @click="deleteTag(tag)">
+            {{tag}} <span><uil-times></uil-times></span>
+          </button>
+        </div>
+        <div v-else>
+          <p>#tags</p>
+        </div>
+      </button>
+      <div class="menu hide" role="menu" id="tags" ref="tags_dropdown_menu">
+        <div class="dropdown-content">
+          <div class="dropdown-item input-box">
+            <input class="text" type="text" placeholder="#new tag" v-model="new_tag">
+            <span>
+              <button class="button" @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
+            </span>
+          </div>
+          <button
+              v-for="(tag, index) in loaded_tags"
+              class="dropdown-item"
+              :key="index"
+              @click="submitTag(tag)"
+          >
+            {{ tag }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -202,10 +103,8 @@
 import { quillEditor } from 'vue-quill-editor';
 
 import {
-  UilAngleDown,
-  UilCheck,
-  UilPlus,
   UilTimes,
+  UilPlus,
 } from '@iconscout/vue-unicons';
 
 import {
@@ -232,7 +131,6 @@ export default {
       tags: [],
       loaded_topics: [],
       loaded_tags: [],
-      new_topic: '',
       new_tag: '',
       is_valid: true,
       error_message: null,
@@ -246,8 +144,6 @@ export default {
   },
   components: {
     quillEditor,
-    UilAngleDown,
-    UilCheck,
     UilTimes,
     UilPlus,
   },
@@ -255,7 +151,7 @@ export default {
     // fetch all unique tags
     this.fetchUniqueTags();
     // fetch all topics
-    this.fetchUniquetopics();
+    this.fetchUniqueTopics();
 
     // Set the fields if an doc edit
     if (this.id) {
@@ -267,7 +163,7 @@ export default {
       const resp = await listTags();
       this.loaded_tags = resp.data;
     },
-    async fetchUniquetopics() {
+    async fetchUniqueTopics() {
       const resp = await listTopics();
       this.loaded_topics = resp.data;
     },
@@ -278,12 +174,22 @@ export default {
       this.tags = resp.data.data.tags;
       this.content = resp.data.data.content;
     },
-    tiggerDropdown(id) {
-      document.getElementById(id).classList.toggle('is-active');
+    triggerDropdown(dropdown) {
+      const menu = document.getElementById(dropdown);
+      menu.classList.toggle('hide');
+    },
+    closeDropdowns() {
+      const topicMenu = this.$refs.topics_dropdown_menu;
+      const tagMenu = this.$refs.tags_dropdown_menu;
+      if (!topicMenu.classList.contains('hide')) {
+        topicMenu.classList.toggle('hide');
+      }
+      if (!tagMenu.classList.contains('hide')) {
+        tagMenu.classList.toggle('hide');
+      }
     },
     submitTopic(topic) {
       this.topic = topic;
-      document.getElementById('topics').classList.toggle('is-active');
     },
     submitTag(tag) {
       if (!this.tags.includes(tag)) {
