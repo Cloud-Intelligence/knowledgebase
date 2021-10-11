@@ -132,6 +132,33 @@ img{
 }
 /*=======================*/
 
+/*configure custom scroll bars*/
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body-colour);
+    border-radius: 100vw;
+    margin-block: .5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--content-colour);
+    border: 0.2em solid var(--body-colour);
+    border-radius: 100vw;
+}
+
+@supports (scrollbar-color: red blue) {
+    * {
+        scrollbar-color: var(--content-colour) var(--body-colour);
+        scrollbar-width: thin;
+    }
+}
+
+/*=======================*/
+
 /* for responisveness */
 @media screen and (min-width: 900px) {
     .body.open {
