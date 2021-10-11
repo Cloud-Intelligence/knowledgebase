@@ -33,7 +33,10 @@ export default {
     };
   },
   created() {
-    this.error_message = this.error;
+    if (this.error) {
+      this.$auth.logout();
+      this.error_message = this.error;
+    }
     setTimeout(() => {
       this.removeError();
     }, 10000);
