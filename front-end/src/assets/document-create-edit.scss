@@ -67,7 +67,6 @@
                 color: var(--font-colour);
                 font-size: large;
                 background: var(--content-colour);
-                border: 1px var(--content-colour);
                 flex-grow: 1;
                 transition: border 0.25s;
             }
@@ -76,6 +75,10 @@
                 border: 1px solid #e35e7f;
                 border-radius: 0.5rem;
                 transition: border 0.25s;
+            }
+
+            .title-input.invalid:focus {
+                outline: none;
             }
 
             .dropdown {
@@ -98,6 +101,10 @@
                     border: 1px solid #e35e7f;
                     border-radius: 0.5rem;
                     transition: border 0.25s;
+                }
+
+                .trigger.invalid:focus {
+                    outline: none;
                 }
 
                 .menu {
@@ -152,7 +159,7 @@
             min-height: 2rem;
             cursor: pointer;
             border-radius: 0.5rem;
-            border: 1px solid transparent;
+            border: 1px solid var(--font-colour);
             transition: border 0.25s;
 
             button {
