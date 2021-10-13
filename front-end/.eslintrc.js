@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    'airbnb-base',
+    'airbnb-base', // u anal as fuck brah, who wanna work 4 u?
   ],
   parserOptions: {
     ecmaVersion: 12,

@@ -24,12 +24,12 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         id: 12,
         data: {
           title: 'Links',
-          content: '## these are the links' +
-            '<br>'.repeat(69) +
-            '<h1>Title</h1><strong>bold text</strong>' +
-            '<p>paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-            'Blanditiis dolore eum excepturi ipsa ipsam nisi officia officiis ' +
-            'possimus recusandae veniam!</p>',
+          content: `## these are the links
+            ${'<br>'.repeat(69)}
+            <h1>Title</h1><strong>bold text</strong>
+            <p>paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Blanditiis dolore eum excepturi ipsa ipsam nisi officia officiis
+            possimus recusandae veniam!</p>`,
           tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
