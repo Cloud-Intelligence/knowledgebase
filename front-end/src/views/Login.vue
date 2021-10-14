@@ -14,7 +14,12 @@
           <img src="../assets/images/CI-Logo.png" alt="Logo image" />
         </div>
 
-        <button v-if="error_message" class="button is-primary is-light" @click="logout">Logout</button>
+        <button
+            v-if="error_message"
+            class="button is-primary is-light"
+            @click="logout">
+          Logout
+        </button>
 
         <router-link v-else class="button is-primary is-light" to="/">
           login
@@ -45,7 +50,7 @@ export default {
         returnTo: `${window.location.origin}/login`,
         client_ID: process.env.VUE_APP_CLIENT_ID,
       });
-    }
+    },
   },
 };
 </script>
