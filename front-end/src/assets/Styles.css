@@ -36,6 +36,7 @@
     --content-colour: #3F3F3F;
     --side-bar-colour: #333333;
     --company-colour: #aaf7f3;
+    --scroll-colour: #6b6868;
     /*=======================*/
 
     /* z indexs */
@@ -129,6 +130,33 @@ img{
     overflow-y: hidden;
     padding: 1rem 2rem;
 }
+/*=======================*/
+
+/*configure custom scroll bars*/
+
+::-webkit-scrollbar {
+    width: .75rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: .5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-colour);
+    border: 2px solid var(--content-colour);
+    border-radius: 100vw;
+}
+
+@supports (scrollbar-color: red blue) {
+    * {
+        scrollbar-color: var(--content-colour) var(--body-colour);
+        scrollbar-width: thin;
+    }
+}
+
+/*=======================*/
 
 /* for responisveness */
 @media screen and (min-width: 900px) {
