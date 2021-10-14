@@ -23,10 +23,7 @@ const authGuard = (to, _from, next) => {
     }
     if (to.query.error) {
       authService.isAuthenticated = false;
-      return authService.logout({
-        returnTo: `${window.location.origin}/login?error=${to.query.error_description}`,
-        client_ID: process.env.VUE_APP_CLIENT_ID,
-      });
+      return next({ name: 'login', params: { error: to.query.error_description } });
     }
     // If the user is authenticated, continue with the route
     if (authService.isAuthenticated) {
