@@ -34,7 +34,6 @@ export default {
   },
   created() {
     if (this.error) {
-      this.$auth.logout();
       this.error_message = this.error;
     }
     setTimeout(() => {
