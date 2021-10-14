@@ -13,7 +13,7 @@ const authGuard = (to, _from, next) => {
         family_name: 'user',
         nickname: 'testy.testface',
         name: 'testicle test test jr',
-        picture: 'https://lh3.googleusercontent.com/a-/AOh14GisixCcwF8PhCe6uxmfPauFVixuq0QW7KVtRTKnTA=s96-c',
+        picture: 'https://example.com',
         locale: 'en',
         updated_at: '2021-07-23T06:38:29.918Z',
         email: 'test@cloudIntelligence.co.za',
