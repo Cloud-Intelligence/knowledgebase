@@ -6,7 +6,7 @@ const authGuard = (to, _from, next) => {
 
   // eslint-disable-next-line consistent-return
   const fn = () => {
-    if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
+    if (process.env.VUE_APP_AUTH0_ENABLED === '0') {
       authService.isAuthenticated = true;
       authService.user = {
         given_name: 'test_user',
@@ -23,7 +23,10 @@ const authGuard = (to, _from, next) => {
     }
     if (to.query.error) {
       authService.isAuthenticated = false;
-      return next({ name: 'login', params: { error: to.query.error_description } });
+      return authService.logout({
+        returnTo: `${window.location.origin}/login?error=${to.query.error_description}`,
+        client_ID: process.env.VUE_APP_CLIENT_ID,
+      });
     }
     // If the user is authenticated, continue with the route
     if (authService.isAuthenticated) {

@@ -7,10 +7,5 @@
 <script>
 export default {
   name: 'Home',
-  mounted() {
-    if (this.$auth.error) {
-      this.$router.push({ name: 'login', params: { error: this.$auth.error } });
-    }
-  },
 };
 </script>
