@@ -135,18 +135,17 @@ img{
 /*configure custom scroll bars*/
 
 ::-webkit-scrollbar {
-    width: 1em;
+    width: .75rem;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--body-colour);
-    border-radius: 100vw;
-    margin-block: .5em;
+    background: transparent;
+    margin-block: .5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--content-colour);
-    border: 0.2em solid var(--body-colour);
+    background: var(--scroll-colour);
+    border: 2px solid var(--content-colour);
     border-radius: 100vw;
 }
 
