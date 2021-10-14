@@ -2,11 +2,10 @@
   <section class="login" id="login">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
-          v-if="this.error_message"
+          v-if="error_message"
           class="notification is-danger is-light"
       >
-        <button class="delete" @click="removeError(500)"></button>
-        {{ this.error }}
+        {{ error_message }}
       </div>
     </div>
     <div class="login">
@@ -14,7 +13,15 @@
         <div class="image">
           <img src="../assets/images/CI-Logo.png" alt="Logo image" />
         </div>
-        <router-link class="button is-primary is-light" to="/">
+
+        <button
+            v-if="error_message"
+            class="button is-primary is-light"
+            @click="logout">
+          Logout
+        </button>
+
+        <router-link v-else class="button is-primary is-light" to="/">
           login
         </router-link>
       </div>
@@ -34,19 +41,15 @@ export default {
   },
   created() {
     if (this.error) {
-      this.$auth.logout();
       this.error_message = this.error;
     }
-    setTimeout(() => {
-      this.removeError();
-    }, 10000);
   },
   methods: {
-    removeError(timeout = 1000) {
-      this.error_is_hidden = true;
-      setTimeout(() => {
-        this.error_message = null;
-      }, timeout);
+    logout() {
+      this.$auth.logout({
+        returnTo: `${window.location.origin}/login`,
+        client_ID: process.env.VUE_APP_CLIENT_ID,
+      });
     },
   },
 };
