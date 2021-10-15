@@ -36,6 +36,7 @@
     --content-colour: #3F3F3F;
     --side-bar-colour: #333333;
     --company-colour: #aaf7f3;
+    --scroll-colour: #6b6868;
     /*=======================*/
 
     /* z indexs */
@@ -129,6 +130,7 @@ img{
     overflow-y: hidden;
     padding: 1rem 2rem;
 }
+/*=======================*/
 
 /* for responisveness */
 @media screen and (min-width: 900px) {
