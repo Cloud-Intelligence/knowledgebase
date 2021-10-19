@@ -18,7 +18,8 @@ describe('create', () => {
         cy.get('#create').toMatchImageSnapshot();
     });
     it('corrects validation on field input', () => {
-        cy.wait(10000);
+        cy.get('.notification button').click();
+        cy.wait(250);
         cy.get('#title').type('Test');
         cy.get('.topic-input.trigger').type('New topic');
         cy.get('.tag-input.trigger').click();
