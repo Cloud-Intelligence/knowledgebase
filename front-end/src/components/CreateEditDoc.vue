@@ -16,7 +16,9 @@
               type="text"
               v-model="topic"
               placeholder="Topic"
-              class="topic-input trigger"
+              :class="(!topic==''||is_valid)?
+                'topic-input trigger':
+                'topic-input trigger invalid'"
               aria-haspopup="true"
               aria-controls="dropdown-menu"
               @click.prevent="triggerDropdown('topic')"
@@ -34,13 +36,12 @@
             </div>
           </div>
         </div>
-        <h1 class="delimeter">/</h1>
+        <h1 class="delimiter">/</h1>
         <input
             :class="
-                !title == '' || is_valid
-                  ? 'title-input'
-                  : 'title-input is-danger is-outlined'
-              "
+                (!title == '' || is_valid)?
+                'title-input':
+                'title-input invalid'"
             type="text"
             placeholder="Untitled document"
             v-model="title"
@@ -56,13 +57,13 @@
         </button>
       </div>
     </div>
-    <div class="quill-container">
+    <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
       <quill-editor ref="myTextEditor" v-model="content">
       </quill-editor>
     </div>
     <div class="tags dropdown" @click.stop="">
       <button
-          class="tag-input trigger"
+          :class="(tags.length || is_valid)? 'tag-input trigger':'tag-input trigger invalid'"
           aria-haspopup="true"
           aria-controls="dropdown-menu"
           @click="triggerDropdown('tags')"
@@ -221,6 +222,7 @@ export default {
       if (topic === '' || title === '' || tags.length === 0 || content === '') {
         this.is_valid = false;
         this.loading = false;
+        this.appendError('fields cannot be empty');
         return;
       }
       this.is_valid = true;
@@ -302,5 +304,5 @@ export default {
 </style>
 
 <style lang="scss">
-@import "../assets/document-create-edit";
+@import "../assets/document-create-edit.scss";
 </style>
