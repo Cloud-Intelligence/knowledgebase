@@ -22,7 +22,7 @@ tasks:
   ci:
     cmds:
       - docker-compose run -u root --rm ui ci
-  fix_scrot_confilct:
+  fix_scrot_conflict:
     cmds:
       - git checkout --theirs front-end/cypress/
       - git add front-end/cypress/
