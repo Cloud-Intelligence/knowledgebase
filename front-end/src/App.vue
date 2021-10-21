@@ -17,9 +17,6 @@
   </div>
 </template>
 
-<style src="./assets/Styles.css">
-</style>
-
 <script>
 import Sidebar from './components/Sidebar.vue';
 
@@ -45,10 +42,5 @@ export default {
 </script>
 
 <style scoped>
-/* for responisveness */
-@media screen and (min-width: 900px) {
-    .body.open {
-        margin-left: 300px;
-    }
-}
+
 </style>

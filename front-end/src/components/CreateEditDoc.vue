@@ -1,5 +1,5 @@
 <template>
-  <div class="create_edit" @click="closeDropdowns()">
+  <div class="create-edit-container" @click="closeDropdowns()">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -115,12 +115,6 @@ import {
   postDocument,
   updateDocument,
 } from '../api/documents';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.core.css';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.snow.css';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'quill/dist/quill.bubble.css';
 
 export default {
   name: 'CreateEditDoc',
@@ -237,12 +231,12 @@ export default {
       try {
         if (this.id) {
           await updateDocument(this.id, JSON.stringify(data));
-          this.$router.push(`/documents/${this.id}/`);
+          await this.$router.push(`/documents/${this.id}/`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
           const { id } = resp;
           this.loading = false;
-          this.$router.push(`/documents/${id}/`);
+          await this.$router.push(`/documents/${id}/`);
         }
         this.refreshSidebar();
       } catch (error) {
@@ -258,51 +252,13 @@ export default {
 };
 </script>
 
-<style>
-
-.create_edit .editor {
-  background: var(--content-colour);
-}
-
-.create_edit .ql-toolbar {
-  border: 1px solid var(--body-colour);
-}
-
-.create_edit .ql-toolbar .ql-stroke {
-  fill: none;
-  stroke: var(--font-colour);
-}
-
-.create_edit .ql-toolbar .ql-fill {
-  fill: var(--font-colour);
-  stroke: none;
-}
-
-.create_edit .ql-toolbar .ql-picker {
-  color: var(--font-colour);
-}
-
-.create_edit .ql-toolbar .ql-picker-options {
-  background: var(--content-colour);
-}
-
-.create_edit .ql-container {
-  height: 100%;
-  max-height: 100%;
-  border: 1px solid var(--body-colour);
-  overflow-y: auto;
-}
-
-.create_edit .ql-container .ql-editor > * {
-  color: var(--font-colour);
-}
-
-.create_edit .ql-container .ql-editor::before {
-  color: var(--font-colour);
-}
-
+<style lang="scss" scoped>
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+@import '~quill/dist/quill.bubble.css';
+@import "../assets/styles/document-create-edit";
 </style>
 
 <style lang="scss">
-@import "../assets/document-create-edit.scss";
+@import "../assets/styles/quill-overrides.scss";
 </style>

@@ -55,6 +55,45 @@ export default {
 };
 </script>
 
-<style lang="sass">
-  @import '../assets/login.scss'
+<style lang="scss" scoped>
+#login {
+  .error-message {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    transition: top 0.5s;
+  }
+
+  .error-message.hide {
+    top: -10rem;
+  }
+
+  .error-message .notification {
+    max-width: 25rem;
+  }
+
+  .login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+      max-width: 40rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .image {
+        width: 45%;
+        min-width: 3rem;
+        margin-bottom: 5rem;
+      }
+    }
+  }
+}
 </style>

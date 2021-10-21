@@ -138,6 +138,6 @@ export default {
 };
 </script>
 
-<style lang="sass">
-  @import '../assets/content-view.scss'
+<style lang="scss">
+  @import '../assets/styles/content-view.scss';
 </style>

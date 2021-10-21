@@ -1,0 +1,116 @@
+// styling for the create edit page
+
+.create-edit-container {
+
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--content-colour);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+
+    .error-message {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        z-index: 100;
+        top: -5rem;
+        display: flex;
+        justify-content: center;
+        transition: top 0.5s;
+
+        .notification {
+            position: relative;
+            max-width: 25rem;
+            bottom: -6rem;
+        }
+    }
+
+    .error-message.hide {
+        top: -10rem;
+    }
+
+
+    .form {
+        display: flex;
+        justify-content: space-between;
+        background: var(--content-colour-alt);
+
+        .submit{
+            display: flex;
+            align-items: center;
+        }
+
+        .fields {
+
+            display: flex;
+            margin-bottom: 0.5rem;
+
+            input {
+                height: 100%;
+                padding: 0 1rem;
+            }
+
+            .delimiter {
+                display: flex;
+                align-items: center;
+                color: var(--font-colour);
+                height: 100%;
+                margin: 0 0.5rem;
+                font-weight: bold;
+            }
+
+            .title-input {
+                padding: 0.5em 1em;
+                border: 1px solid transparent;
+                color: var(--font-colour);
+                font-size: large;
+                background: var(--content-colour);
+                flex-grow: 1;
+                transition: border 0.25s;
+            }
+
+            .title-input.invalid {
+                border: 1px solid #e35e7f;
+                border-radius: 0.5rem;
+                transition: border 0.25s;
+            }
+
+            .title-input.invalid:focus {
+                outline: none;
+            }
+
+            .dropdown {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                bottom: 0;
+                right: 0;
+                width: 33%;
+
+                .trigger {
+                    text-align: left;
+                    padding: 0.5em 1em;
+                    font-size: large;
+                    border: 1px solid transparent;
+                    transition: border 0.25s;
+                }
+
+                .trigger.invalid {
+                    border: 1px solid #e35e7f;
+                    border-radius: 0.5rem;
+                    transition: border 0.25s;
+                }
+
+                .trigger.invalid:focus {
+                    outline: none;
+                }
+
+                .menu {
+                    top: 125%;
+                }
+            }
+        }
+    }
+}
