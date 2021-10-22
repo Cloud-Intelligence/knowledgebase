@@ -91,10 +91,12 @@
             width: 100%;
             height: max-content;
             word-break: break-word;
-            padding: 1rem 0;
+            padding: 0;
 
-            > * {
+            > *, strong {
                 color: var(--font-colour);
+                margin: 0;
+                line-height: 1.3em;
             }
 
             blockquote {

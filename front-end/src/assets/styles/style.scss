@@ -75,9 +75,11 @@ html {
     scroll-behavior: smooth;
     overflow-y: auto !important;
 }
+html body * {
+    font-family: var(--body-font);
+}
 
 body{
-    font-family: var(--body-font);
     font-size: var(--normal-font-size);
     background-color: var(--body-colour);
 }
@@ -138,8 +140,14 @@ img{
     width: .75rem;
 }
 
+* {
+    scrollbar-color: var(--scroll-colour) transparent;
+    scrollbar-width: .75rem;
+}
+
 ::-webkit-scrollbar-track {
     background: transparent;
+    opacity: 0;
     margin-block: .5rem;
 }
 
@@ -149,16 +157,21 @@ img{
     border-radius: 100vw;
 }
 
-@supports (scrollbar-color: red blue) {
-    * {
-        scrollbar-color: var(--content-colour) var(--body-colour);
-        scrollbar-width: thin;
+/*=======================*/
+
+/* for responsiveness */
+@media screen and (min-width: 900px) {
+    .body.open {
+        margin-left: 300px;
     }
 }
 
-/*=======================*/
 
-/* for responisveness */
+.base-section {
+    height: 100%;
+    width: 100%;
+}
+
 @media screen and (min-width: 900px) {
     .body.open {
         margin-left: 300px;

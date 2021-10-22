@@ -18,8 +18,6 @@ describe('document', () => {
     });
     it('deletes and redirects on delete button click', () => {
         cy.get('.heading .icons .trash').click();
-        cy.wait(500);
-        cy.get('.body').toMatchImageSnapshot();
         cy.get('.delete-container .form button').first().click();
         cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();

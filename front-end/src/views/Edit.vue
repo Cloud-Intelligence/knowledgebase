@@ -1,5 +1,5 @@
 <template>
-  <section class="edit" id="edit">
+  <section class="base-section" id="edit">
     <CreateEditDoc :refreshSidebar="refreshSidebar" :id="id"></CreateEditDoc>
   </section>
 </template>
@@ -23,6 +23,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../assets/edit-view.scss';
+<style lang="scss" scoped>
+
 </style>

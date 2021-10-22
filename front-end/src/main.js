@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 
 import 'bulma/css/bulma.css';
+import './assets/styles/style.scss';
 
 // Import the plugin here
 import { Auth0Plugin } from './auth';
