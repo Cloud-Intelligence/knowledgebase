@@ -50,10 +50,10 @@
       </div>
       <div class="submit">
         <button :class="loading?
-              'save button is-info is-loading':
-              'save button is-info'"
+              'save button is-primary is-loading':
+              'save button is-primary'"
                 @click="submitForm()">
-          save
+          ✔️
         </button>
       </div>
     </div>
@@ -135,7 +135,7 @@ export default {
   },
   props: {
     refreshSidebar: Function,
-    id: String,
+    pk: String,
   },
   components: {
     quillEditor,
@@ -149,7 +149,7 @@ export default {
     this.fetchUniqueTopics();
 
     // Set the fields if an doc edit
-    if (this.id) {
+    if (this.pk) {
       this.fetchDocument();
     }
   },
@@ -163,7 +163,7 @@ export default {
       this.loaded_topics = resp.data;
     },
     async fetchDocument() {
-      const resp = await getDocument(this.id);
+      const resp = await getDocument(this.pk);
       this.topic = resp.data.topic;
       this.title = resp.data.data.title;
       this.tags = resp.data.data.tags;
@@ -229,9 +229,9 @@ export default {
         },
       };
       try {
-        if (this.id) {
-          await updateDocument(this.id, JSON.stringify(data));
-          await this.$router.push(`/documents/${this.id}/`);
+        if (this.pk) {
+          await updateDocument(this.pk, JSON.stringify(data));
+          await this.$router.push(`/documents/${this.pk}/`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
           const { id } = resp;

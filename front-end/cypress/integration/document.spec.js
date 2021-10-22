@@ -12,13 +12,13 @@ describe('document', () => {
         cy.get('.body').toMatchImageSnapshot();
     });
     it('cancels delete on no button click', () => {
-        cy.get('.delete-container .form button').last().click();
+        cy.get('.delete-container--padded .form button').last().click();
         cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('deletes and redirects on delete button click', () => {
         cy.get('.heading .icons .trash').click();
-        cy.get('.delete-container .form button').first().click();
+        cy.get('.delete-container--padded .form button').first().click();
         cy.wait(500);
         cy.get('.body').toMatchImageSnapshot();
     });

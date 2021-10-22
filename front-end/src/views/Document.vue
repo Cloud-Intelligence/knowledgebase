@@ -16,9 +16,17 @@
         </div>
       </div>
     </transition>
-    <div class="heading">
-      <div class="container head">
+    <div class="title-bar">
+      <div class="head">
         <h1 class="title">{{ title }}</h1>
+        <div class="tags">
+          <p v-for="tag in tags"
+             class="tag"
+             :key="tag"
+             :style="getBackgroundColor(tag)">
+            {{ tag }}
+          </p>
+        </div>
       </div>
       <div class="container icons">
         <div class="trash" @click="showDelete">
@@ -32,15 +40,12 @@
         </div>
       </div>
     </div>
+
     <div class="content">
       <div class="text" v-html="content">
       </div>
     </div>
-    <div class="foot">
-      <div class="container tags">
-        <p v-for="tag in tags" class="tag" :key="tag" :style="getBackgroundColor(tag)">{{ tag }}</p>
-      </div>
-    </div>
+
   </section>
 </template>
 

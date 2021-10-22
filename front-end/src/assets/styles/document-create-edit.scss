@@ -1,15 +1,11 @@
 // styling for the create edit page
 
 .create-edit-container {
-
-    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
     background: var(--content-colour);
     border-radius: 0.5rem;
-    padding: 0.5rem;
-
     .error-message {
         position: fixed;
         width: 100%;
@@ -31,7 +27,6 @@
         top: -10rem;
     }
 
-
     .form {
         display: flex;
         justify-content: space-between;
@@ -40,6 +35,7 @@
         .submit{
             display: flex;
             align-items: center;
+            transform: translate(-50%, 30%);
         }
 
         .fields {
@@ -140,9 +136,9 @@
         width: max-content;
         display: flex;
         flex-direction: column;
-        position: absolute;
+        position: relative;
         bottom: 2rem;
-        right: 2rem;
+        right: -83%;
 
         .trigger {
             width: 100%;

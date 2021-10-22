@@ -4,13 +4,14 @@
     float: left;
     width: 300px;
     height: 100%;
+    padding: 1rem;
     background-color: var(--side-bar-colour);
     z-index: var(--level-3);
     transition: left 0.5s, margin-right 0.5s;
 
-    .container {
-        display: flex !important;
-        flex-direction: column !important;
+    .sidebar-item {
+        width: 100%;
+        margin-bottom: 2rem;
     }
 
     .collapse_toggle {
@@ -25,58 +26,60 @@
         top: 1rem;
         right: -1.5rem;
         border-radius: 0 0.5rem 0.5rem 0;
+
+        &::after {
+            content: "";
+            cursor: initial;
+            position: absolute;
+            top: -1.5rem;
+            right: 0.5rem;
+            width: 1rem;
+            height: 1.5rem;
+            border-radius: 0 0 0 1rem;
+            box-shadow: -5px 0 0 5px var(--side-bar-colour);
+        }
+
+        &::before {
+            content: "";
+            cursor: initial;
+            position: absolute;
+            bottom: -1.5rem;
+            right: 0.5rem;
+            width: 1rem;
+            height: 1.5rem;
+            border-radius: 1rem 0 0 0;
+            box-shadow: -5px -5px 0 5px var(--side-bar-colour);
+        }
+
+        .icon {
+            transition: transform 0.5s;
+        }
     }
 
-    .collapse_toggle::after {
-        content: "";
-        cursor: initial;
-        position: absolute;
-        top: -1.5rem;
-        right: 0.5rem;
-        width: 1rem;
-        height: 1.5rem;
-        border-radius: 0 0 0 1rem;
-        box-shadow: -5px 0 0 5px var(--side-bar-colour);
-    }
+    .user {
+        .user_image {
+            vertical-align: middle;
+            width: 2.75rem;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
 
-    .collapse_toggle::before {
-        content: "";
-        cursor: initial;
-        position: absolute;
-        bottom: -1.5rem;
-        right: 0.5rem;
-        width: 1rem;
-        height: 1.5rem;
-        border-radius: 1rem 0 0 0;
-        box-shadow: -5px -5px 0 5px var(--side-bar-colour);
-    }
+        .user_description {
+            display: inline-block;
+            vertical-align: middle;
 
-    .collapse_toggle .icon {
-        transition: transform 0.5s;
-    }
+            .title {
+                font-size: var(--normal-font-size);
+                font-weight: var(--font-semi-bold);
+                color: var(--font-colour);
+            }
 
-    .user .user_image {
-        vertical-align: middle;
-        width: 2.75rem;
-        border-radius: 5px;
-        margin-right: 1rem;
-    }
-
-    .user .user_description {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .user .user_description .title {
-        font-size: var(--normal-font-size);
-        font-weight: var(--font-semi-bold);
-        color: var(--font-colour);
-    }
-
-    .user .user_description .subtitle {
-        font-size: var(--small-font-size);
-        font-weight: var(--font-medium);
-        color: var(--font-colour);
+            .subtitle {
+                font-size: var(--small-font-size);
+                font-weight: var(--font-medium);
+                color: var(--font-colour);
+            }
+        }
     }
 
     .handle {
@@ -94,6 +97,19 @@
         padding: 0.25rem;
         transition: background-color 0.25s, margin-left 0.25s;
         border-radius: 0.25rem;
+
+        > * {
+            vertical-align: middle;
+            margin-bottom: 5px;
+        }
+
+        .icon {
+            line-height: var(--big-font-size);
+        }
+
+        :hover {
+            margin-left: 2.5px;
+        }
     }
 
     .handle.router-link-exact-active {
@@ -101,19 +117,6 @@
         transition: background-color 0.25s;
     }
 
-
-    .handle > * {
-        vertical-align: middle;
-        margin-bottom: 5px;
-    }
-
-    .handle .icon {
-        line-height: var(--big-font-size);
-    }
-
-    .handle:hover {
-        margin-left: 2.5px;
-    }
 
     .handles.child {
         flex-grow: 1;
