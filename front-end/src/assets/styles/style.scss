@@ -37,6 +37,9 @@
     --side-bar-colour: #333333;
     --company-colour: #aaf7f3;
     --scroll-colour: #6b6868;
+    --link-color: #5AB9EA;
+    --dark-black: #0F0F0F;
+    --light-black: rgb(52,52,52);
     /*=======================*/
 
     /* z indexs */
@@ -86,6 +89,10 @@ body{
 
 h1,h2,h3,h4{
     font-weight: var(--font-semi-bold);
+}
+
+a {
+    color: var(--link-color);
 }
 
 img{

@@ -1,0 +1,50 @@
+@mixin content-styles {
+  > *, strong {
+    color: var(--font-colour);
+    line-height: 1.3em;
+    font-size: var(--normal-font-size);
+  }
+
+  h1, h2 {
+    margin-bottom: 2px;
+    border-bottom: 1px solid var(--font-colour);
+    font-size: var(--h1-font-size);
+    padding-bottom: 2px;
+    display: block;
+  }
+
+  h2 {
+    font-size: var(--h2-font-size);
+    border: none;
+    margin: 10px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--link-color);
+  }
+
+  strong {
+    display: inline;
+  }
+
+  pre {
+    background: var(--dark-black);
+    font-family: monospace;
+    font-size: var(--normal-font-size);
+    width: 80%;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+  }
+
+  blockquote {
+    background: var(--light-black);
+    padding: 10px;
+    margin: 0;
+  }
+}
