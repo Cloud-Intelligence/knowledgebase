@@ -1,4 +1,5 @@
 import { Server, Model } from 'miragejs';
+import mockData from './utils/mockData';
 
 // eslint-disable-next-line import/prefer-default-export
 export function makeServer(auth0Domain, { environment = 'development' } = {}) {
@@ -13,49 +14,22 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
     // eslint-disable-next-line no-shadow
     seeds(server) {
       // create the pseudo documents
-      server.create('document', { title: 'css', id: 12, topic: 'frontend' });
-      server.create('document', { title: 'links', id: 13, topic: 'frontend' });
-      server.create('document', { title: 'Docker', id: 14, topic: 'frontend' });
-      server.create('document', { title: 'cool tools', id: 21, topic: 'projects' });
-      server.create('document', { title: 'fun stuff', id: 31, topic: 'fun' });
+      server.create('document', { title: 'Test1', id: 12, topic: 'Topic1' });
+      server.create('document', { title: 'Test2', id: 13, topic: 'Topic2' });
 
       // craete a pseudo colection for files
       server.create('file', {
         id: 12,
         data: {
-          title: 'Links',
-          content: `## these are the links
-            ${'<br>'.repeat(69)}
-            <h1>Title</h1><strong>bold text</strong>
-            <p>paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Blanditiis dolore eum excepturi ipsa ipsam nisi officia officiis
-            possimus recusandae veniam!</p>`,
+          title: 'Test1',
+          content: mockData,
           tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
       server.create('file', {
         id: 13,
         data: {
-          title: 'CSS', content: '## this is CSS', tags: ['#cloudIntelligence', '#home', '#booyah'],
-        },
-      });
-      server.create('file', {
-        id: 14,
-        data: {
-          title: 'Docker', content: '## this is Docker', tags: ['#cloudIntelligence', '#home', '#booyah'],
-        },
-      });
-
-      server.create('file', {
-        id: 21,
-        data: {
-          title: 'Cool Tools', content: '## these are the tools', tags: ['#cloudIntelligence', '#home', '#booyah'],
-        },
-      });
-      server.create('file', {
-        id: 31,
-        data: {
-          title: 'fun stuffs', content: '## this is fun', tags: ['#cloudIntelligence', '#home', '#booyah', '#yay'],
+          title: 'Test2', content: mockData, tags: ['#cloudIntelligence', '#home', '#booyah'],
         },
       });
     },
