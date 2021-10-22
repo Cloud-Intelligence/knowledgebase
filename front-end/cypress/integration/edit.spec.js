@@ -3,7 +3,7 @@ describe('edit', () => {
         cy.visit('/');
         cy.get('.topic button').first().click();
         cy.get('#12').first().click();
-        cy.get('.heading .container.icons .edit').first().click();
+        cy.get('.heading .container--padded.icons .edit').first().click();
         cy.wait(1000);
         cy.get('#edit').toMatchImageSnapshot();
     });

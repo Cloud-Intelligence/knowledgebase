@@ -1,7 +1,5 @@
 <template>
-  <section class="create base-section" id="create">
-    <CreateEditDoc :refreshSidebar="refreshSidebar"></CreateEditDoc>
-  </section>
+    <CreateEditDoc :refreshSidebar="refreshSidebar" id="create"></CreateEditDoc>
 </template>
 
 <script>
@@ -17,6 +15,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

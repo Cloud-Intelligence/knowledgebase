@@ -9,9 +9,8 @@
         {{ this.error_message }}
       </div>
     </div>
-    <div class="form">
-      <div class="fields">
-        <div class="topics dropdown" @click.stop="">
+      <div class="title-topic-form">
+        <div class="topics" @click.stop="">
           <input
               type="text"
               v-model="topic"
@@ -36,7 +35,6 @@
             </div>
           </div>
         </div>
-        <h1 class="delimiter">/</h1>
         <input
             :class="
                 (!title == '' || is_valid)?
@@ -50,18 +48,17 @@
       </div>
       <div class="submit">
         <button :class="loading?
-              'save button is-info is-loading':
-              'save button is-info'"
+              'button is-primary is-loading':
+              'button is-primary'"
                 @click="submitForm()">
-          save
+          ✔️
         </button>
       </div>
-    </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
       <quill-editor ref="myTextEditor" v-model="content">
       </quill-editor>
     </div>
-    <div class="tags dropdown" @click.stop="">
+    <div class="tags" @click.stop="">
       <button
           :class="(tags.length || is_valid)? 'tag-input trigger':'tag-input trigger invalid'"
           aria-haspopup="true"
@@ -135,7 +132,7 @@ export default {
   },
   props: {
     refreshSidebar: Function,
-    id: String,
+    pk: String,
   },
   components: {
     quillEditor,
@@ -149,7 +146,7 @@ export default {
     this.fetchUniqueTopics();
 
     // Set the fields if an doc edit
-    if (this.id) {
+    if (this.pk) {
       this.fetchDocument();
     }
   },
@@ -163,7 +160,7 @@ export default {
       this.loaded_topics = resp.data;
     },
     async fetchDocument() {
-      const resp = await getDocument(this.id);
+      const resp = await getDocument(this.pk);
       this.topic = resp.data.topic;
       this.title = resp.data.data.title;
       this.tags = resp.data.data.tags;
@@ -230,9 +227,9 @@ export default {
         },
       };
       try {
-        if (this.id) {
-          await updateDocument(this.id, JSON.stringify(data));
-          await this.$router.push(`/documents/${this.id}/`);
+        if (this.pk) {
+          await updateDocument(this.pk, JSON.stringify(data));
+          await this.$router.push(`/documents/${this.pk}/`);
         } else {
           const resp = await postDocument(JSON.stringify(data));
           const { id } = resp;
