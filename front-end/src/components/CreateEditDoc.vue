@@ -58,7 +58,7 @@
       </div>
     </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
-      <quill-editor ref="myTextEditor" v-model="content">
+      <quill-editor ref="myTextEditor" v-model="content" :options="quillOptions">
       </quill-editor>
     </div>
     <div class="tags dropdown" @click.stop="">
@@ -100,8 +100,13 @@
 </template>
 
 <script>
-
 import { quillEditor } from 'vue-quill-editor';
+
+import Quill from 'quill';
+import MarkdownShortcuts from 'quill-markdown-shortcuts';
+Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
+
+
 
 import {
   UilTimes,
@@ -131,6 +136,12 @@ export default {
       error_message: null,
       error_is_hidden: false,
       loading: false,
+      quillOptions: {
+        theme: 'snow',
+        modules: {
+          markdownShortcuts: {},
+        },
+      },
     };
   },
   props: {
