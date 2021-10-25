@@ -69,7 +69,7 @@
           @click="triggerDropdown('tags')"
       >
         <div v-if="tags.length">
-          <button v-for="tag in tags" :key="tag" @click="deleteTag(tag)">
+          <button v-for="tag in tags" :key="tag" @click.stop="deleteTag(tag)">
             {{tag}} <span><uil-times></uil-times></span>
           </button>
         </div>
