@@ -189,6 +189,7 @@ export default {
     submitTag(tag) {
       if (!this.tags.includes(tag)) {
         this.tags.push(tag);
+        this.new_tag = '';
       }
     },
     deleteTag(tag) {
