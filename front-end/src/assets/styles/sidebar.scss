@@ -23,7 +23,7 @@
         color: var(--font-colour);
         background-color: var(--side-bar-colour);
         cursor: pointer;
-        top: 1rem;
+        top: 60px;
         right: -1.5rem;
         border-radius: 0 0.5rem 0.5rem 0;
 
@@ -31,10 +31,10 @@
             content: "";
             cursor: initial;
             position: absolute;
-            top: -1.5rem;
+            top: -20rem;
             right: 0.5rem;
             width: 1rem;
-            height: 1.5rem;
+            height: 20rem;
             border-radius: 0 0 0 1rem;
             box-shadow: -5px 0 0 5px var(--side-bar-colour);
         }

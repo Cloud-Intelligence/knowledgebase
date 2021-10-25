@@ -7,7 +7,6 @@
 
   h1, h2 {
     margin-bottom: 2px;
-    border-bottom: 1px solid var(--font-colour);
     font-size: var(--h1-font-size);
     padding-bottom: 2px;
     display: block;
@@ -21,6 +20,7 @@
 
   p {
     margin: 0;
+    max-width: 120ch;
   }
 
   a {
@@ -36,6 +36,7 @@
     font-family: monospace;
     font-size: var(--normal-font-size);
     width: 80%;
+    max-width: 120ch;
     display: inline-block;
     padding: 10px;
     margin: 5px 0;

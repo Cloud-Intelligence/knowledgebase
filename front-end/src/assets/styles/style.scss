@@ -33,13 +33,14 @@
     --body-colour: #222222;
     --font-colour: lightgray;
     --body-alt-colour: #111111;
-    --content-colour: #3F3F3F;
-    --side-bar-colour: #333333;
+    --content-colour: #2B2C2B;
+    --side-bar-colour: #1f1f1f;
     --company-colour: #aaf7f3;
     --scroll-colour: #6b6868;
     --link-color: #5AB9EA;
     --dark-black: #0F0F0F;
     --light-black: rgb(52,52,52);
+    --deep-purple: #4F05BB;
     /*=======================*/
 
     /* z indexs */
@@ -84,7 +85,7 @@ html body * {
 
 body{
     font-size: var(--normal-font-size);
-    background-color: var(--body-colour);
+    background-color: var(--content-colour);
 }
 
 h1,h2,h3,h4{

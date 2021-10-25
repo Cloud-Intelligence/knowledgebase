@@ -6,7 +6,12 @@
   }
 
   .ql-toolbar {
+    position: relative;
     border: none;
+    top: 0;
+    left: 30px;
+    width: calc(100% - 30px);
+    transition: left .5s;
 
     .ql-stroke {
       fill: none;
@@ -30,13 +35,12 @@
   .ql-container {
     height: 100%;
     max-height: 100%;
-    //border: 1px solid var(--body-colour);
     border: none;
     overflow-y: auto;
 
     .ql-editor {
       @include m.content-styles;
-      padding: 10px;
+      padding: 1.5px 50px;
     }
   }
 }

@@ -9,9 +9,8 @@
         {{ this.error_message }}
       </div>
     </div>
-    <div class="form">
-      <div class="fields">
-        <div class="topics dropdown" @click.stop="">
+      <div class="title-topic-form">
+        <div class="topics" @click.stop="">
           <input
               type="text"
               v-model="topic"
@@ -36,7 +35,6 @@
             </div>
           </div>
         </div>
-        <h1 class="delimiter">/</h1>
         <input
             :class="
                 (!title == '' || is_valid)?
@@ -50,18 +48,17 @@
       </div>
       <div class="submit">
         <button :class="loading?
-              'save button is-primary is-loading':
-              'save button is-primary'"
+              'button is-primary is-loading':
+              'button is-primary'"
                 @click="submitForm()">
           ✔️
         </button>
       </div>
-    </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
       <quill-editor ref="myTextEditor" v-model="content">
       </quill-editor>
     </div>
-    <div class="tags dropdown" @click.stop="">
+    <div class="tags" @click.stop="">
       <button
           :class="(tags.length || is_valid)? 'tag-input trigger':'tag-input trigger invalid'"
           aria-haspopup="true"

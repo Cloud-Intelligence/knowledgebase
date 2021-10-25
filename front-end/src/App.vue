@@ -49,8 +49,7 @@ export default {
     height: 100vh;
     display: flex;
     justify-content: center;
-    max-width: 1920px;
-    transition: all .25s linear;
+    transition: all .5s;
 
     &.open {
       width: calc(100vw - 300px);
@@ -58,22 +57,14 @@ export default {
     }
 
     &.closed {
-      width: calc(100vw - 100px);
-      margin-left: 50px;
-    }
-
-    @media screen and (max-width: 900px) {
-      &.closed {
-        width: calc(100vw - 10px);
-        margin-left: 5px;
-      }
+      width: 100vw;
     }
   }
 
   .layout {
     height: 100%;
     width: 100%;
-    padding: 1rem 50px;
+    //padding: 1rem 50px;
     margin: 0;
     overflow-y: hidden;
   }
