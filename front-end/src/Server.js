@@ -67,7 +67,6 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
       this.post('/documents/:id', (schema, request) => {
         const docId = request.params.id;
         const docData = JSON.parse(request.requestBody);
-        console.log(docData);
         const fileReq = schema.files.findBy({ id: docId });
         const docReq = schema.documents.findBy({ id: docId });
         fileReq.update({ id: docId, data: docData.data });
