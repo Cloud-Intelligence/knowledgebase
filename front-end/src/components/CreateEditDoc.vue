@@ -100,18 +100,14 @@
 </template>
 
 <script>
-import { quillEditor } from 'vue-quill-editor';
-
-import Quill from 'quill';
-import MarkdownShortcuts from 'quill-markdown-shortcuts';
-Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
-
-
-
 import {
   UilTimes,
   UilPlus,
 } from '@iconscout/vue-unicons';
+
+import { quillEditor } from 'vue-quill-editor';
+import Quill from 'quill';
+import MarkdownShortcuts from 'quill-markdown-shortcuts';
 
 import {
   getDocument,
@@ -120,6 +116,8 @@ import {
   postDocument,
   updateDocument,
 } from '../api/documents';
+
+Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
 
 export default {
   name: 'CreateEditDoc',
