@@ -15,8 +15,5 @@ export default {
   components: {
     CreateEditDoc,
   },
-  created() {
-    console.log(this.id);
-  },
 };
 </script>

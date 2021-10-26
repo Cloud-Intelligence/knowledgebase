@@ -64,7 +64,6 @@ export default {
   .layout {
     height: 100%;
     width: 100%;
-    //padding: 1rem 50px;
     margin: 0;
     overflow-y: hidden;
   }

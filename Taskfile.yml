@@ -15,7 +15,7 @@ tasks:
       - docker-compose run --rm ui install
   cypress:
     cmds:
-      - docker-compose run ui run --rm --service-ports cypress open
+      - docker-compose run --rm --service-ports ui cypress open
   cli_test:
     cmds:
       - docker-compose run --rm ui test
