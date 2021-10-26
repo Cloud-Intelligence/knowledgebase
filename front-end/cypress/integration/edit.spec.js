@@ -18,6 +18,7 @@ describe('edit', () => {
     it('redirects after the document has been updated', () => {
         cy.get('.topic-input.trigger').type('blah');
         cy.get('.submit .button').click();
+        cy.wait(10)
         cy.get('.body').toMatchImageSnapshot();
     });
 });
