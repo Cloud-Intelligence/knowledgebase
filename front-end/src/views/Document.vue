@@ -67,8 +67,14 @@ export default {
     Spinner
   },
   props: {
-    id: String,
-    refreshSidebar: Function
+    id: {
+      type: String,
+      default: ''
+    },
+    refreshSidebar: {
+      type: Function,
+      default: () => {}
+    }
   },
   data() {
     return {

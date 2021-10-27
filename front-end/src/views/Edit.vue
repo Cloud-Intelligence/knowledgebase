@@ -12,8 +12,14 @@ export default {
     CreateEditDoc
   },
   props: {
-    refreshSidebar: Function,
-    id: String
+    refreshSidebar: {
+      type: Function,
+      default: () => {}
+    },
+    id: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

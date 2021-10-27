@@ -1,7 +1,6 @@
 import { Server, Model } from 'miragejs'
 import mockData from './utils/mockData'
 
-// eslint-disable-next-line import/prefer-default-export
 export function makeServer(auth0Domain, { environment = 'development' } = {}) {
   const server = new Server({
     environment,

@@ -33,7 +33,12 @@
 <script>
 export default {
   name: 'Login',
-  props: ['error'],
+  props: {
+    error: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       error_message: null,

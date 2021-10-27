@@ -7,8 +7,6 @@ import './assets/styles/style.scss'
 
 // Import the plugin here
 import { Auth0Plugin } from './auth'
-
-// eslint-disable-next-line import/extensions
 import { makeServer } from './Server.js'
 
 // declare the auth0 vars

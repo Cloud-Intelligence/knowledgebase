@@ -25,12 +25,12 @@
         <div id="topic" ref="topics_dropdown_menu" class="menu hide" role="menu">
           <div class="dropdown-content">
             <button
-              v-for="(topic, index) in loaded_topics"
+              v-for="(topicName, index) in loaded_topics"
               :key="index"
               class="dropdown-item"
               @click="submitTopic(topic)"
             >
-              {{ topic }}
+              {{ topicName }}
             </button>
           </div>
         </div>
@@ -122,8 +122,14 @@ export default {
     UilPlus
   },
   props: {
-    refreshSidebar: Function,
-    pk: String
+    refreshSidebar: {
+      type: Function,
+      default: () => {}
+    },
+    pk: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {

@@ -92,9 +92,18 @@ export default {
     Spinner
   },
   props: {
-    userName: String,
-    userImage: String,
-    bus: Object
+    userName: {
+      type: String,
+      default: ''
+    },
+    userImage: {
+      type: String,
+      default: ''
+    },
+    bus: {
+      type: Object,
+      default: () => { return {} }
+    }
   },
   data() {
     return {
