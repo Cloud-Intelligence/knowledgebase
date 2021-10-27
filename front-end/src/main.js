@@ -1,20 +1,20 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
 
-import 'bulma/css/bulma.css';
-import './assets/styles/style.scss';
+import 'bulma/css/bulma.css'
+import './assets/styles/style.scss'
 
 // Import the plugin here
-import { Auth0Plugin } from './auth';
+import { Auth0Plugin } from './auth'
 
 // eslint-disable-next-line import/extensions
-import { makeServer } from './Server.js';
+import { makeServer } from './Server.js'
 
 // declare the auth0 vars
-const domain = process.env.VUE_APP_AUTH0_DOMAIN;
-const clientId = process.env.VUE_APP_CLIENT_ID;
-const audience = process.env.VUE_APP_AUDIENCE;
+const domain = process.env.VUE_APP_AUTH0_DOMAIN
+const clientId = process.env.VUE_APP_CLIENT_ID
+const audience = process.env.VUE_APP_AUDIENCE
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -25,18 +25,18 @@ Vue.use(Auth0Plugin, {
     router.push(
       appState && appState.targetUrl
         ? appState.targetUrl
-        : window.location.pathname,
-    );
-  },
-});
+        : window.location.pathname
+    )
+  }
+})
 
 if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
-  makeServer({ bypass: domain });
+  makeServer({ bypass: domain })
 }
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: (h) => h(App),
-}).$mount('#app');
+  render: (h) => h(App)
+}).$mount('#app')

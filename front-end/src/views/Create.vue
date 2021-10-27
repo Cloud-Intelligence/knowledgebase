@@ -1,17 +1,17 @@
 <template>
-    <CreateEditDoc :refreshSidebar="refreshSidebar" id="create"></CreateEditDoc>
+  <CreateEditDoc id="create" :refresh-sidebar="refreshSidebar" />
 </template>
 
 <script>
 
-import CreateEditDoc from '../components/CreateEditDoc.vue';
+import CreateEditDoc from '../components/CreateEditDoc.vue'
 
 export default {
-  props: {
-    refreshSidebar: Function,
-  },
   components: {
-    CreateEditDoc,
+    CreateEditDoc
   },
-};
+  props: {
+    refreshSidebar: Function
+  }
+}
 </script>

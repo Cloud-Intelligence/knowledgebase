@@ -1,5 +1,5 @@
-import { Server, Model } from 'miragejs';
-import mockData from './utils/mockData';
+import { Server, Model } from 'miragejs'
+import mockData from './utils/mockData'
 
 // eslint-disable-next-line import/prefer-default-export
 export function makeServer(auth0Domain, { environment = 'development' } = {}) {
@@ -8,14 +8,14 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
 
     models: {
       document: Model,
-      file: Model,
+      file: Model
     },
 
     // eslint-disable-next-line no-shadow
     seeds(server) {
       // create the pseudo documents
-      server.create('document', { title: 'Test1', id: 12, topic: 'Topic1' });
-      server.create('document', { title: 'Test2', id: 13, topic: 'Topic2' });
+      server.create('document', { title: 'Test1', id: 12, topic: 'Topic1' })
+      server.create('document', { title: 'Test2', id: 13, topic: 'Topic2' })
 
       // craete a pseudo colection for files
       server.create('file', {
@@ -23,110 +23,110 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         data: {
           title: 'Test1',
           content: mockData,
-          tags: ['#cloudIntelligence', '#home', '#booyah'],
-        },
-      });
+          tags: ['#cloudIntelligence', '#home', '#booyah']
+        }
+      })
       server.create('file', {
         id: 13,
         data: {
-          title: 'Test2', content: mockData, tags: ['#cloudIntelligence', '#home', '#booyah'],
-        },
-      });
+          title: 'Test2', content: mockData, tags: ['#cloudIntelligence', '#home', '#booyah']
+        }
+      })
     },
 
     routes() {
-      this.timing = 0;
+      this.timing = 0
 
-      this.urlPrefix = 'http://localhost:5000';
+      this.urlPrefix = 'http://localhost:5000'
 
-      this.namespace = '/api';
+      this.namespace = '/api'
 
-      let id = 100;
+      let id = 100
 
       this.post('/documents', (schema, request) => {
-        const attr = JSON.parse(request.requestBody);
-        id += 1;
+        const attr = JSON.parse(request.requestBody)
+        id += 1
         schema.documents.create({
           title: attr.data.title,
           id,
-          topic: attr.topic,
-        });
+          topic: attr.topic
+        })
         schema.files.create({
           id,
           data: {
             title: attr.data.title,
             content: attr.data.content,
-            tags: attr.data.tags,
-          },
-        });
-        return { success: true, id };
-      });
+            tags: attr.data.tags
+          }
+        })
+        return { success: true, id }
+      })
 
-      this.get('/documents', (schema) => ({ data: schema.documents.all().models }));
+      this.get('/documents', (schema) => ({ data: schema.documents.all().models }))
 
       this.post('/documents/:id', (schema, request) => {
-        const docId = request.params.id;
-        const docData = JSON.parse(request.requestBody).data;
-        const req = schema.files.findBy({ id: docId });
-        req.update({ id: docId, data: docData });
-      });
+        const docId = request.params.id
+        const docData = JSON.parse(request.requestBody).data
+        const req = schema.files.findBy({ id: docId })
+        req.update({ id: docId, data: docData })
+      })
 
       this.get('/documents/:id', (schema, request) => {
-        const fileReq = schema.files.findBy({ id: request.params.id });
-        const docReq = schema.documents.findBy({ id: request.params.id });
+        const fileReq = schema.files.findBy({ id: request.params.id })
+        const docReq = schema.documents.findBy({ id: request.params.id })
         return {
           data: {
             topic: docReq.topic,
             data: {
               content: fileReq.data.content,
               tags: fileReq.data.tags,
-              title: fileReq.data.title,
-            },
-          },
-        };
-      });
+              title: fileReq.data.title
+            }
+          }
+        }
+      })
 
       this.delete('/documents/:id', (schema, request) => {
-        const reqFile = schema.files.findBy({ id: request.params.id });
-        const reqDoc = schema.documents.findBy({ id: request.params.id });
-        reqFile.destroy();
-        reqDoc.destroy();
-      });
+        const reqFile = schema.files.findBy({ id: request.params.id })
+        const reqDoc = schema.documents.findBy({ id: request.params.id })
+        reqFile.destroy()
+        reqDoc.destroy()
+      })
 
       this.get('/documents/tags', (schema) => {
-        const tags = [];
-        const req = schema.files.all().models;
+        const tags = []
+        const req = schema.files.all().models
         // eslint-disable-next-line array-callback-return
         req.map((file) => {
           // eslint-disable-next-line no-plusplus
           for (let index = 0; index < file.attrs.data.tags.length; index++) {
             if (!tags.includes(file.attrs.data.tags[index])) {
-              tags.push(file.attrs.data.tags[index]);
+              tags.push(file.attrs.data.tags[index])
             }
           }
-        });
+        })
         return {
-          data: tags,
-        };
-      });
+          data: tags
+        }
+      })
 
       this.get('/documents/topics', (schema) => {
-        const topics = [];
-        const req = schema.documents.all().models;
+        const topics = []
+        const req = schema.documents.all().models
         // eslint-disable-next-line array-callback-return
         req.map((document) => {
           if (!topics.includes(document.topic)) {
-            topics.push(document.topic);
+            topics.push(document.topic)
           }
-        });
+        })
         return {
-          data: topics,
-        };
-      });
+          data: topics
+        }
+      })
 
-      this.passthrough(`https://${auth0Domain.bypass}/oauth/token`);
-    },
-  });
+      this.passthrough(`https://${auth0Domain.bypass}/oauth/token`)
+    }
+  })
 
-  return server;
+  return server
 }

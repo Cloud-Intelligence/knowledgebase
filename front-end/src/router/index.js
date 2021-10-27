@@ -1,28 +1,28 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import authGuard from '../auth/authGuard';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import authGuard from '../auth/authGuard'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue'),
-    beforeEnter: authGuard,
+    beforeEnter: authGuard
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('../views/Login.vue'),
-    props: true,
+    props: true
   },
   {
     path: '/documents/:id',
     name: 'Document',
     component: () => import('../views/Document.vue'),
     props: true,
-    beforeEnter: authGuard,
+    beforeEnter: authGuard
   },
   {
     path: '/favorites',
@@ -30,8 +30,8 @@ const routes = [
     component: () => import('../views/Favorites.vue'),
     beforeEnter: authGuard,
     meta: {
-      title: 'CI Wiki - Favorites',
-    },
+      title: 'CI Wiki - Favorites'
+    }
   },
   {
     path: '/search',
@@ -39,8 +39,8 @@ const routes = [
     component: () => import('../views/Search.vue'),
     beforeEnter: authGuard,
     meta: {
-      title: 'CI Wiki - Search',
-    },
+      title: 'CI Wiki - Search'
+    }
   },
   {
     path: '/create',
@@ -48,8 +48,8 @@ const routes = [
     component: () => import('../views/Create.vue'),
     beforeEnter: authGuard,
     meta: {
-      title: 'CI Wiki - New Document',
-    },
+      title: 'CI Wiki - New Document'
+    }
   },
   {
     path: '/edit/:id',
@@ -58,21 +58,21 @@ const routes = [
     beforeEnter: authGuard,
     props: true,
     meta: {
-      title: 'CI Wiki - Edit Document',
-    },
-  },
-];
+      title: 'CI Wiki - Edit Document'
+    }
+  }
+]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
 router.beforeEach((to, from, next) => {
-  const title = to.meta.title || 'CloudIntelligence - Wiki';
-  document.title = title;
-  return next();
-});
+  const title = to.meta.title || 'CloudIntelligence - Wiki'
+  document.title = title
+  return next()
+})
 
-export default router;
+export default router
