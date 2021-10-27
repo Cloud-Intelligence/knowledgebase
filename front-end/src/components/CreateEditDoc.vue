@@ -78,7 +78,7 @@
       <div id="tags" ref="tags_dropdown_menu" class="menu hide" role="menu">
         <div class="dropdown-content">
           <div class="dropdown-item input-box">
-            <input v-model="new_tag" class="text" type="text" placeholder="#new tag">
+            <input v-model="new_tag" @keydown.enter="submitTag(new_tag)" class="text" type="text" placeholder="#new tag">
             <span>
               <button class="button" @click="submitTag(new_tag)"><uil-plus /></button>
             </span>
