@@ -37,7 +37,7 @@
     </div>
 
     <div class="content">
-      <div class="text" v-html="content">
+      <div class="text" v-html="content" ref="content">
       </div>
       <div class="tags">
         <p v-for="tag in tags"
@@ -53,6 +53,10 @@
 </template>
 
 <script>
+// highlight.js
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
+
 import { UilTrashAlt, UilEdit, UilStar } from '@iconscout/vue-unicons';
 import Spinner from 'vue-simple-spinner';
 import { deleteDocument, getDocument } from '../api/documents';
@@ -87,6 +91,7 @@ export default {
       this.content = document.data.data.content;
       this.tags = document.data.data.tags;
       this.showDeleteForm = false;
+      this.$nextTick(() => this.highlightCode());
       this.loading = false;
     },
     async deleteDoc() {
@@ -131,6 +136,14 @@ export default {
       const l = range(hash, opts.lit[0], opts.lit[1]);
 
       return `background-color: hsl(${h}, ${s}%, ${l}%)`;
+    },
+    highlightCode() {
+      const codeBlocks = this.$refs.content.querySelectorAll('pre');
+      console.log(codeBlocks);
+      codeBlocks.forEach((el) => {
+        // eslint-disable-next-line
+        el.innerHTML = hljs.highlightAuto(el.innerText).value;
+      });
     },
   },
   watch: {
