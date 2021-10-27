@@ -80,9 +80,14 @@
       <div class="menu hide" role="menu" id="tags" ref="tags_dropdown_menu">
         <div class="dropdown-content">
           <div class="dropdown-item input-box">
-            <input class="text" type="text" placeholder="#new tag" v-model="new_tag">
+            <input class="text" type="text"
+                   placeholder="#new tag"
+                   v-model="new_tag"
+                   @keydown.enter="submitTag(new_tag)"
+            >
             <span>
-              <button class="button" @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
+              <button class="button"
+                      @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
             </span>
           </div>
           <button
