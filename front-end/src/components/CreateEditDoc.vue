@@ -55,7 +55,7 @@
         </button>
       </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
-      <quill-editor ref="myTextEditor" v-model="content">
+      <quill-editor ref="myTextEditor" v-model="content" :options="quillOptions">
       </quill-editor>
     </div>
     <div class="tags" @click.stop="">
@@ -132,6 +132,14 @@ export default {
       error_message: null,
       error_is_hidden: false,
       loading: false,
+      quillOptions: {
+        theme: 'snow',
+        modules: {
+          syntax: {
+            highlight: (text) => this.hljs.highlightAuto(text).value,
+          },
+        },
+      },
     };
   },
   props: {
