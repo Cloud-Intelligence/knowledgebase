@@ -19,6 +19,7 @@
     "bulma": "^0.9.3",
     "core-js": "^3.6.5",
     "cypress-plugin-snapshots": "^1.4.4",
+    "highlight.js": "^11.3.1",
     "miragejs": "^0.1.41",
     "sass": "^1.35.2",
     "sass-loader": "^10",
