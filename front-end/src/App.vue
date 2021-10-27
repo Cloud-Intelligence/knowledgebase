@@ -1,42 +1,42 @@
 <template>
   <div id="app">
     <sidebar
-      :user-name="this.$auth.user.name"
-      :user-image="this.$auth.user.picture"
-      v-on:tray="toggleTray"
-      v-if="!(this.$route.name == 'login')"
+      v-if="!($route.name == 'login')"
       ref="sidebar"
-    ></sidebar>
-    <div :class="collapsed || (this.$route.name === 'login') ? 'body closed' : 'body open'">
+      :user-name="$auth.user.name"
+      :user-image="$auth.user.picture"
+      @tray="toggleTray"
+    />
+    <div :class="collapsed || ($route.name === 'login') ? 'body closed' : 'body open'">
       <div class="layout">
-        <router-view :refreshSidebar="refreshSidebar" />
+        <router-view :refresh-sidebar="refreshSidebar" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from './components/Sidebar.vue';
+import Sidebar from './components/Sidebar.vue'
 
 export default {
   name: 'App',
+  components: {
+    Sidebar
+  },
   data() {
     return {
-      collapsed: false,
-    };
-  },
-  components: {
-    Sidebar,
+      collapsed: false
+    }
   },
   methods: {
     toggleTray() {
-      this.collapsed = !this.collapsed;
+      this.collapsed = !this.collapsed
     },
     refreshSidebar() {
-      this.$refs.sidebar.getDocuments();
-    },
-  },
-};
+      this.$refs.sidebar.getDocuments()
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
