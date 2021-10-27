@@ -4,6 +4,32 @@
 
 Stuff for the mind can be accessed at [wiki.cloudintelligence.xyz](wiki.cloudintelligence.xyz)
 
+# Infra
+```
++---------------------------------------------------------------------------------------------+
+|                                                                                             |
+|                                         +----------+                                        |
+|     +----------------+                  | Vue.js   |                                        |
+|     | Netlify        | ---------->      |          |                                        |
+|     | Server         |                  +----------+                                        |
+|     +----+-----------+                                                                      |
+|          |                 +----------------+            +-----------------+                |
+|          |                 |                |            |                 |                |
+|          |                 | Auth0          | <--------- |  Flask API      |                |
+|          |                 |                |            |                 |                |
+|          v                 +---+------------+            |                 |                |
+|                                |                         +------+----------+                |
+|      xxxxxxxx                  |                                |                           |
+|     x        x <---------------+                                |                           |
+|     x xxxxxx x                                                  v                           |
+|     x xxxxxx x                                      +----------------+                      |
+|     x        x -----------------------------------> |                |                      |
+|      xxxxxxxx                                       | Heroku server  |                      |
+|        xxxx   <-----------------------------------  +----------------+                      |
+|                                                                                             |
++---------------------------------------------------------------------------------------------+
+```
+
 # Running locally
 You will need docker and docker-compose set up in order to run this.
 - install [taskfile](https://taskfile.dev/)

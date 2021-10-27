@@ -4,18 +4,19 @@
     :class="collapsed ? 'sidebar closed' : 'sidebar open'"
     id="sidebar"
   >
-    <div class="container">
       <div class="collapse_toggle" @click="toggleTray">
         <uil-angle-left class="icon"></uil-angle-left>
       </div>
-      <div class="user child">
+
+      <div class="user sidebar-item">
         <img :src="this.userImage" alt="user_image" class="user_image" />
         <div class="user_description">
           <p class="title">Cloud intelligence</p>
           <p class="subtitle">{{ userName }}</p>
         </div>
       </div>
-      <div class="default_handles child">
+
+      <div class="default_handles sidebar-item">
         <router-link to="/" class="handle" id="Home">
           <uil-estate class="icon"></uil-estate> Home
         </router-link>
@@ -26,11 +27,13 @@
           <uil-star class="icon"></uil-star> Favorites
         </router-link>
       </div>
-      <div class="handles child">
+
+      <div class="handles sidebar-item">
         <p class="subtitle">Collections</p>
         <div v-if="loading" class="loading">
           <Spinner line-fg-color="#000000"></Spinner>
         </div>
+
         <div v-else v-for="(children, topic) in topics" class="topic" :key="topic">
           <button class="handle" :id="topic" @click="toggleAccordion(topic)">
             {{ topic }}
@@ -51,13 +54,13 @@
           </div>
         </div>
       </div>
+
       <router-link class="add_record" to="/create">
         <uil-plus-circle class="icon"></uil-plus-circle>
       </router-link>
       <button class="logout" @click="logout()">
         <uil-signout class="icon"></uil-signout>
       </button>
-    </div>
   </section>
 </template>
 

@@ -4,11 +4,12 @@
 #document{
     width: 100%;
     height: 100%;
-    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
     color: var(--font-colour);
     justify-content: center;
+    padding-bottom: 100px;
+
 
     .loading {
         z-index: var(--level-3);
@@ -26,56 +27,80 @@
         opacity: 0;
     }
 
-    .heading {
-        width: 100%;
-        height: 5rem;
-        display: flex;
+    .topic-navbar {
+        background: var(--deep-purple);
+        height: 25px;
+        padding-left: 48px;
+    }
 
-        .container.head {
+    .title-bar {
+        padding-left: 50px;
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        border-radius: 0.5rem .5rem 0 0;
+
+        .head {
             float: left;
+            margin-left: -5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
 
             .title {
                 color: var(--font-colour);
                 margin: 0;
                 display: flex;
                 align-items: center;
+                font-size: calc(var(--h1-font-size) * 1.2);
             }
         }
 
-        .container.icons {
+        .icons {
             float: right;
+            margin-right: 20px;
+            > * {
+                float: right;
+                cursor: pointer;
+                font-size: 2rem;
+                margin-left: 0.5rem;
+                margin-top: 0.5rem;
+            }
         }
 
-        .container.icons > * {
-            float: right;
-            cursor: pointer;
-            font-size: 2rem;
-            margin-left: 0.5rem;
-            margin-top: 0.5rem;
-        }
     }
 
     .content {
+        padding: 10px 50px;
         margin-bottom: 0;
         flex: 1;
-        background-color: var(--content-colour);
         overflow-y: auto;
-        border-radius: 0.5rem;
-        padding: 1rem;
+        border-radius: 0 0 0.5rem 0.5rem;
 
         .text {
             width: 100%;
             padding: 0;
+
             @include m.content-styles;
+        }
+
+        .tags {
+            position: fixed;
+            right: 1vw;
+            bottom: 20px;
+            z-index: 10;
+            p {
+                color: var(--font-colour);
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
     }
 
-    .foot .container.tags {
-        > * {
-            color: var(--font-colour);
-            background: var(--content-colour);
-        }
-    }
+
 
     .delete-container {
         display: flex;

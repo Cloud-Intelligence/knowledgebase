@@ -33,13 +33,14 @@
     --body-colour: #222222;
     --font-colour: lightgray;
     --body-alt-colour: #111111;
-    --content-colour: #3F3F3F;
-    --side-bar-colour: #333333;
+    --content-colour: #2B2C2B;
+    --side-bar-colour: #1f1f1f;
     --company-colour: #aaf7f3;
     --scroll-colour: #6b6868;
     --link-color: #5AB9EA;
     --dark-black: #0F0F0F;
     --light-black: rgb(52,52,52);
+    --deep-purple: #4F05BB;
     /*=======================*/
 
     /* z indexs */
@@ -84,7 +85,7 @@ html body * {
 
 body{
     font-size: var(--normal-font-size);
-    background-color: var(--body-colour);
+    background-color: var(--content-colour);
 }
 
 h1,h2,h3,h4{
@@ -99,47 +100,6 @@ img{
     max-width: 100%;
     height: auto;
 }
-/*=======================*/
-
-/* general styling  */
-#app {
-    height: 100vh;
-    width: 100vw;
-}
-
-.body {
-    margin-left: 0;
-    transition: margin-left 0.5s;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-
-#app .body .title {
-    line-height: inherit;
-}
-
-#app .container {
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-    margin: 0;
-}
-
-.container .child {
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-.layout {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow-y: hidden;
-    padding: 1rem 2rem;
-}
-/*=======================*/
 
 /*configure custom scroll bars*/
 
@@ -162,25 +122,4 @@ img{
     background: var(--scroll-colour);
     border: 2px solid var(--content-colour);
     border-radius: 100vw;
-}
-
-/*=======================*/
-
-/* for responsiveness */
-@media screen and (min-width: 900px) {
-    .body.open {
-        margin-left: 300px;
-    }
-}
-
-
-.base-section {
-    height: 100%;
-    width: 100%;
-}
-
-@media screen and (min-width: 900px) {
-    .body.open {
-        margin-left: 300px;
-    }
 }
