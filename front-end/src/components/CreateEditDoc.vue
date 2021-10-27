@@ -86,8 +86,7 @@
                    @keydown.enter="submitTag(new_tag)"
             >
             <span>
-              <button class="button"
-                      @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
+              <button class="button" @click="submitTag(new_tag)"><uil-plus></uil-plus></button>
             </span>
           </div>
           <button
