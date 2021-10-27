@@ -50,7 +50,7 @@ describe('sidebar', () => {
     cy.visit('/');
     cy.get('.topic button').first().click();
     cy.get('#12').click();
-    cy.wait(10); // for loading to fuck off
+    cy.wait(500); // for loading to fuck off
     cy.get('.body').toMatchImageSnapshot();
   });
   it('routes to create page on click of plus sign', () => {

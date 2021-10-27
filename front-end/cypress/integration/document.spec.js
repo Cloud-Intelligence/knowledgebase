@@ -3,7 +3,7 @@ describe('document', () => {
         cy.visit('/');
         cy.get('.topic button').first().click();
         cy.get('#12').click();
-        cy.wait(50);
+        cy.wait(100);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('has a confirmation on delete', () => {
@@ -13,7 +13,7 @@ describe('document', () => {
     });
     it('cancels delete on no button click', () => {
         cy.get('.delete-container .form button').last().click();
-        cy.wait(10);
+        cy.wait(50);
         cy.get('.body').toMatchImageSnapshot();
     });
     it('deletes and redirects on delete button click', () => {

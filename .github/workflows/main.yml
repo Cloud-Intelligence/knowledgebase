@@ -17,10 +17,17 @@ jobs:
       - name: Cypress.io
         uses: cypress-io/github-action@v2.9.7
         with:
-          start: 'yarn test-server --record --key=abc123 --parallel'
+          start: 'yarn test-server'
           working-directory: 'front-end/'
           wait-on: 'http://localhost:8080'
           browser: chrome
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Save Cypress artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
