@@ -1,3 +1,7 @@
+// highligh.js
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
+
 import Vue from 'vue';
 import App from './App.vue';
 
@@ -30,6 +34,8 @@ Vue.use(Auth0Plugin, {
     );
   },
 });
+
+Vue.use(hljs);
 
 if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
   makeServer({ bypass: domain });
