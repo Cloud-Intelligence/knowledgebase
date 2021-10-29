@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
 
+import router from './router';
 import 'bulma/css/bulma.css';
+
 import './assets/styles/style.scss';
 
 // Import the plugin here

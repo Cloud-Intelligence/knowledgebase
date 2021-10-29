@@ -55,7 +55,7 @@
         </button>
       </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
-      <quill-editor ref="myTextEditor" v-model="content">
+      <quill-editor ref="myTextEditor" v-model="content" :options="quillOptions">
       </quill-editor>
     </div>
     <div class="tags" @click.stop="">
@@ -104,6 +104,10 @@
 
 import { quillEditor } from 'vue-quill-editor';
 
+// highlight.js
+import hljs from 'highlight.js';
+import 'highlight.js/styles/monokai-sublime.css';
+
 import {
   UilTimes,
   UilPlus,
@@ -132,6 +136,28 @@ export default {
       error_message: null,
       error_is_hidden: false,
       loading: false,
+      quillOptions: {
+        theme: 'snow',
+        modules: {
+          syntax: {
+            highlight: (text) => hljs.highlightAuto(text).value,
+          },
+          toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+            [{ header: 1 }, { header: 2 }],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ script: 'sub' }, { script: 'super' }],
+            [{ color: [] }, { background: [] }],
+            [{ font: [] }],
+            [{ align: [] }],
+            ['clean'],
+            [{ size: ['small', false, 'large', 'huge'] }],
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['link', 'image', 'video', 'formula'],
+          ],
+        },
+      },
     };
   },
   props: {
