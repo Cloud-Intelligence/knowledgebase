@@ -17,7 +17,7 @@
       </div>
     </transition>
     <div class="topic-navbar">
-      Topic name
+      <p>{{topic}}</p>
     </div>
     <div class="title-bar">
       <div class="head">
@@ -71,6 +71,7 @@ export default {
   },
   data() {
     return {
+      topic: null,
       title: null,
       content: null,
       tags: null,
@@ -86,6 +87,7 @@ export default {
     async updateState() {
       this.loading = true;
       const document = await getDocument(this.id);
+      this.topic = document.data.topic;
       this.title = document.data.data.title;
       window.document.title = `${this.title} - Wiki`;
       this.content = document.data.data.content;
