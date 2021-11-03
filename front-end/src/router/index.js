@@ -52,7 +52,7 @@ const routes = [
     },
   },
   {
-    path: '/edit/:id',
+    path: '/edit/:pk',
     name: 'Edit',
     component: () => import('../views/Edit.vue'),
     beforeEnter: authGuard,
