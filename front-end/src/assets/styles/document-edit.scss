@@ -194,8 +194,15 @@
 
     .submit {
         position: fixed;
-        top: 2vw;
+        top: 5vw;
         right: 1vw;
+
+        button {
+            background-color: var(--deep-purple);
+            color: var(--font-colour);
+            font-weight: bold;
+            border: none;
+        }
     }
 
     .quill-container {

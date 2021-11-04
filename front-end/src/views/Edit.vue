@@ -48,6 +48,11 @@
           @keyup="debounce"
       />
     </div>
+    <div class="submit">
+      <button class="button" @click="finish">
+        Return
+      </button>
+    </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
       <quill-editor ref="myTextEditor"
                     v-model="content"
@@ -253,6 +258,9 @@ export default {
           this.appendError(error.message);
         }
       }
+    },
+    finish() {
+      this.$router.push(`/documents/${this.pk}/`);
     },
   },
 };
