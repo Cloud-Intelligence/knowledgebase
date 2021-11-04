@@ -18,6 +18,7 @@
           <input :class="is_valid? 'input': 'input is-invalid'"
                  v-model="topic"
                  @click.stop="toggleDropdown"
+                 @keyup.enter="createDoc"
           >
           <transition name="slide-fade">
             <div v-if="dropdownTopics" class="topic-container">
@@ -33,7 +34,10 @@
         </div>
         <div class="field">
           <p class="label">Document title</p>
-          <input :class="is_valid? 'input': 'input is-invalid'" v-model="title">
+          <input :class="is_valid? 'input': 'input is-invalid'"
+                 v-model="title"
+                 @keyup.enter="createDoc"
+          >
         </div>
         <div class="submit">
           <button class="button" @click="createDoc">Next</button>
