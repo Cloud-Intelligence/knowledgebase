@@ -97,7 +97,7 @@
                 margin: 0.25rem;
                 border-radius: 0.5rem;
                 height: 2.2rem;
-                font-size: 13.5px;
+                font-size: var(--small-font-size);
                 &:hover {
                     cursor: pointer;
                 }
