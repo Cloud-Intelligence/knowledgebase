@@ -20,7 +20,8 @@
                 'topic-input trigger invalid'"
             aria-haspopup="true"
             aria-controls="dropdown-menu"
-            @click.prevent="triggerDropdown('topic')"
+            @click.stop="triggerDropdown('topic')"
+            @keyup="debounce"
         >
         <div class="menu hide" role="menu" id="topic" ref="topics_dropdown_menu">
           <div class="dropdown-content">
@@ -44,18 +45,15 @@
           placeholder="Untitled document"
           v-model="title"
           id="title"
+          @keyup="debounce"
       />
     </div>
-    <div class="submit">
-      <button :class="loading?
-              'button is-primary is-loading':
-              'button is-primary'"
-              @click="submitForm()">
-        ✔️
-      </button>
-    </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
-      <quill-editor ref="myTextEditor" v-model="content" :options="quillOptions">
+      <quill-editor ref="myTextEditor"
+                    v-model="content"
+                    :options="quillOptions"
+                    @keyup.native.capture.prevent="debounce"
+      >
       </quill-editor>
     </div>
     <div class="tags" @click.stop="">
@@ -130,7 +128,7 @@ export default {
       is_valid: true,
       error_message: null,
       error_is_hidden: false,
-      loading: false,
+      timeout: null,
       quillOptions: {
         theme: 'snow',
         modules: {
@@ -201,15 +199,18 @@ export default {
     },
     submitTopic(topic) {
       this.topic = topic;
+      this.debounce();
     },
     submitTag(tag) {
       if (!this.tags.includes(tag)) {
         this.tags.push(tag);
         this.new_tag = '';
+        this.debounce();
       }
     },
     deleteTag(tag) {
       this.tags = this.tags.filter((value) => value !== tag);
+      this.debounce();
     },
     appendError(error) {
       this.error_message = error;
@@ -224,19 +225,17 @@ export default {
         this.error_is_hidden = false;
       }, timeout);
     },
-    async submitForm() {
-      this.loading = true;
+    debounce() {
+      clearTimeout(this.timeout);
+
+      this.timeout = setTimeout(() => {
+        this.updateDoc();
+      }, 1000);
+    },
+    async updateDoc() {
       const {
         topic, title, tags, content,
       } = this;
-
-      if (topic === '' || title === '' || tags.length === 0 || content === '') {
-        this.is_valid = false;
-        this.loading = false;
-        this.appendError('fields cannot be empty');
-        return;
-      }
-      this.is_valid = true;
       const data = {
         topic,
         data: {
@@ -247,15 +246,12 @@ export default {
       };
       try {
         await updateDocument(this.pk, JSON.stringify(data));
-        await this.$router.push(`/documents/${this.pk}/`);
-        this.refreshSidebar();
       } catch (error) {
         if (error.response.status) {
           this.appendError(`Error ${error.response.status}, failure to commit post.`);
         } else {
           this.appendError(error.message);
         }
-        this.loading = false;
       }
     },
   },
