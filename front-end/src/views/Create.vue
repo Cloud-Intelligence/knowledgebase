@@ -36,7 +36,7 @@
           <input :class="is_valid? 'input': 'input is-invalid'" v-model="title">
         </div>
         <div class="submit">
-          <button class="button is-primary" @click="createDoc">Next</button>
+          <button class="button" @click="createDoc">Next</button>
         </div>
       </div>
     </div>

@@ -55,6 +55,9 @@
 
       .input {
         transition: background-color 0.25s ease-in-out, border 0.25s ease-in-out;
+        background-color: var(--content-colour);
+        border: transparent;
+        color: var(--font-colour);
         &:focus {
           border: 2px solid var(--deep-purple);
         }
@@ -115,6 +118,10 @@
 
         .button {
           width: 5rem;
+          background-color: var(--deep-purple);
+          border: none;
+          color: var(--font-colour);
+          font-weight: bold;
         }
       }
     }
