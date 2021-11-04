@@ -41,6 +41,11 @@
     .ql-editor {
       @include m.content-styles;
       padding: 1.5px 50px;
+
+      &::before {
+        padding: 0 35px;
+        color: var(--font-colour);
+      }
     }
   }
 }
