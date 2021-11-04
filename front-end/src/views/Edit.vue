@@ -1,5 +1,5 @@
 <template>
-  <div class="create-edit-container" @click="closeDropdowns()">
+  <div class="edit-container" @click="closeDropdowns()">
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -266,7 +266,7 @@ export default {
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
 @import '~quill/dist/quill.bubble.css';
-@import "../assets/styles/document-create-edit";
+@import "../assets/styles/document-edit";
 </style>
 
 <style lang="scss">
