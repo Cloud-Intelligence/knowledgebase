@@ -1,6 +1,6 @@
 @use './document-contents' as m;
 
-.create-edit-container {
+.edit-container {
   .editor {
     background: var(--content-colour);
   }
@@ -41,6 +41,11 @@
     .ql-editor {
       @include m.content-styles;
       padding: 1.5px 50px;
+
+      &::before {
+        padding: 0 35px;
+        color: var(--font-colour);
+      }
     }
   }
 }
