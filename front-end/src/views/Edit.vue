@@ -69,7 +69,11 @@
           @click="triggerDropdown('tags')"
       >
         <div v-if="tags.length">
-          <button v-for="tag in tags" :key="tag" @click.stop="deleteTag(tag)">
+          <button v-for="tag in tags"
+                  :key="tag"
+                  @click.stop="deleteTag(tag)"
+                  :style="getBackgroundColor(tag)"
+          >
             {{tag}} <span><uil-times></uil-times></span>
           </button>
         </div>
@@ -114,6 +118,8 @@ import {
   listTopics,
   updateDocument,
 } from '../api/documents';
+
+import getBackgroundColor from '../utils/dynamic_colours';
 
 export default {
   name: 'Edit',
@@ -259,6 +265,7 @@ export default {
         }
       }
     },
+    getBackgroundColor,
     finish() {
       this.$router.push(`/documents/${this.pk}/`);
     },
