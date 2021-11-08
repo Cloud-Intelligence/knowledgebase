@@ -1,4 +1,8 @@
 import Vue from 'vue';
+
+// vue-particles
+import VueParticles from 'vue-particles';
+
 import App from './App.vue';
 
 import router from './router';
@@ -30,6 +34,8 @@ Vue.use(Auth0Plugin, {
     );
   },
 });
+
+Vue.use(VueParticles);
 
 if (process.env.VUE_APP_MOCK_SERVER_ENABLED === '1') {
   makeServer({ bypass: domain });
