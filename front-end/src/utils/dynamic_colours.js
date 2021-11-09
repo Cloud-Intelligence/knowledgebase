@@ -4,7 +4,7 @@ const getBackgroundColor = (tag) => {
   opts.sat = opts.sat || [55, 56];
   opts.lit = opts.lit || [35, 55];
 
-  const range = function (hash, min, max) {
+  const range = (hash, min, max) => {
     const diff = max - min;
     const x = ((hash % diff) + diff) % diff;
     return x + min;
