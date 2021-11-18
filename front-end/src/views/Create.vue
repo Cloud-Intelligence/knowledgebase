@@ -87,10 +87,8 @@ export default {
       this.dropdownTopics = !this.dropdownTopics;
     },
     async fetchUniqueTopics() {
-      this.loading = true;
       const resp = await listTopics();
       this.loaded_topics = resp.data;
-      this.loading = false;
     },
     submitTopic(topic) {
       this.topic = topic;
@@ -127,12 +125,15 @@ export default {
       };
 
       try {
+        this.loading = true;
         const resp = await postDocument(JSON.stringify(data));
         const { id } = resp;
         this.loading = false;
         this.refreshSidebar();
+        this.loading = false;
         await this.$router.push(`/edit/${id}/`);
       } catch (error) {
+        this.loading = false;
         if (error.response.status) {
           this.appendError(`Error ${error.response.status}, failure to commit post.`);
         } else {
