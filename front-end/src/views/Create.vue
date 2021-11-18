@@ -1,5 +1,10 @@
 <template>
   <section class="create" @click="closeDropdown">
+    <transition name="fade">
+      <div v-if="loading" class="loading is-overlay">
+        <Spinner line-fg-color="#000000"></Spinner>
+      </div>
+    </transition>
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -49,6 +54,7 @@
 
 <script>
 
+import Spinner from 'vue-simple-spinner';
 import { listTopics, postDocument } from '../api/documents';
 
 export default {
@@ -64,7 +70,11 @@ export default {
       dropdownTopics: false,
       error_message: null,
       error_is_hidden: false,
+      loading: false,
     };
+  },
+  components: {
+    Spinner,
   },
   mounted() {
     this.fetchUniqueTopics();
@@ -77,8 +87,10 @@ export default {
       this.dropdownTopics = !this.dropdownTopics;
     },
     async fetchUniqueTopics() {
+      this.loading = true;
       const resp = await listTopics();
       this.loaded_topics = resp.data;
+      this.loading = false;
     },
     submitTopic(topic) {
       this.topic = topic;
