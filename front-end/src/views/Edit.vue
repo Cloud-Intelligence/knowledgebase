@@ -41,22 +41,30 @@
           </div>
         </div>
       </div>
-      <input
-          :class="
+      <div class="row">
+        <input
+            :class="
                 (!title == '' || is_valid)?
                 'title-input':
                 'title-input invalid'"
-          type="text"
-          placeholder="Untitled document"
-          v-model="title"
-          id="title"
-          @keyup="debounce"
-      />
-    </div>
-    <div class="submit">
-      <button class="button" @click="finish">
-        Return
-      </button>
+            type="text"
+            placeholder="Untitled document"
+            v-model="title"
+            id="title"
+            @keyup="debounce"
+        />
+        <div class="submit-container">
+          <button class="button" @click="finish">
+            Return
+          </button>
+          <div class="capture">
+            <transition name="fade">
+              <Spinner v-if="saving" line-fg-color="#000000" size="small" class="saving"></Spinner>
+              <p v-else>Saved</p>
+            </transition>
+          </div>
+        </div>
+      </div>
     </div>
     <div :class="(!content=='' || is_valid)?'quill-container':'quill-container invalid'">
       <quill-editor ref="myTextEditor"
@@ -90,7 +98,7 @@
         <div class="dropdown-content">
           <div class="dropdown-item input-box">
             <input class="text" type="text"
-                   placeholder="new tag"
+                   placeholder="#new tag"
                    v-model="new_tag"
                    @keydown.enter="submitTag(new_tag)"
             >
@@ -146,7 +154,7 @@ export default {
       error_message: null,
       error_is_hidden: false,
       timeout: null,
-      loading: true,
+      saving: false,
       quillOptions: {
         theme: 'snow',
         modules: {
@@ -245,6 +253,7 @@ export default {
       }, timeout);
     },
     debounce() {
+      this.saving = true;
       clearTimeout(this.timeout);
 
       this.timeout = setTimeout(() => {
@@ -271,6 +280,8 @@ export default {
         } else {
           this.appendError(error.message);
         }
+      } finally {
+        this.saving = false;
       }
     },
     getBackgroundColor,
