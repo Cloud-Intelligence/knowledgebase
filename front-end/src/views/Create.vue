@@ -82,6 +82,7 @@ export default {
     },
     submitTopic(topic) {
       this.topic = topic;
+      this.closeDropdown();
     },
     appendError(error) {
       this.error_message = error;
