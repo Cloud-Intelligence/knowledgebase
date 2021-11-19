@@ -85,7 +85,7 @@
         <div class="dropdown-content">
           <div class="dropdown-item input-box">
             <input class="text" type="text"
-                   placeholder="#new tag"
+                   placeholder="new tag"
                    v-model="new_tag"
                    @keydown.enter="submitTag(new_tag)"
             >

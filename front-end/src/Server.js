@@ -23,13 +23,13 @@ export function makeServer(auth0Domain, { environment = 'development' } = {}) {
         data: {
           title: 'Test1',
           content: mockData,
-          tags: ['#cloudIntelligence', '#home', '#booyah'],
+          tags: ['cloudIntelligence', 'home', 'booyah'],
         },
       });
       server.create('file', {
         id: 13,
         data: {
-          title: 'Test2', content: mockData, tags: ['#cloudIntelligence', '#home', '#booyah'],
+          title: 'Test2', content: mockData, tags: ['cloudIntelligence', 'home', 'booyah'],
         },
       });
     },
