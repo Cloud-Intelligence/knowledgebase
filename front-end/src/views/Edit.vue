@@ -146,7 +146,7 @@ export default {
       error_message: null,
       error_is_hidden: false,
       timeout: null,
-      loading: false,
+      loading: true,
       quillOptions: {
         theme: 'snow',
         modules: {
@@ -195,7 +195,6 @@ export default {
       this.loaded_topics = resp.data;
     },
     async fetchDocument() {
-      this.loading = true;
       const resp = await getDocument(this.pk);
       this.topic = resp.data.topic;
       this.title = resp.data.data.title;

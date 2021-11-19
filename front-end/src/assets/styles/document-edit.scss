@@ -7,22 +7,6 @@
     background: var(--content-colour);
     border-radius: 0.5rem;
 
-    .loading {
-        z-index: var(--level-3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(8px);
-    }
-
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .25s;
-    }
-
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-
     .error-message {
         position: fixed;
         width: 100%;
