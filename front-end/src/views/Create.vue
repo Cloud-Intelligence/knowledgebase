@@ -128,17 +128,16 @@ export default {
         this.loading = true;
         const resp = await postDocument(JSON.stringify(data));
         const { id } = resp;
-        this.loading = false;
         this.refreshSidebar();
-        this.loading = false;
         await this.$router.push(`/edit/${id}/`);
       } catch (error) {
-        this.loading = false;
         if (error.response.status) {
           this.appendError(`Error ${error.response.status}, failure to commit post.`);
         } else {
           this.appendError(error.message);
         }
+      } finally {
+        this.loading = false;
       }
     },
   },
