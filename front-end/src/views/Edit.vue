@@ -1,5 +1,10 @@
 <template>
   <div class="edit-container" @click="closeDropdowns()">
+    <transition name="fade">
+      <div v-if="loading" class="loading is-overlay">
+        <Spinner line-fg-color="#000000"></Spinner>
+      </div>
+    </transition>
     <div :class="error_is_hidden? 'error-message hide':'error-message'">
       <div
           v-if="this.error_message"
@@ -111,6 +116,7 @@
 
 import hljs from 'highlight.js';
 import { quillEditor } from 'vue-quill-editor';
+import Spinner from 'vue-simple-spinner';
 import { UilPlus, UilTimes } from '@iconscout/vue-unicons';
 import {
   getDocument,
@@ -140,6 +146,7 @@ export default {
       error_message: null,
       error_is_hidden: false,
       timeout: null,
+      loading: true,
       quillOptions: {
         theme: 'snow',
         modules: {
@@ -168,6 +175,7 @@ export default {
     quillEditor,
     UilTimes,
     UilPlus,
+    Spinner,
   },
   mounted() {
     // fetch all unique tags
@@ -176,7 +184,6 @@ export default {
     this.fetchUniqueTopics();
     // fetch document data
     this.fetchDocument();
-    console.log(this.pk);
   },
   methods: {
     async fetchUniqueTags() {
@@ -193,6 +200,7 @@ export default {
       this.title = resp.data.data.title;
       this.tags = resp.data.data.tags;
       this.content = resp.data.data.content;
+      this.loading = false;
     },
     triggerDropdown(dropdown) {
       const menu = document.getElementById(dropdown);
