@@ -101,6 +101,9 @@
                 &:hover {
                     cursor: pointer;
                 }
+                &::before {
+                    content: '#';
+                }
             }
         }
     }
