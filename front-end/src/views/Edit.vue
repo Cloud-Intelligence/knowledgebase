@@ -16,18 +16,26 @@
     </div>
     <div class="title-topic-form">
       <div class="topics">
-        <input
-            type="text"
-            v-model="topic"
-            placeholder="Topic"
-            :class="(!topic==''||is_valid)?
+        <div class="topic-container">
+          <input
+              type="text"
+              v-model="topic"
+              placeholder="Topic"
+              :class="(!topic==''||is_valid)?
                 'topic-input trigger':
                 'topic-input trigger invalid'"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu"
-            @click.stop="triggerDropdown('topic')"
-            @keyup="debounce"
-        >
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+              @click.stop="triggerDropdown('topic')"
+              @keyup="debounce"
+          >
+          <div class="capture">
+            <transition name="fade">
+              <Spinner v-if="saving" line-fg-color="#000000" size="small" class="saving"></Spinner>
+              <p v-else>Saved</p>
+            </transition>
+          </div>
+        </div>
         <div class="menu hide" role="menu" id="topic" ref="topics_dropdown_menu">
           <div class="dropdown-content">
             <button
@@ -57,12 +65,6 @@
           <button class="button" @click="finish">
             Return
           </button>
-          <div class="capture">
-            <transition name="fade">
-              <Spinner v-if="saving" line-fg-color="#000000" size="small" class="saving"></Spinner>
-              <p v-else>Saved</p>
-            </transition>
-          </div>
         </div>
       </div>
     </div>
