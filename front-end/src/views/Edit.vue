@@ -76,10 +76,13 @@
         <div v-if="tags.length">
           <button v-for="tag in tags"
                   :key="tag"
-                  @click.stop="deleteTag(tag)"
+                  @click.stop="triggerDropdown('tags')"
                   :style="getBackgroundColor(tag)"
           >
-            {{tag}} <span><uil-times></uil-times></span>
+            {{tag}}
+            <span @click.stop="deleteTag(tag)" class="delete-container">
+              <uil-times class="delete"></uil-times>
+            </span>
           </button>
         </div>
         <div v-else>
