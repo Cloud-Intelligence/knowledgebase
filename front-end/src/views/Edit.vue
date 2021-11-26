@@ -174,7 +174,7 @@ export default {
           'markdown-toolbar': true,
           toolbar: {
             container: [
-              ['bold', 'italic', 'underline', 'strike'],
+              ['bold', 'italic', 'underline', 'strike', 'code'],
               ['blockquote', 'code-block'],
               [{ header: 1 }, { header: 2 }],
               [{ list: 'ordered' }, { list: 'bullet' }],
