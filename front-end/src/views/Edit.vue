@@ -116,6 +116,8 @@
 
 import hljs from 'highlight.js';
 import { quillEditor } from 'vue-quill-editor';
+import Quill from 'quill';
+import markdown from 'quill-markdown-toolbar';
 import Spinner from 'vue-simple-spinner';
 import { UilPlus, UilTimes } from '@iconscout/vue-unicons';
 import {
@@ -126,6 +128,9 @@ import {
 } from '../api/documents';
 
 import getBackgroundColor from '../utils/dynamic_colours';
+
+// register markdown module to quill
+Quill.register('modules/markdown-toolbar', markdown);
 
 export default {
   name: 'Edit',
@@ -153,20 +158,27 @@ export default {
           syntax: {
             highlight: (text) => hljs.highlightAuto(text).value,
           },
-          toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],
-            ['blockquote', 'code-block'],
-            [{ header: 1 }, { header: 2 }],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ script: 'sub' }, { script: 'super' }],
-            [{ color: [] }, { background: [] }],
-            [{ font: [] }],
-            [{ align: [] }],
-            ['clean'],
-            [{ size: ['small', false, 'large', 'huge'] }],
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            ['link', 'image', 'video', 'formula'],
-          ],
+          'markdown-toolbar': true,
+          toolbar: {
+            container: [
+              ['bold', 'italic', 'underline', 'strike'],
+              ['blockquote', 'code-block'],
+              [{ header: 1 }, { header: 2 }],
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ script: 'sub' }, { script: 'super' }],
+              [{ color: [] }, { background: [] }],
+              [{ font: [] }],
+              [{ align: [] }],
+              ['clean'],
+              [{ size: ['small', false, 'large', 'huge'] }],
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
+              ['link', 'image', 'video', 'formula'],
+              ['markdown'],
+            ],
+            handlers: {
+              markdown() {},
+            },
+          },
         },
       },
     };
