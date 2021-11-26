@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "quill-markdown-toolbar": "^0.1.3"
+  }
+}
