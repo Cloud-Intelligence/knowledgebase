@@ -72,7 +72,7 @@
       <quill-editor ref="myTextEditor"
                     v-model="content"
                     :options="quillOptions"
-                    @keyup.native.capture.prevent="debounce"
+                    @change="debounce"
       >
       </quill-editor>
     </div>
