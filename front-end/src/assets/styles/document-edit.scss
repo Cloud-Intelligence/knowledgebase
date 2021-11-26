@@ -106,59 +106,112 @@
 
         }
 
-        .topic-input {
-            height: 25px;
-            padding-left: 48px;
-            font-size: var(--normal-font-size);
+        .topic-container {
             background: var(--deep-purple);
-            border: none;
-            outline: none;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 48px;
 
-            &:focus {
-                outline: none
-            }
+            .topic-input {
+                height: 25px;
+                font-size: var(--normal-font-size);
+                background: transparent;
+                border: none;
+                outline: none;
 
-            &.invalid {
-                border: 1px solid #e35e7f;
-                transition: border 0.25s;
                 &:focus {
                     outline: none
                 }
+
+                &.invalid {
+                    border: 1px solid #e35e7f;
+                    transition: border 0.25s;
+                    &:focus {
+                        outline: none
+                    }
+                }
+            }
+            .capture {
+                position: relative;
+                width: 100px;
+                cursor: default;
+                display: flex;
+                justify-content: center;
+
+                .fade-enter-active, .fade-leave-active {
+                    transition: opacity .3s ease;
+                }
+                .fade-enter, .fade-leave-to {
+                    opacity: 0;
+                }
+
+                p {
+                    text-align: center;
+                    color: var(--font-colour);
+                }
+
+                .saving {
+                    margin-top: 0.3rem;
+                }
+
+                & > * {
+                    height: 1rem;
+                    position: absolute;
+                }
             }
         }
+
         .menu {
             margin-left: 40px;
             margin-top: 10px;
         }
 
-
-        .title-input {
-            height: 100px;
+        .row {
+            display: flex;
+            justify-content: space-between;
             padding: 0 50px;
-            border: none;
-            font-size: calc(var(--h1-font-size) * 1.2);
-            font-weight: 600;
-            line-height: 1.125;
-            background: var(--content-colour);
-            flex-grow: 1;
-            transition: border 0.25s;
 
-            &:focus {
-                outline: none;
+            .title-input {
+                height: 100px;
                 border: none;
+                font-size: calc(var(--h1-font-size) * 1.2);
+                font-weight: 600;
+                line-height: 1.125;
+                background: var(--content-colour);
+                flex-grow: 1;
+                transition: border 0.25s;
+
+                &:focus {
+                    outline: none;
+                    border: none;
+                }
+            }
+
+            .title-input.invalid {
+                border: 1px solid #e35e7f;
+                border-radius: 0.5rem;
+                transition: border 0.25s;
+            }
+
+            .title-input.invalid:focus {
+                outline: none;
+            }
+
+            .submit-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                button {
+                    background-color: var(--deep-purple);
+                    color: var(--font-colour);
+                    font-weight: bold;
+                    border: none;
+                }
             }
         }
 
 
-        .title-input.invalid {
-            border: 1px solid #e35e7f;
-            border-radius: 0.5rem;
-            transition: border 0.25s;
-        }
-
-        .title-input.invalid:focus {
-            outline: none;
-        }
 
         .dropdown {
             display: flex;
@@ -189,19 +242,6 @@
                 outline: none;
             }
 
-        }
-    }
-
-    .submit {
-        position: fixed;
-        top: 5vw;
-        right: 1vw;
-
-        button {
-            background-color: var(--deep-purple);
-            color: var(--font-colour);
-            font-weight: bold;
-            border: none;
         }
     }
 
