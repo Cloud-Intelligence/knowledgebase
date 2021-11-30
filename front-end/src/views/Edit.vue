@@ -144,6 +144,9 @@ import getBackgroundColor from '../utils/dynamic_colours';
 
 // register markdown module to quill
 Quill.register('modules/markdown-toolbar', markdown);
+// change icon for inline code
+const icons = Quill.import('ui/icons');
+icons.code = '<i class="inline-icon">{ }</i>';
 
 export default {
   name: 'Edit',
