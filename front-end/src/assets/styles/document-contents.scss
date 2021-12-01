@@ -49,6 +49,16 @@
     margin: 0;
   }
 
+  code {
+    background: var(--dark-black);
+    color: var(--font-colour);
+    font-family: monospace;
+    width: 80%;
+    padding: 2.5px;
+    margin: 5px 0;
+    border-radius: 4px;
+  }
+
   ol > li {
     list-style-type: none;
   }

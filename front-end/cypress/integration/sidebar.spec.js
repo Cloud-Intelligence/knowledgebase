@@ -55,7 +55,7 @@ describe('sidebar', () => {
     cy.visit('/');
     cy.get('.topic button').first().click();
     cy.get('#12').click();
-    cy.wait(200);
+    cy.wait(2000);
     cy.get('.body').toMatchImageSnapshot();
   });
   it('routes to create page on click of plus sign', () => {

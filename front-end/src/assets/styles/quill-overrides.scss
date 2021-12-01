@@ -38,6 +38,20 @@
     .ql-markdown path {
       fill: var(--font-colour);
     }
+
+    .ql-code {
+      .inline-icon {
+        font-weight: bold;
+        color: var(--font-colour);
+        font-style: normal;
+      }
+
+      &.ql-active {
+        .inline-icon {
+          color: #06c;
+        }
+      }
+    }
   }
 
   .ql-container {
