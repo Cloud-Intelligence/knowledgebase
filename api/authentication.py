@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 from six.moves.urllib.request import urlopen
@@ -11,6 +12,7 @@ DEVELOPMENT = os.environ.get("DEVELOPMENT", 1) == "1"
 AUTH0_DOMAIN = os.environ.get("API_DOMAIN")
 API_AUDIENCE = os.environ.get("API_AUDIENCE")
 ALGORITHMS = ["RS256"]
+SERVER_KEYS = {i for i in {os.environ.get("DISCORD_BOT_API_KEY")} if i}
 
 
 # Error handler
@@ -34,12 +36,12 @@ def get_token_auth_header():
 
     parts = auth.split()
 
-    if parts[0].lower() != "bearer":
+    if parts[0].lower() not in ["bearer", "basic"]:
         raise AuthError(
             {
                 "code": "invalid_header",
                 "description": "Authorization header must start with"
-                " Bearer",
+                " Bearer or Basic",
             },
             401,
         )
@@ -51,7 +53,7 @@ def get_token_auth_header():
         raise AuthError(
             {
                 "code": "invalid_header",
-                "description": "Authorization header must be" " Bearer token",
+                "description": "Authorization header must be" " Bearer or basic token",
             },
             401,
         )
@@ -77,11 +79,7 @@ def get_rsa_key(token):
     return rsa_key
 
 
-def decode_token():
-    if DEVELOPMENT:
-        return {"email": "dev@example.com"}
-
-    token = get_token_auth_header()
+def decode_token(token):
     rsa_key = get_rsa_key(token)
     if not rsa_key:
         raise AuthError(
@@ -133,7 +131,18 @@ def requires_auth(f):
 
     @wraps(f)
     def decorated(*args, **kwargs):
-        payload = decode_token()
+        if DEVELOPMENT:
+            request.current_user = {"email": "dev@example.com"}
+            return f(*args, **kwargs)
+
+        # check for server auth first
+        token = get_token_auth_header()
+        if token in SERVER_KEYS:
+            request.current_user = {"email": "internal application"}  # TODO: decode token and grab username....
+            return f(*args, **kwargs)
+
+        # then check for jwt auth
+        payload = decode_token(token)
         request.current_user = payload
         return f(*args, **kwargs)
 
