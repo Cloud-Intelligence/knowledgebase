@@ -20,7 +20,7 @@ def file_list(user):
 
 
 def save_file(contents):
-    res = DB.folders.insert({**contents})
+    res = DB.folders.insert_one(contents)
     return res
 
 
