@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_cors import cross_origin, CORS
-from werkzeug.wrappers import response
-from loguru import logger
+
 import ujson as json
 
 from authentication import (
     AuthError,
     requires_auth,
-    requires_scope,
-    get_token_auth_header,
 )
 from utils.file_tools import file_list, load_file, save_file, update_file, delete_file, tags, topics
 
@@ -36,7 +33,7 @@ def public():
 def index():
     if request.method == "POST":
         res = save_file(json.loads(request.data))
-        return jsonify(success=True, id=str(res))
+        return jsonify(success=True, id=str(res.inserted_id))
     else:
         files = file_list(request.current_user)
         files = [
