@@ -1,9 +1,5 @@
-data/wiki/cache/
-.idea
-.vscode
-node_modules/
-
-api/.env
-api/.env.production
-
-__pycache__/
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
