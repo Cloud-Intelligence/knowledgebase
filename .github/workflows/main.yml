@@ -1,32 +1,30 @@
-name: E2E Test
-
+name: Build Jekyll site
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-  workflow_dispatch:
-
+ push:
+   branches: ["master"]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
-  ui-test:
+  build:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.0-chrome91-ff89
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Cypress.io
-        uses: cypress-io/github-action@v2.9.7
-        with:
-          start: 'yarn test-server'
-          working-directory: 'front-end/'
-          wait-on: 'http://localhost:8080'
-          browser: chrome
-          record: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
-      - name: Save Cypress artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: scrots
-          path: front-end/cypress/integration/__image_snapshots__/
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build
+        uses: actions/jekyll-build-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
