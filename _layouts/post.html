@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/post-style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="/assets/images/logo.png" alt="Logo" class="logo">
+            <h1>{{ site.title }}</h1>
+        </div>
+        <a href="/" class="home-button">Back to Home</a>
+    </header>
+    
+    <main>
+        <div class="post-container">
+            <article>
+                {% if page.content contains "*" %}
+                    <h2>{{ page.content | split: "*" | first }}</h2>
+                {% endif %}
+                
+                <div class="post-content">
+                    {% assign sections = page.content | split: '___' %}
+                    {% for section in sections %}
+                        <div class="post-section">
+                            {{ section | markdownify }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Kian Cockman. All rights reserved.</p>
+    </footer>
+</body>
+</html>
