@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* White background for the body */
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #003366; /* Dark blue for headings */
+}
+
+a {
+    color: #93C9E3;
+    text-decoration: none;
+}
+
+/* Header Styles */
+header {
+    background-color: #ffffff;
+    color: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+header .logo {
+    width: 50vh;
+}
+
+header .site-info {
+    flex-grow: 1; /* To allow h1 to be centered */
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.post-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+    max-width: 30%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.post-content {
+    max-width: 65%;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #ffffff; /* Light blue for footer */
+    color: #93C9E3;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}

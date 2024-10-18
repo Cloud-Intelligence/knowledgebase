@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/post-style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="/assets/images/logo.png" alt="Logo" class="logo">
+        </div>
+        <a href="/" class="home-button">Back to Home</a>
+    </header>
+    
+    <main>
+        <div class="post-container">
+            <article>
+                <div class="post-content">
+                    {{ page.content }}
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cloud Intelligence. All rights reserved.</p>
+    </footer>
+</body>
+</html>
