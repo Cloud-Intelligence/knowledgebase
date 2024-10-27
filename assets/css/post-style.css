@@ -1,24 +1,30 @@
 /* General Styles */
+
+:root{
+    --white: #ffffff;
+    --blue: #93C9E3;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: var(--white);
     color: #333;
     margin: 0;
     padding: 0;
 }
 
 h1, h2 {
-    color: #93C9E3;
+    color: var(--blue);
 }
 
 a {
-    color: #93C9E3;
+    color: var(--blue);
     text-decoration: none;
 }
 
 /* Header Styles */
 header {
-    background-color: #ffffff;
+    background-color: var(--white);
     color: #f9f9f9;
     padding: 20px;
     display: flex;
@@ -44,7 +50,7 @@ header .site-info {
 }
 
 header h1 {
-    color: #ffffff;
+    color: var(--white);
     margin: 0;
 }
 
@@ -76,8 +82,8 @@ article {
 
 /* Footer Styles */
 footer {
-    background-color: #ffffff;
-    color: #93C9E3;
+    background-color: var(--white);
+    color: var(--blue);
     padding: 20px;
     text-align: center;
     position: static;
@@ -92,7 +98,7 @@ footer {
 .home-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #93C9E3;
+    background-color: var(--blue);
     color: white;
     text-align: center;
     border-radius: 5px;
