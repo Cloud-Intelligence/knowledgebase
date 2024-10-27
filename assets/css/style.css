@@ -1,17 +1,23 @@
 /* General Styles */
+:root{
+    --blue: #93C9E3;
+    --dark_blue: #003366;
+    --white: #ffffff;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: var(--white);
     margin: 0;
     padding: 0;
 }
 
 h1, h2 {
-    color: #003366; /* Dark blue for headings */
+    color: var(--dark_blue); /* Dark blue for headings */
 }
 
 a {
-    color: #93C9E3;
+    color: var(--blue);
     text-decoration: none;
 }
 
@@ -89,7 +95,7 @@ main {
     justify-content: space-between;
     border: 1px solid #ddd;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -108,8 +114,8 @@ main {
 
 /* Footer Styles */
 footer {
-    background-color: #ffffff;
-    color: #93C9E3;
+    background-color: var(--white);
+    color: var(--blue);
     padding: 20px;
     text-align: center;
     width: 100%;
