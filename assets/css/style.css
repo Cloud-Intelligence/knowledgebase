@@ -1,4 +1,6 @@
-/* General Styles */
+
+
+
 :root{
     --blue: #93C9E3;
     --dark_blue: #003366;
@@ -35,7 +37,7 @@ a {
 }
 
 .title{
-    width: 10%;
+    width: 30%;
     margin-left: 10%;
 }
 
@@ -87,6 +89,20 @@ main {
     border-radius: 8px; 
 }
 
+h2{
+    color: #8DCAEF;
+    font-family: Fira Sans;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}
+
 
 p{
     font-family: Fira Sans;
@@ -111,7 +127,3 @@ small {
     margin-right: 10vw;
 }
 
-
-.title{
-    width: 30%;
-}
