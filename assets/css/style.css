@@ -1,10 +1,12 @@
-
-
-
-:root{
+:root {
+    --base-font-size: 16px;
     --blue: #93C9E3;
     --dark_blue: #003366;
     --white: #ffffff;
+}
+
+html {
+    font-size: 1rem; /* 16px as base */
 }
 
 body {
@@ -21,72 +23,68 @@ body {
     align-items: flex-start;
 }
 
-
 h1 {
     color: #E5E7EB;
     font-family: Inter, sans-serif;
-    font-size: 68px; 
+    font-size: 4.25rem;
     font-weight: 900;
-    line-height: 50px; 
-    letter-spacing: -2px; 
+    line-height: 3.125rem;
+    letter-spacing: -0.125rem;
     text-align: left;
     margin: 0;
     padding: 0;
 }
 
-
 .blog {
-    color: #C4E8EF; 
+    color: #C4E8EF;
     text-align: left;
     display: block;
-    margin-top: 5px;
+    margin-top: 0.3125rem;
 }
-
-
 
 a {
     color: #8DCAEF;
     text-decoration: none;
 }
 
-.title{
+.title {
     width: 20%;
     margin-left: 15%;
     margin-top: 2%;
 }
 
-.logo{
+.logo {
     width: 100%;
-    height:auto;
+    height: auto;
 }
 
-.date{
+.date {
     display: flex;
 }
 
-.cal{
+.cal {
     height: 100%;
     margin-right: 1vw;
 }
 
 header {
-    background-color: #8DCAEF; 
-    width: 100%; 
+    background-color: #8DCAEF;
+    width: 100%;
     max-width: 100%;
-    height: 10vh; 
-    min-height: 50px; 
-    padding: 10px 0;
+    height: 10vh;
+    min-height: 3.125rem;
+    padding: 0.625rem 0;
 }
 
 main {
-    padding: 20px;
+    padding: 1.25rem;
 }
 
-.body{
+.body {
     display: flex;
 }
 
-.posts{
+.posts {
     width: 70%;
 }
 
@@ -104,35 +102,32 @@ main {
 
 .post-content {
     background-image: url('../../assets/images/container.png');
-    padding: 2%; 
-    width: 70%; 
-    max-width: 100%; 
-    margin: 20px auto; 
-    height: auto; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    border-radius: 8px; 
+    padding: 2%;
+    width: 70%;
+    max-width: 100%;
+    margin: 1.25rem auto;
+    height: auto;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
 }
 
-h2{
+h2 {
     color: #8DCAEF;
-    font-family: Fira Sans;
-    font-size: 24px;
+    font-family: Fira Sans, sans-serif;
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: 32px;
+    line-height: 2rem;
     text-align: left;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
+    text-decoration: underline solid;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-
 }
 
-
-p{
-    font-family: Fira Sans;
-    font-size: 20px;
+p {
+    font-family: Fira Sans, sans-serif;
+    font-size: 1.25rem;
     font-weight: 300;
-    line-height: 28px;
+    line-height: 1.75rem;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
@@ -142,16 +137,15 @@ p{
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: #C4E8EF;
-    float: right; 
+    float: right;
     margin-right: 7vw;
 }
 
-.actDate{
-    font-family: Inter;
-    font-size: 22px;
+.actDate {
+    font-family: Inter, sans-serif;
+    font-size: 1.375rem;
     font-weight: 700;
-    line-height: 32px;
+    line-height: 2rem;
     text-align: right;
-    margin-top: -3%; 
+    margin-top: -3%;
 }
-
