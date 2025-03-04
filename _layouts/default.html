@@ -4,34 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Intelligence Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <div class="site-info">
-                <img src="/assets/images/logo.png" alt="Logo" class="logo">
-            </div>
-        </div>
     </header>
 
     <main>
-        <div class="post-list">
-            {% for post in site.posts %}
-            <div class="post-item">
-                <img src="{{ post.image }}" alt="Post Image" class="post-image">
-                <div class="post-content">
-                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-                    <p>{{ post.excerpt }}</p>
-                    <p><small>{{ post.date | date: "%B %-d, %Y" }}</small></p>
+        <div class="body">
+
+            <div class="title">
+                <img src="/assets/images/CIGif.gif" alt="Logo" class="logo">
+                <div class="title-container">
+                    <h1>cloud intel.</h1>
+                    <h1 class="blog">Blog</h1>
+                </div>
+                <p>
+                    News and announcements for all things <a href="open.cloudintelligence.co.za"> CloudIntelligence </a>
+                </p>
+            </div>
+
+            <div class="posts">
+                <div class="post-list">
+                    {% for post in site.posts %}
+                    <div class="post-item">
+                        <div class="post-content">
+                            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                            <p>{{ post.excerpt }}</p>
+                        </div>
+                        <div class="date">
+                            <img src='../../assets/images/Layer_1.png' class="cal">
+                            <p class="actDate"><small>{{ post.date | date: "%B %-d, %Y" }}</small></p>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
     </main>
-
-    <footer>
-        <p>&copy; 2024 {{ site.title }}. All rights reserved.</p>
-    </footer>
 </body>
 </html>
