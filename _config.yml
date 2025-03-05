@@ -22,6 +22,7 @@ title: "Cloud Intelligence Blog"
 description: "A blog showcasing thoughts, projects, and updates from Cloud Intelligence team."
 baseurl: ""
 url: "https://blog.cloudintelligence.co.za"
+favicon: "/favcoin.svg"
 
 
 # Build settings

@@ -9,38 +9,30 @@
 </head>
 <body>
     <header>
+        <a href="https://cloudintelligence.co.za"><img src="/assets/images/logo.svg" alt="Logo" class="logo"></a>
     </header>
 
     <main>
-        <div class="body">
-
-            <div class="title">
-                <img src="/assets/images/CIGif.gif" alt="Logo" class="logo">
-                <div class="title-container">
-                    <h1>cloud intel.</h1>
-                    <h1 class="blog">Blog</h1>
-                </div>
-                <p>
-                    News and announcements for all things <a href="open.cloudintelligence.co.za"> CloudIntelligence </a>
-                </p>
+        <div class="title">
+            <img src="/assets/images/CIGif.gif" alt="Logo" class="hero">
+            <div>
+                <h1>cloud intel.<span>Blog</span></h1>
             </div>
+            <p>
+                News and announcements for all things <a href="https://cloudintelligence.co.za"> CloudIntelligence </a>
+            </p>
+        </div>
 
-            <div class="posts">
-                <div class="post-list">
-                    {% for post in site.posts %}
-                    <div class="post-item">
-                        <div class="post-content">
-                            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-                            <p>{{ post.excerpt }}</p>
-                        </div>
-                        <div class="date">
-                            <img src='../../assets/images/Layer_1.png' class="cal">
-                            <p class="actDate"><small>{{ post.date | date: "%B %-d, %Y" }}</small></p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+        <div class="posts">
+            {% for post in site.posts %}
+            <a href="{{ post.url }}" class="post">
+                <h2>
+                    {{ post.title }}          
+                    <aside class="author">{{ post.author }} - <small class="date"> {{ post.date | date: "%B %-d, %Y" }}</small></aside>
+                </h2>
+                <p>{{ post.excerpt | truncate: 180 }}</p>
+            </a>
+            {% endfor %}
         </div>
     </main>
 </body>
