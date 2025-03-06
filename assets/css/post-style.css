@@ -19,6 +19,7 @@
     padding: 1.5rem;
     margin-top: 5.25rem;
     text-align: left;
+    margin-bottom: 2rem;
 }
 
 .title-container {
@@ -31,7 +32,7 @@
 
 .title-container h1 {
     font-size: 3.5rem;
-    line-height: 1.2;
+    line-height: 0.1;
     font-weight: 600;
     color: #8DCAEF;
 }
@@ -40,7 +41,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     position: relative;
-    top: -1rem;
+    top: .2rem;
 }
 
 .title-container span a {

@@ -76,7 +76,7 @@ pre code {
 }
 
 blockquote {
-    border-left: 0.3rem solid var(--dark_blue);
+    border-left: 0.3rem solid #8DCAEF;
     padding: 1rem 1.5rem;
     font-style: italic;
     color: #555;
@@ -105,4 +105,21 @@ ul + ul, ol + ol, ul + ol, ol + ul {
 /* Add spacing for content following lists */
 ul + p, ol + p, ul + h2, ol + h2, ul + h3, ol + h3 {
     margin-top: 1.5rem;
+}
+
+
+.post-content a { 
+    color: #8DCAEF;
+    text-decoration: none;
+}
+
+.post-content img {
+    width: 50%;
+    height: auto;
+    transform: translateX(50%);
+}
+
+
+.post-content a:hover {
+    text-decoration: underline;
 }

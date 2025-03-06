@@ -136,7 +136,7 @@ main {
 
 
 .post {
-    width: 70%;
+    width: 90%;
     max-height: 25lvh;
     padding: 2%;
     display: flex;
@@ -181,7 +181,24 @@ main {
     color: darkgrey;
 }
 
+@media (max-width: 768px) {
+    main {
+        margin-top: 4rem;
+        flex-direction: column;
+    }
 
+    .title {
+        width: 90lvw;
+        height: calc(100lvh - 4rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+
+}
 
 /* @media (max-width: 768px) {
     html {
