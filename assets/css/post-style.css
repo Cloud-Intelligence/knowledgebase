@@ -37,6 +37,8 @@
     color: #8DCAEF;
 }
 
+
+
 .title-container span {
     font-size: 1.25rem;
     font-weight: 600;
@@ -52,4 +54,20 @@
 .post-date {
     color: lightgray;
     font-size: .25rem;
+}
+
+
+@media (max-width: 790px) {
+    .title-container h1 {
+        font-size: 2rem;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        max-width: 50lvw;
+        line-height: 1;
+        margin-top: -1rem;
+    }
+    .title-container span {
+        font-size: .8rem;
+        top: -1rem;
+    }
 }
