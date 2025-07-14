@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "The Power of Data Visualisation"
 date: 2025-07-11
 categories: analytics
 excerpt: "Read more on how Cloud Intelligence utilizes Metabase"
@@ -11,7 +11,7 @@ tags: [metabase, data analysis, business intelligence, dashboard, analytics, piz
 
 
 <div style="display: flex; align-items: center; gap: 10px; margin: 20px 0;">
-  <h2 style="margin: 0; flex: 1;">The Power of Data Visualisation</h2>
+  <h2 style="margin: 0; flex: 1;"></h2>
   <img src="/assets/images/dashboard/CI-Logo.png" alt="CI Logo" style="max-width: 150px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
@@ -40,8 +40,8 @@ Meet Metabase, the intuitive open-source business intelligence platform that’s
 
 <button style="background-color: #8DCAEF; color: white; padding: 10px 20px; 
 border: none; border-radius: 5px; cursor: pointer; font-size: 16px; 
-text-decoration: none;" onclick="window.location.href='https://metabase-681822224242.africa-south1.run.app/dashboard/8-cloud-pizza-duplicate?franchise_=Domino%27s+-+Austin%2C+TX&pizza_size=&tab=7-overview'">
-    Click to View Full Case Study
+text-decoration: none;" onclick="window.location.href='http://metabase-681822224242.africa-south1.run.app/public/dashboard/b7389391-a909-4eae-b8d5-41d1af0bfa86'">
+    Click here to view dashboard 
 </button>
 
 To illustrate the power of analytics, we’ve developed a custom dashboard in Metabase using a fictitious pizza delivery dataset.
