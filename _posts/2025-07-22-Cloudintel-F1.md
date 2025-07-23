@@ -3,7 +3,7 @@ layout: post
 title: "From Laps to Legends: F1 Driver Battles Visualized with Metabase"
 date: 2025-07-22
 categories: analytics
-excerpt: "Read more on how Cloud Intelligence utilizes Metabase"
+excerpt: "How Cloud Intelligence used Metabase to settle the F1 GOAT debate."
 image: 
 author: Martin Muti
 tags: [formula 1, metabase, data analytics, business intelligence, visualisations
